@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#101010", // WAMOCON dark background
+          DEFAULT: "#151515", // WAMOCON dark background - Lightened
           foreground: "#FFFFFF",
           light: "#303030", // WAMOCON card background
         },
@@ -20,9 +20,10 @@ const config: Config = {
           hover: "#CC0900", // Darker shade for hover
           light: "#ff3d33", // Lighter red for secondary elements
         },
-        background: "#101010", // Dark background like test-it-academy
-        "background-alt": "#1a1a1a", // Slightly lighter than primary
-        "background-card": "#202020", // Card background
+        background: "#151515", // Dark background - Lightened
+        "background-alt": "#1F1F1F", // Slightly lighter than primary - Lightened
+        "background-card": "#292929", // Increased contrast card background - Lightened
+        "background-red-dark": "#250B0B", // Very dark red for section variance - Lightened
         foreground: "#FFFFFF", // Primary text color
         "foreground-muted": "#d4d4d4", // Higher contrast muted text for accessibility
         border: "#404040", // Subtle borders

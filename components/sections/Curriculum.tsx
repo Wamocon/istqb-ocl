@@ -5,7 +5,7 @@ import { Check } from 'lucide-react'
 
 export function Curriculum() {
   return (
-    <section id="curriculum" className="py-16 md:py-24 bg-background">
+    <section id="curriculum" className="py-16 md:py-24 bg-background-alt">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-4xl mx-auto">

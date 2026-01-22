@@ -59,7 +59,7 @@ export const successStories: SuccessStory[] = [
     name: 'Christian-Oliver Friedrich',
     role: 'Testautomatisierer & ISTQB® Certified',
     image: '/images/testimonials/christian-oliver-friedrich.jpg',
-    videoUrl: 'https://www.youtube.com/1e64d290-c3a2-48ab-89e4-0a76c3f7ee5d',
+    videoUrl: 'https://www.youtube.com/embed/1e64d290-c3a2-48ab-89e4-0a76c3f7ee5d',
     videoThumbnail: 'https://i.ytimg.com/vi/-M1JD6mZVvY/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYACvAWKAgwIABABGEUgSChyMA8=&rs=AOn4CLA30_Rs5yL9J_rRyYf6bdzMRL5i3w',
     challenge: {
       title: 'Herausforderung',

@@ -10,7 +10,7 @@ export function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <section id="faq" className="py-16 md:py-24 bg-background-alt">
+    <section id="faq" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-3xl mx-auto">

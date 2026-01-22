@@ -7,7 +7,7 @@ import { Check, X, Info } from 'lucide-react'
 
 export function Comparison() {
   return (
-    <section id="comparison" className="py-24 bg-background relative overflow-hidden">
+    <section id="comparison" className="py-24 bg-background-alt relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-accent/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
 

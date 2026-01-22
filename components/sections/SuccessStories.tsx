@@ -3,7 +3,7 @@
 import { successStories, SuccessStory } from '@/data/successStories'
 import { Card } from '@/components/ui/Card'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { Check, Target, TrendingUp, User, PlayCircle } from 'lucide-react'
+import { Check, Target, TrendingUp, User } from 'lucide-react'
 import Image from 'next/image'
 
 export function SuccessStories() {
@@ -29,7 +29,10 @@ export function SuccessStories() {
             <div className="space-y-12 md:space-y-16">
               {successStories.map((story, index) => (
                 <ScrollReveal key={story.id} animation={index % 2 === 0 ? "slide-right" : "slide-left"} delay={0.2} width="100%">
-                  <SuccessStoryCard story={story} index={index} />
+                  <SuccessStoryCard
+                    story={story}
+                    index={index}
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -80,7 +83,17 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
             }`}
         >
           {/* Image Section Content */}
-          {story.videoThumbnail ? (
+          {story.videoUrl ? (
+            <div className="absolute inset-0 bg-black">
+              <iframe
+                src={`${story.videoUrl}?rel=0`}
+                title={`Success Story: ${story.name}`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : story.videoThumbnail ? (
             <div className="absolute inset-0 group-image cursor-pointer">
               <Image
                 src={story.videoThumbnail}
@@ -89,21 +102,6 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-
-              {/* Play Button Overlay */}
-              {story.videoUrl && (
-                <a
-                  href={story.videoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center group/play"
-                  aria-label={`Video von ${story.name} ansehen`}
-                >
-                  <div className="w-16 h-16 rounded-full bg-accent/90 text-white flex items-center justify-center transform group-hover/play:scale-110 transition-all shadow-lg shadow-accent/20">
-                    <PlayCircle className="w-8 h-8 ml-1" />
-                  </div>
-                </a>
-              )}
 
               {/* Name Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
@@ -128,8 +126,8 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
             </div>
           )}
 
-          {/* Stats Overlay - show only if no video thumbnail to avoid clutter, or adjust position */}
-          {!story.videoThumbnail && story.stats && (
+          {/* Stats Overlay - show only if no video (embedded or thumbnail) and stats exist */}
+          {!story.videoUrl && !story.videoThumbnail && story.stats && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-card/95 to-transparent p-4">
               <div className="grid grid-cols-3 gap-2">
                 {story.stats.map((stat, i) => (
@@ -201,8 +199,6 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </Card>

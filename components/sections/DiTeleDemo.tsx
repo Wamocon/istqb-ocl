@@ -30,7 +30,7 @@ export function DiTeleDemo() {
   const isCorrect = demoQuestion.options.find(o => o.id === selectedAnswer)?.correct
 
   return (
-    <section id="ditele-demo" className="py-16 md:py-24 bg-background-alt">
+    <section id="ditele-demo" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-3xl mx-auto">

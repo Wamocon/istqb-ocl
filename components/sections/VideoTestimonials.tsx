@@ -14,7 +14,7 @@ export function VideoTestimonials() {
   const [selectedVideo, setSelectedVideo] = useState<VideoTestimonial | null>(null)
 
   return (
-    <section id="video-testimonials" className="py-16 md:py-24 bg-background-alt">
+    <section id="video-testimonials" className="py-16 md:py-24 bg-background-red-dark">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-6xl mx-auto">

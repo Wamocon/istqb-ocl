@@ -132,7 +132,7 @@ export function DiTeLeCourseWalkthrough() {
                   <div className="grid grid-cols-2 gap-3">
                     {diteleFeatures.map((feature, index) => (
                       <ScrollReveal key={index} animation="fade-up" delay={0.4 + index * 0.05} width="100%">
-                        <Card className="p-4 hover:border-accent/50 transition-colors h-full">
+                        <Card className="p-4 bg-background-card hover:border-accent/50 transition-colors h-full">
                           <div className="flex flex-col gap-3">
                             <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
                               {feature.icon}
