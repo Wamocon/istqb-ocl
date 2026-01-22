@@ -5,7 +5,7 @@ import { BookOpen, Code, TrendingUp } from 'lucide-react'
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-primary via-primary to-background-alt text-white overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center bg-gradient-to-br from-primary via-primary to-background-alt text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -103,11 +103,10 @@ function StatCard({
   highlight?: boolean
 }) {
   return (
-    <div className={`p-6 rounded-lg backdrop-blur-sm border transition-all hover:scale-105 ${
-      highlight
+    <div className={`p-6 rounded-lg backdrop-blur-sm border transition-all hover:scale-105 ${highlight
         ? 'bg-accent/10 border-accent shadow-lg shadow-accent/20'
         : 'bg-background-card/50 border-border'
-    }`}>
+      }`}>
       <div className="flex justify-center mb-3 text-accent">{icon}</div>
       <h3 className="font-bold text-lg mb-3">{title}</h3>
       <ul className="space-y-1.5 text-sm text-foreground-muted">
