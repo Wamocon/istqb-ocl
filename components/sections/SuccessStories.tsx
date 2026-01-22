@@ -2,6 +2,7 @@
 
 import { successStories, SuccessStory } from '@/data/successStories'
 import { Card } from '@/components/ui/Card'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Check, Target, TrendingUp, User } from 'lucide-react'
 import Image from 'next/image'
 
@@ -9,44 +10,50 @@ export function SuccessStories() {
   return (
     <section id="success-stories" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
-              <span className="text-accent font-semibold">Echte Erfolgsgeschichten</span>
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
+                <span className="text-accent font-semibold">Echte Erfolgsgeschichten</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Von der Herausforderung zum Erfolg
+              </h2>
+              <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
+                Wie unsere Teilnehmer ihre Karriereziele erreicht haben – trotz anfänglicher Hindernisse
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Von der Herausforderung zum Erfolg
-            </h2>
-            <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
-              Wie unsere Teilnehmer ihre Karriereziele erreicht haben – trotz anfänglicher Hindernisse
-            </p>
-          </div>
 
-          {/* Success Stories Grid */}
-          <div className="space-y-12 md:space-y-16">
-            {successStories.map((story, index) => (
-              <SuccessStoryCard key={story.id} story={story} index={index} />
-            ))}
-          </div>
+            {/* Success Stories Grid */}
+            <div className="space-y-12 md:space-y-16">
+              {successStories.map((story, index) => (
+                <ScrollReveal key={story.id} animation={index % 2 === 0 ? "slide-right" : "slide-left"} delay={0.2} width="100%">
+                  <SuccessStoryCard story={story} index={index} />
+                </ScrollReveal>
+              ))}
+            </div>
 
-          {/* CTA */}
-          <div className="mt-12 md:mt-16 text-center">
-            <p className="text-foreground-muted mb-6">
-              Bereit, deine eigene Erfolgsgeschichte zu schreiben?
-            </p>
-            <a
-              href="#pricing"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-accent-hover transition-all shadow-cta hover:shadow-lg"
-            >
-              🎯 Jetzt durchstarten - €497
-            </a>
+            {/* CTA */}
+            <ScrollReveal animation="fade-up" delay={0.4} width="100%">
+              <div className="mt-12 md:mt-16 text-center">
+                <p className="text-foreground-muted mb-6">
+                  Bereit, deine eigene Erfolgsgeschichte zu schreiben?
+                </p>
+                <a
+                  href="#pricing"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-accent-hover transition-all shadow-cta hover:shadow-lg"
+                >
+                  Jetzt durchstarten - €497
+                </a>
+              </div>
+            </ScrollReveal>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )
@@ -64,15 +71,13 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
   return (
     <Card className="overflow-hidden">
       <div
-        className={`grid md:grid-cols-2 gap-0 ${
-          isReversed ? 'md:grid-flow-dense' : ''
-        }`}
+        className={`grid md:grid-cols-2 gap-0 ${isReversed ? 'md:grid-flow-dense' : ''
+          }`}
       >
         {/* Image Section */}
         <div
-          className={`relative h-64 md:h-auto bg-gradient-to-br from-accent/20 to-accent/5 ${
-            isReversed ? 'md:col-start-2' : ''
-          }`}
+          className={`relative h-64 md:h-auto bg-gradient-to-br from-accent/20 to-accent/5 ${isReversed ? 'md:col-start-2' : ''
+            }`}
         >
           {/* Placeholder for image - replace with actual Image component when images available */}
           <div className="absolute inset-0 flex items-center justify-center">

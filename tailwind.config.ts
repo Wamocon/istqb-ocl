@@ -53,6 +53,8 @@ const config: Config = {
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
         "slide-up": "slideUp 0.6s ease-out",
+        "dialog-overlay-in": "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "dialog-content-in": "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
         fadeIn: {
@@ -62,6 +64,14 @@ const config: Config = {
         slideUp: {
           "0%": { opacity: "0", transform: "translateY(40px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        overlayShow: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        contentShow: {
+          from: { opacity: "0", transform: "translate(-50%, -48%) scale(0.96)" },
+          to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
         },
       },
     },

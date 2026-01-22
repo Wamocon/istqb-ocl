@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback } from 'react'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 interface FooterLink {
   id: string
@@ -91,112 +92,114 @@ export function Footer() {
       </div>
 
       <div className="relative container mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-xl shadow-lg shadow-accent/20">
-                <span className="text-white font-bold text-2xl" aria-hidden="true">W</span>
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-xl shadow-lg shadow-accent/20">
+                  <span className="text-white font-bold text-2xl" aria-hidden="true">W</span>
+                </div>
+                <h3 className="font-bold text-xl tracking-tight">WAMOCON Academy</h3>
               </div>
-              <h3 className="font-bold text-xl tracking-tight">WAMOCON Academy</h3>
-            </div>
-            <p className="text-sm text-foreground-muted leading-relaxed mb-6">
-              Die umfassendste ISTQB CTFL 4.0 Vorbereitung mit DiTeLe Praxis-Tool. Werde zertifizierter Software-Tester.
-            </p>
-            {/* Social Media */}
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.platform}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center w-10 h-10 rounded-lg bg-foreground/5 hover:bg-accent/20 border border-border/50 hover:border-accent/50 transition-all duration-300"
-                  aria-label={social.ariaLabel}
-                >
-                  <span className="text-foreground-muted group-hover:text-accent transition-colors font-semibold text-sm">
-                    {social.platform.charAt(0)}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Navigation Links */}
-          <div>
-            <h4 className="font-bold mb-5 text-sm uppercase tracking-wider text-foreground-muted">Navigation</h4>
-            <nav aria-label="Footer Navigation">
-              <ul className="space-y-3">
-                {navigationLinks.map((link) => (
-                  <li key={link.id}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(link, e)}
-                      className="group inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-accent transition-all duration-300"
-                      aria-label={link.ariaLabel || link.label}
-                    >
-                      <span className="w-0 group-hover:w-2 h-0.5 bg-accent rounded-full transition-all duration-300" />
-                      <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
-                    </a>
-                  </li>
+              <p className="text-sm text-foreground-muted leading-relaxed mb-6">
+                Die umfassendste ISTQB CTFL 4.0 Vorbereitung mit DiTeLe Praxis-Tool. Werde zertifizierter Software-Tester.
+              </p>
+              {/* Social Media */}
+              <div className="flex gap-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center w-10 h-10 rounded-lg bg-foreground/5 hover:bg-accent/20 border border-border/50 hover:border-accent/50 transition-all duration-300"
+                    aria-label={social.ariaLabel}
+                  >
+                    <span className="text-foreground-muted group-hover:text-accent transition-colors font-semibold text-sm">
+                      {social.platform.charAt(0)}
+                    </span>
+                  </a>
                 ))}
-              </ul>
-            </nav>
-          </div>
+              </div>
+            </div>
 
-          {/* Legal Links */}
-          <div>
-            <h4 className="font-bold mb-5 text-sm uppercase tracking-wider text-foreground-muted">Rechtliches</h4>
-            <nav aria-label="Rechtliche Hinweise">
-              <ul className="space-y-3">
-                {legalLinks.map((link) => (
-                  <li key={link.id}>
-                    <a
-                      href={link.href}
-                      className="group inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-accent transition-all duration-300"
-                    >
-                      <span className="w-0 group-hover:w-2 h-0.5 bg-accent rounded-full transition-all duration-300" />
-                      <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+            {/* Navigation Links */}
+            <div>
+              <h4 className="font-bold mb-5 text-sm uppercase tracking-wider text-foreground-muted">Navigation</h4>
+              <nav aria-label="Footer Navigation">
+                <ul className="space-y-3">
+                  {navigationLinks.map((link) => (
+                    <li key={link.id}>
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleLinkClick(link, e)}
+                        className="group inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-accent transition-all duration-300"
+                        aria-label={link.ariaLabel || link.label}
+                      >
+                        <span className="w-0 group-hover:w-2 h-0.5 bg-accent rounded-full transition-all duration-300" />
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="font-bold mb-5 text-sm uppercase tracking-wider text-foreground-muted">Kontakt</h4>
-            <address className="not-italic space-y-3 text-sm">
-              <div>
-                <span className="sr-only">E-Mail: </span>
-                <a
-                  href="mailto:info@test-it-academy.de"
-                  className="text-foreground-muted hover:text-accent transition-colors duration-300 flex items-center gap-2"
-                  aria-label="Senden Sie uns eine E-Mail"
-                >
+            {/* Legal Links */}
+            <div>
+              <h4 className="font-bold mb-5 text-sm uppercase tracking-wider text-foreground-muted">Rechtliches</h4>
+              <nav aria-label="Rechtliche Hinweise">
+                <ul className="space-y-3">
+                  {legalLinks.map((link) => (
+                    <li key={link.id}>
+                      <a
+                        href={link.href}
+                        className="group inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-accent transition-all duration-300"
+                      >
+                        <span className="w-0 group-hover:w-2 h-0.5 bg-accent rounded-full transition-all duration-300" />
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">{link.label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-bold mb-5 text-sm uppercase tracking-wider text-foreground-muted">Kontakt</h4>
+              <address className="not-italic space-y-3 text-sm">
+                <div>
+                  <span className="sr-only">E-Mail: </span>
+                  <a
+                    href="mailto:info@test-it-academy.de"
+                    className="text-foreground-muted hover:text-accent transition-colors duration-300 flex items-center gap-2"
+                    aria-label="Senden Sie uns eine E-Mail"
+                  >
+                    <span className="text-accent">→</span>
+                    info@test-it-academy.de
+                  </a>
+                </div>
+                <div>
+                  <span className="sr-only">Telefon: </span>
+                  <a
+                    href="tel:+4961965838312"
+                    className="text-foreground-muted hover:text-accent transition-colors duration-300 flex items-center gap-2"
+                    aria-label="Rufen Sie uns an"
+                  >
+                    <span className="text-accent">→</span>
+                    +49 (0) 6196 5838312
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-foreground-muted">
                   <span className="text-accent">→</span>
-                  info@test-it-academy.de
-                </a>
-              </div>
-              <div>
-                <span className="sr-only">Telefon: </span>
-                <a
-                  href="tel:+4961965838312"
-                  className="text-foreground-muted hover:text-accent transition-colors duration-300 flex items-center gap-2"
-                  aria-label="Rufen Sie uns an"
-                >
-                  <span className="text-accent">→</span>
-                  +49 (0) 6196 5838312
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-foreground-muted">
-                <span className="text-accent">→</span>
-                <time>Mo-Fr: 9-18 Uhr</time>
-              </div>
-            </address>
+                  <time>Mo-Fr: 9-18 Uhr</time>
+                </div>
+              </address>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Bottom Bar */}
         <div className="border-t border-border/30 pt-8">

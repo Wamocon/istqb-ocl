@@ -13,6 +13,7 @@ import {
   Repeat
 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 interface DiTeLeFeature {
   icon: React.ReactNode
@@ -73,168 +74,168 @@ export function DiTeLeCourseWalkthrough() {
   return (
     <section id="ditele-walkthrough" className="py-16 md:py-24 bg-background-alt">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
-              <span className="text-accent font-semibold">Das DiTeLe Praxis-Tool</span>
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
+                <span className="text-accent font-semibold">Das DiTeLe Praxis-Tool</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Theorie in die Praxis umsetzen – mit echten Testszenarien
+              </h2>
+              <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
+                Das fehlende Puzzleteil: 45+ interaktive Übungen, die dich auf reale Projekte vorbereiten
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Theorie in die Praxis umsetzen – mit echten Testszenarien
-            </h2>
-            <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
-              Das fehlende Puzzleteil: 45+ interaktive Übungen, die dich auf reale Projekte vorbereiten
-            </p>
-          </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Features Section - Left */}
-            <div className="order-2 lg:order-1">
-              <div className="space-y-6">
-                {/* Problem Statement */}
-                <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6">
-                  <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                    <Users className="w-5 h-5 text-red-500" />
-                    Das Problem mit reiner Theorie
-                  </h3>
-                  <p className="text-sm text-foreground-muted mb-3">
-                    66% der Kandidaten scheitern, weil sie Konzepte auswendig lernen, aber nicht <strong>anwenden</strong> können.
-                    In der Prüfung werden realitätsnahe Szenarien abgefragt – keine Definitionen.
-                  </p>
-                  <p className="text-sm font-semibold text-foreground">
-                    DiTeLe schließt genau diese Lücke zwischen Wissen und Können.
-                  </p>
-                </div>
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+              {/* Features Section - Left */}
+              <div className="order-2 lg:order-1">
+                <div className="space-y-6">
+                  {/* Problem Statement */}
+                  <ScrollReveal animation="slide-right" delay={0.2} width="100%">
+                    <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6">
+                      <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
+                        <Users className="w-5 h-5 text-red-500" />
+                        Das Problem mit reiner Theorie
+                      </h3>
+                      <p className="text-sm text-foreground-muted mb-3">
+                        66% der Kandidaten scheitern, weil sie Konzepte auswendig lernen, aber nicht <strong>anwenden</strong> können.
+                        In der Prüfung werden realitätsnahe Szenarien abgefragt – keine Definitionen.
+                      </p>
+                      <p className="text-sm font-semibold text-foreground">
+                        DiTeLe schließt genau diese Lücke zwischen Wissen und Können.
+                      </p>
+                    </div>
+                  </ScrollReveal>
 
-                {/* What You Can Do */}
-                <div>
-                  <h3 className="font-bold text-foreground mb-4">Was du in DiTeLe lernst:</h3>
-                  <div className="grid sm:grid-cols-2 gap-2">
-                    {diTeleCapabilities.map((capability, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                        className="flex items-start gap-2 text-sm"
-                      >
-                        <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground-muted">{capability}</span>
-                      </motion.div>
+                  {/* What You Can Do */}
+                  <ScrollReveal animation="fade-in" delay={0.3} width="100%">
+                    <div>
+                      <h3 className="font-bold text-foreground mb-4">Was du in DiTeLe lernst:</h3>
+                      <div className="grid sm:grid-cols-2 gap-2">
+                        {diTeleCapabilities.map((capability, index) => (
+                          <div
+                            key={index}
+                            className="flex items-start gap-2 text-sm"
+                          >
+                            <CheckCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                            <span className="text-foreground-muted">{capability}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </ScrollReveal>
+
+                  {/* Feature Cards */}
+                  <div className="space-y-3">
+                    {diteleFeatures.map((feature, index) => (
+                      <ScrollReveal key={index} animation="fade-up" delay={0.4 + index * 0.05} width="100%">
+                        <Card className="p-4 hover:border-accent/50 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
+                              {feature.icon}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-semibold text-sm text-foreground mb-1">
+                                {feature.title}
+                              </h4>
+                              <p className="text-xs text-foreground-muted mb-1">
+                                {feature.description}
+                              </p>
+                              <p className="text-xs text-accent font-medium">
+                                → {feature.benefit}
+                              </p>
+                            </div>
+                          </div>
+                        </Card>
+                      </ScrollReveal>
                     ))}
                   </div>
-                </div>
 
-                {/* Feature Cards */}
-                <div className="space-y-3">
-                  {diteleFeatures.map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.08 }}
-                    >
-                      <Card className="p-4 hover:border-accent/50 transition-colors">
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
-                            {feature.icon}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-sm text-foreground mb-1">
-                              {feature.title}
-                            </h4>
-                            <p className="text-xs text-foreground-muted mb-1">
-                              {feature.description}
-                            </p>
-                            <p className="text-xs text-accent font-medium">
-                              → {feature.benefit}
-                            </p>
-                          </div>
+                  {/* CTA */}
+                  <ScrollReveal animation="fade-up" delay={0.8} width="100%">
+                    <div className="pt-4">
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={() => {
+                          document.getElementById('ditele-demo')?.scrollIntoView({ behavior: 'smooth' })
+                        }}
+                        className="w-full bg-accent hover:bg-accent-hover"
+                      >
+                        🎯 DiTeLe kostenlos testen
+                      </Button>
+                      <p className="text-center text-xs text-foreground-muted mt-3">
+                        Probiere eine Demo-Übung aus • Keine Anmeldung erforderlich
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                </div>
+              </div>
+
+              {/* Video Player Section - Right */}
+              <ScrollReveal animation="slide-left" delay={0.2} width="100%" className="order-1 lg:order-2">
+                <div>
+                  <Card className="overflow-hidden p-0">
+                    {/* Video Placeholder */}
+                    <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5">
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+                        <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                          <Code className="w-10 h-10 text-accent" aria-hidden="true" />
                         </div>
-                      </Card>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* CTA */}
-                <div className="pt-4">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    onClick={() => {
-                      document.getElementById('ditele-demo')?.scrollIntoView({ behavior: 'smooth' })
-                    }}
-                    className="w-full bg-accent hover:bg-accent-hover"
-                  >
-                    🎯 DiTeLe kostenlos testen
-                  </Button>
-                  <p className="text-center text-xs text-foreground-muted mt-3">
-                    Probiere eine Demo-Übung aus • Keine Anmeldung erforderlich
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Video Player Section - Right */}
-            <div className="order-1 lg:order-2">
-              <Card className="overflow-hidden p-0">
-                {/* Video Placeholder */}
-                <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                    <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4">
-                      <Code className="w-10 h-10 text-accent" aria-hidden="true" />
+                        <h3 className="text-xl font-bold text-foreground mb-2 text-center">
+                          DiTeLe Walkthrough Video
+                        </h3>
+                        <p className="text-foreground-muted text-sm text-center max-w-md">
+                          Sieh dir an, wie DiTeLe funktioniert und wie du damit echte Testkompetenz aufbaust
+                        </p>
+                        <p className="text-foreground-muted text-xs mt-4">
+                          4:12 Minuten • Video kommt bald
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2 text-center">
-                      DiTeLe Walkthrough Video
-                    </h3>
-                    <p className="text-foreground-muted text-sm text-center max-w-md">
-                      Sieh dir an, wie DiTeLe funktioniert und wie du damit echte Testkompetenz aufbaust
-                    </p>
-                    <p className="text-foreground-muted text-xs mt-4">
-                      4:12 Minuten • Video kommt bald
-                    </p>
-                  </div>
-                </div>
 
-                {/* Video Info */}
-                <div className="p-6 bg-background-card">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                      <Code className="w-6 h-6 text-accent" />
+                    {/* Video Info */}
+                    <div className="p-6 bg-background-card">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                          <Code className="w-6 h-6 text-accent" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-foreground">DiTeLe in Aktion</h4>
+                          <p className="text-sm text-foreground-muted">Praxisorientiertes Lernen</p>
+                        </div>
+                      </div>
+                      <p className="text-sm text-foreground-muted">
+                        In diesem Video zeigen wir dir, wie du mit DiTeLe arbeitest: Von der ersten Übung
+                        bis zur Prüfungssimulation. Du siehst, wie das Feedback-System funktioniert und
+                        wie du deinen Fortschritt verfolgst.
+                      </p>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-foreground">DiTeLe in Aktion</h4>
-                      <p className="text-sm text-foreground-muted">Praxisorientiertes Lernen</p>
+                  </Card>
+
+                  {/* Stats Below Video */}
+                  <div className="mt-6 grid grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-accent mb-1">45+</div>
+                      <div className="text-xs text-foreground-muted">Übungen</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-accent mb-1">300+</div>
+                      <div className="text-xs text-foreground-muted">Fragen</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-accent mb-1">∞</div>
+                      <div className="text-xs text-foreground-muted">Wiederholungen</div>
                     </div>
                   </div>
-                  <p className="text-sm text-foreground-muted">
-                    In diesem Video zeigen wir dir, wie du mit DiTeLe arbeitest: Von der ersten Übung
-                    bis zur Prüfungssimulation. Du siehst, wie das Feedback-System funktioniert und
-                    wie du deinen Fortschritt verfolgst.
-                  </p>
                 </div>
-              </Card>
-
-              {/* Stats Below Video */}
-              <div className="mt-6 grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent mb-1">45+</div>
-                  <div className="text-xs text-foreground-muted">Übungen</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent mb-1">300+</div>
-                  <div className="text-xs text-foreground-muted">Fragen</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-accent mb-1">∞</div>
-                  <div className="text-xs text-foreground-muted">Wiederholungen</div>
-                </div>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )

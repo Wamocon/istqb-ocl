@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-background border border-border rounded-md text-foreground placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-foreground-muted mb-1.5;
+  }
+}
+
 @layer base {
   :root {
     --font-inter: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
