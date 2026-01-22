@@ -2,51 +2,58 @@
 
 import { successStories, SuccessStory } from '@/data/successStories'
 import { Card } from '@/components/ui/Card'
-import { Check, Target, TrendingUp, User } from 'lucide-react'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { Check, Target, TrendingUp, User, PlayCircle } from 'lucide-react'
 import Image from 'next/image'
 
 export function SuccessStories() {
   return (
     <section id="success-stories" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
-              <span className="text-accent font-semibold">Echte Erfolgsgeschichten</span>
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
+                <span className="text-accent font-semibold">Echte Erfolgsgeschichten</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Von der Herausforderung zum Erfolg
+              </h2>
+              <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
+                Wie unsere Teilnehmer ihre Karriereziele erreicht haben – trotz anfänglicher Hindernisse
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Von der Herausforderung zum Erfolg
-            </h2>
-            <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
-              Wie unsere Teilnehmer ihre Karriereziele erreicht haben – trotz anfänglicher Hindernisse
-            </p>
-          </div>
 
-          {/* Success Stories Grid */}
-          <div className="space-y-12 md:space-y-16">
-            {successStories.map((story, index) => (
-              <SuccessStoryCard key={story.id} story={story} index={index} />
-            ))}
-          </div>
+            {/* Success Stories Grid */}
+            <div className="space-y-12 md:space-y-16">
+              {successStories.map((story, index) => (
+                <ScrollReveal key={story.id} animation={index % 2 === 0 ? "slide-right" : "slide-left"} delay={0.2} width="100%">
+                  <SuccessStoryCard story={story} index={index} />
+                </ScrollReveal>
+              ))}
+            </div>
 
-          {/* CTA */}
-          <div className="mt-12 md:mt-16 text-center">
-            <p className="text-foreground-muted mb-6">
-              Bereit, deine eigene Erfolgsgeschichte zu schreiben?
-            </p>
-            <a
-              href="#pricing"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-accent-hover transition-all shadow-cta hover:shadow-lg"
-            >
-              🎯 Jetzt durchstarten - €497
-            </a>
+            {/* CTA */}
+            <ScrollReveal animation="fade-up" delay={0.4} width="100%">
+              <div className="mt-12 md:mt-16 text-center">
+                <p className="text-foreground-muted mb-6">
+                  Bereit, deine eigene Erfolgsgeschichte zu schreiben?
+                </p>
+                <a
+                  href="#pricing"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-accent-hover transition-all shadow-cta hover:shadow-lg"
+                >
+                  Jetzt durchstarten - €497
+                </a>
+              </div>
+            </ScrollReveal>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )
@@ -64,31 +71,65 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
   return (
     <Card className="overflow-hidden">
       <div
-        className={`grid md:grid-cols-2 gap-0 ${
-          isReversed ? 'md:grid-flow-dense' : ''
-        }`}
+        className={`grid md:grid-cols-2 gap-0 ${isReversed ? 'md:grid-flow-dense' : ''
+          }`}
       >
         {/* Image Section */}
         <div
-          className={`relative h-64 md:h-auto bg-gradient-to-br from-accent/20 to-accent/5 ${
-            isReversed ? 'md:col-start-2' : ''
-          }`}
+          className={`relative h-64 md:h-auto bg-gradient-to-br from-accent/20 to-accent/5 ${isReversed ? 'md:col-start-2' : ''
+            }`}
         >
-          {/* Placeholder for image - replace with actual Image component when images available */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center">
-                <User className="w-12 h-12 text-accent" aria-hidden="true" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground">{story.name}</h3>
-              {story.role && (
-                <p className="text-accent font-semibold mt-2">{story.role}</p>
-              )}
-            </div>
-          </div>
+          {/* Image Section Content */}
+          {story.videoThumbnail ? (
+            <div className="absolute inset-0 group-image cursor-pointer">
+              <Image
+                src={story.videoThumbnail}
+                alt={story.name}
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
 
-          {/* Stats Overlay */}
-          {story.stats && (
+              {/* Play Button Overlay */}
+              {story.videoUrl && (
+                <a
+                  href={story.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center group/play"
+                  aria-label={`Video von ${story.name} ansehen`}
+                >
+                  <div className="w-16 h-16 rounded-full bg-accent/90 text-white flex items-center justify-center transform group-hover/play:scale-110 transition-all shadow-lg shadow-accent/20">
+                    <PlayCircle className="w-8 h-8 ml-1" />
+                  </div>
+                </a>
+              )}
+
+              {/* Name Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                <h3 className="text-xl font-bold">{story.name}</h3>
+                {story.role && (
+                  <p className="text-accent-light text-sm font-medium">{story.role}</p>
+                )}
+              </div>
+            </div>
+          ) : (
+            /* Default Placeholder */
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center">
+                  <User className="w-12 h-12 text-accent" aria-hidden="true" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground">{story.name}</h3>
+                {story.role && (
+                  <p className="text-accent font-semibold mt-2">{story.role}</p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Stats Overlay - show only if no video thumbnail to avoid clutter, or adjust position */}
+          {!story.videoThumbnail && story.stats && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-card/95 to-transparent p-4">
               <div className="grid grid-cols-3 gap-2">
                 {story.stats.map((stat, i) => (
@@ -160,6 +201,8 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
               </div>
             </div>
           </div>
+
+
         </div>
       </div>
     </Card>

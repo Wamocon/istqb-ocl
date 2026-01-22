@@ -1,112 +1,138 @@
-import { Card } from '@/components/ui/Card'
+'use client'
+
 import { Button } from '@/components/ui/Button'
-import { X, Check } from 'lucide-react'
+import { Card } from '@/components/ui/Card'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { Check, X, Info } from 'lucide-react'
 
 export function Comparison() {
   return (
-    <section id="features" className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4">
-            Warum andere Lernmethoden scheitern
-          </h2>
-          <p className="text-center text-muted text-lg mb-12">
-            Vergleiche selbst: Selbststudium vs. Präsenz-Seminar vs. Unser System
-          </p>
+    <section id="comparison" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-accent/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Selbststudium */}
-            <Card className="relative">
-              <div className="absolute -top-3 left-4">
-                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
+      <div className="container mx-auto px-6">
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Warum andere Lernmethoden scheitern
+            </h2>
+            <p className="text-muted text-lg md:text-xl">
+              Vergleiche selbst: Selbststudium vs. Präsenz-Seminar vs. Unser System
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Selbststudium */}
+          <ScrollReveal animation="fade-up" delay={0.2} className="h-full" width="100%">
+            <div className="relative h-full p-8 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm flex flex-col hover:bg-white/[0.05] transition-colors">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
                   Nicht empfohlen
                 </span>
               </div>
-              <div className="text-center mb-4">
+              <div className="text-center mb-8 mt-4">
                 <h3 className="text-xl font-bold mb-2">Selbststudium</h3>
-                <p className="text-muted text-sm">mit Büchern</p>
+                <p className="text-muted text-sm">reines Buchstudium</p>
               </div>
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-4 mb-8 flex-grow">
                 <ComparisonItem icon="negative" text="300+ Seiten trockene Theorie" />
                 <ComparisonItem icon="negative" text="Keine praktischen Übungen" />
                 <ComparisonItem icon="negative" text="Erfolgsquote: ~34%" />
                 <ComparisonItem icon="negative" text="4-6 Monate Zeitaufwand" />
                 <ComparisonItem icon="negative" text="Auf dich allein gestellt" />
               </ul>
-              <div className="text-center pt-4 border-t border-border">
+              <div className="text-center pt-6 border-t border-white/10 mt-auto">
                 <p className="text-sm text-muted">Kosten: ~€50</p>
               </div>
-            </Card>
+            </div>
+          </ScrollReveal>
 
-            {/* Präsenz-Seminar */}
-            <Card className="relative">
-              <div className="absolute -top-3 left-4">
-                <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-semibold">
+          {/* Präsenz-Seminar */}
+          <ScrollReveal animation="fade-up" delay={0.3} className="h-full" width="100%">
+            <div className="relative h-full p-8 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm flex flex-col hover:bg-white/[0.05] transition-colors">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
                   Teuer & unflexibel
                 </span>
               </div>
-              <div className="text-center mb-4">
+              <div className="text-center mb-8 mt-4">
                 <h3 className="text-xl font-bold mb-2">Präsenz-Seminar</h3>
-                <p className="text-muted text-sm">3-5 Tage</p>
+                <p className="text-muted text-sm">3-5 Tage Intensivkurs</p>
               </div>
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-4 mb-8 flex-grow">
                 <ComparisonItem icon="negative" text="€800-1500 Kosten" />
                 <ComparisonItem icon="negative" text="Urlaub nötig (3-5 Tage)" />
-                <ComparisonItem icon="negative" text="Kein Nachschlagen möglich" />
                 <ComparisonItem icon="negative" text="Überforderung durch Tempo" />
-                <ComparisonItem icon="negative" text="Keine Praxiserfahrung" />
+                <ComparisonItem icon="negative" text="Kein späteres Nachschlagen" />
+                <ComparisonItem icon="negative" text="Wenig echte Praxis" />
               </ul>
-              <div className="text-center pt-4 border-t border-border">
+              <div className="text-center pt-6 border-t border-white/10 mt-auto">
                 <p className="text-sm text-muted">Erfolgsquote: ~70%</p>
               </div>
-            </Card>
+            </div>
+          </ScrollReveal>
 
-            {/* Unser System */}
-            <Card className="relative border-2 border-accent shadow-lg">
-              <div className="absolute -top-3 left-4">
-                <span className="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  ⭐ Empfohlen
+          {/* Unser System */}
+          <ScrollReveal animation="scale-up" delay={0.4} className="h-full" width="100%">
+            <div className="relative h-full p-8 rounded-2xl bg-accent/5 border border-accent/30 backdrop-blur-sm flex flex-col shadow-[0_8px_30px_rgba(254,4,4,0.15)] transform md:-translate-y-4 z-10">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-accent text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg shadow-accent/20">
+                  Empfohlene Wahl
                 </span>
               </div>
-              <div className="text-center mb-4">
-                <h3 className="text-xl font-bold mb-2 text-accent">Unser System</h3>
-                <p className="text-muted text-sm">Kurs + DiTeLe</p>
+              <div className="text-center mb-8 mt-4">
+                <h3 className="text-2xl font-bold mb-2 text-accent">Unser System</h3>
+                <p className="text-foreground-muted text-sm">Online-Kurs + DiTeLe App</p>
               </div>
-              <ul className="space-y-3 mb-6">
-                <ComparisonItem icon="positive" text="128 Lerneinheiten strukturiert" />
-                <ComparisonItem icon="positive" text="45+ Praxisübungen in DiTeLe" />
-                <ComparisonItem icon="positive" text="Erfolgsquote: 87%" />
-                <ComparisonItem icon="positive" text="8 Wochen (2h/Woche)" />
-                <ComparisonItem icon="positive" text="Lifetime Access" />
+              <ul className="space-y-4 mb-8 flex-grow">
+                <ComparisonItem icon="positive" text="128 Lerneinheiten strukturiert" highlight />
+                <ComparisonItem icon="positive" text="45+ Praxisübungen in DiTeLe" highlight />
+                <ComparisonItem icon="positive" text="Erfolgsquote: 87% (Nachweisbar)" highlight />
+                <ComparisonItem icon="positive" text="Flexible 8 Wochen (2h/Woche)" highlight />
+                <ComparisonItem icon="positive" text="Lifetime Access & Updates" highlight />
               </ul>
-              <div className="text-center pt-4 border-t border-accent/30">
-                <p className="text-sm font-semibold mb-4">Kosten: €299</p>
-                <Button variant="primary" size="sm" className="bg-accent hover:bg-accent/90 w-full">
-                  Jetzt starten
+              <div className="text-center pt-6 border-t border-accent/20 mt-auto">
+                <p className="text-lg font-bold mb-4">Investition: €497</p>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="bg-accent hover:bg-accent-hover w-full shadow-[0_4px_20px_rgba(254,4,4,0.3)] hover:shadow-[0_4px_25px_rgba(254,4,4,0.4)]"
+                  onClick={() => {
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
+                  Jetzt durchstarten
                 </Button>
               </div>
-            </Card>
-          </div>
+            </div>
+          </ScrollReveal>
+        </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-lg text-muted mb-4">
-              💡 Mit unserem System sparst du <span className="text-accent font-bold">mindestens €500</span> <br className="hidden md:block" />
-              und hast <span className="text-accent font-bold">2,5x höhere Erfolgschancen</span>
+        <ScrollReveal animation="fade-in" delay={0.6} width="100%">
+          <div className="mt-16 text-center bg-white/[0.02] border border-white/5 rounded-xl p-8 max-w-3xl mx-auto backdrop-blur-sm">
+            <p className="text-lg md:text-xl text-muted leading-relaxed">
+              Mit unserem System sparst du <span className="text-accent font-bold">bis zu €1000</span> gegenüber Seminaren und hast <span className="text-accent font-bold">2,5x höhere Erfolgschancen</span> als beim Selbststudium.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )
 }
 
-function ComparisonItem({ icon, text }: { icon: 'positive' | 'negative', text: string }) {
+function ComparisonItem({ icon, text, highlight = false }: { icon: 'positive' | 'negative', text: string, highlight?: boolean }) {
   return (
-    <li className="flex items-start gap-2 text-sm">
+    <li className={`flex items-start gap-3 text-[15px] ${highlight ? 'text-white font-medium' : 'text-muted'}`}>
       {icon === 'positive' ? (
-        <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center mt-0.5">
+          <Check className="w-3.5 h-3.5 text-accent" />
+        </div>
       ) : (
-        <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center mt-0.5">
+          <X className="w-3.5 h-3.5 text-red-500/70" />
+        </div>
       )}
       <span>{text}</span>
     </li>

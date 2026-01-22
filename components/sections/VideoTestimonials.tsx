@@ -1,10 +1,14 @@
 'use client'
 
+import Image from 'next/image'
+
 import { useState, useRef, useEffect } from 'react'
 import { videoTestimonials, VideoTestimonial } from '@/data/videoTestimonials'
 import { Card } from '@/components/ui/Card'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Play, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+
 
 export function VideoTestimonials() {
   const [selectedVideo, setSelectedVideo] = useState<VideoTestimonial | null>(null)
@@ -12,39 +16,44 @@ export function VideoTestimonials() {
   return (
     <section id="video-testimonials" className="py-16 md:py-24 bg-background-alt">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
-              <span className="text-accent font-semibold">Video-Testimonials</span>
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-block mb-4 px-6 py-2 bg-accent/10 rounded-full">
+                <span className="text-accent font-semibold">Video-Testimonials</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Höre direkt von unseren Absolventen
+              </h2>
+              <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
+                Echte Menschen, echte Geschichten – sieh selbst, wie sie mit unserem Kurs ihre Ziele erreicht haben
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Höre direkt von unseren Absolventen
-            </h2>
-            <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
-              Echte Menschen, echte Geschichten – sieh selbst, wie sie mit unserem Kurs ihre Ziele erreicht haben
-            </p>
-          </div>
 
-          {/* Video Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {videoTestimonials.slice(0, 5).map((testimonial) => (
-              <VideoCard
-                key={testimonial.id}
-                testimonial={testimonial}
-                onClick={() => setSelectedVideo(testimonial)}
-              />
-            ))}
-          </div>
+            {/* Video Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {videoTestimonials.slice(0, 5).map((testimonial, index) => (
+                <ScrollReveal key={testimonial.id} animation="scale-up" delay={index * 0.1} width="100%">
+                  <VideoCard
+                    testimonial={testimonial}
+                    onClick={() => setSelectedVideo(testimonial)}
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
 
-          {/* Trust Indicator */}
-          <div className="text-center">
-            <p className="text-foreground-muted text-sm">
-              <span className="font-semibold text-accent">Über 2,500+ zufriedene Teilnehmer</span> haben
-              bereits ihre ISTQB-Zertifizierung mit uns gemeistert
-            </p>
+            {/* Trust Indicator */}
+            <ScrollReveal animation="fade-in" delay={0.4} width="100%">
+              <div className="text-center">
+                <p className="text-foreground-muted text-sm">
+                  <span className="font-semibold text-accent">Über 2,500+ zufriedene Teilnehmer</span> haben
+                  bereits ihre ISTQB-Zertifizierung mit uns gemeistert
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Video Modal */}
@@ -68,17 +77,26 @@ function VideoCard({ testimonial, onClick }: VideoCardProps) {
       onClick={onClick}
     >
       {/* Thumbnail */}
-      <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5 overflow-hidden">
-        {/* Placeholder - Replace with actual image when available */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mb-2 mx-auto">
-              <span className="text-2xl font-bold text-accent">
-                {testimonial.name.charAt(0)}
-              </span>
+      <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5 overflow-hidden group-video-card">
+        {testimonial.thumbnailUrl && (testimonial.thumbnailUrl.startsWith('http') || testimonial.thumbnailUrl.startsWith('/')) ? (
+          <Image
+            src={testimonial.thumbnailUrl}
+            alt={`Video thumbnail von ${testimonial.name}`}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          /* Placeholder - Replace with actual image when available */
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mb-2 mx-auto">
+                <span className="text-2xl font-bold text-accent">
+                  {testimonial.name.charAt(0)}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Play Button Overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-background/40 group-hover:bg-background/60 transition-all">
@@ -165,28 +183,21 @@ function VideoModal({ video, onClose }: VideoModalProps) {
             <X className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Video Placeholder */}
-          <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-accent/20 flex items-center justify-center mb-4 mx-auto">
-                  <span className="text-4xl font-bold text-accent">
-                    {video.name.charAt(0)}
-                  </span>
-                </div>
-                <p className="text-foreground text-lg font-semibold mb-2">
-                  {video.name}
-                </p>
-                <p className="text-foreground-muted text-sm">
-                  Video kommt bald
-                </p>
-                {video.duration && (
-                  <p className="text-foreground-muted text-xs mt-2">
-                    Dauer: {video.duration}
-                  </p>
-                )}
+          {/* Video Player */}
+          <div className="relative aspect-video bg-black">
+            {video.videoUrl ? (
+              <iframe
+                src={`${video.videoUrl}?autoplay=1&rel=0`}
+                title={`Testimonial von ${video.name}`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-accent/5">
+                <p className="text-foreground-muted">Video nicht verfügbar</p>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Video Info */}

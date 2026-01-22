@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/shared/Footer";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
   title: "ISTQB CTFL 4.0 Online-Kurs + DiTeLe Praxis-Tool | Software-Tester werden",
@@ -21,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <body className="antialiased">
+      <body className={`antialiased ${poppins.variable} font-sans`}>
         <Header />
         {children}
         <Footer />

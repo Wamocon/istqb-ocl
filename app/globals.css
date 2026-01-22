@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-background border border-border rounded-md text-foreground placeholder:text-foreground-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-foreground-muted mb-1.5;
+  }
+}
+
 @layer base {
   :root {
-    --font-inter: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-jetbrains-mono: "JetBrains Mono", "Courier New", monospace;
+    /* Font variables injected by Next.js */
   }
 
   * {
@@ -14,7 +23,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter);
+    font-family: var(--font-poppins), sans-serif;
     /* Ensure smooth text rendering on dark backgrounds */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

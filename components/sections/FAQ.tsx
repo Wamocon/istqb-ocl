@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { faqData } from '@/data/faq'
 import { ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 export function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null)
@@ -11,35 +12,38 @@ export function FAQ() {
   return (
     <section id="faq" className="py-16 md:py-24 bg-background-alt">
       <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4">
-            Häufig gestellte Fragen
-          </h2>
-          <p className="text-center text-muted text-lg mb-12">
-            Hier findest du Antworten auf die wichtigsten Fragen
-          </p>
+        <ScrollReveal animation="fade-up" width="100%">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4">
+              Häufig gestellte Fragen
+            </h2>
+            <p className="text-center text-muted text-lg mb-12">
+              Hier findest du Antworten auf die wichtigsten Fragen
+            </p>
 
-          <div className="space-y-4">
-            {faqData.map((item) => (
-              <FAQItem
-                key={item.id}
-                item={item}
-                isOpen={openId === item.id}
-                onClick={() => setOpenId(openId === item.id ? null : item.id)}
-              />
-            ))}
-          </div>
+            <div className="space-y-4">
+              {faqData.map((item, index) => (
+                <ScrollReveal key={item.id} animation="fade-up" delay={index * 0.05} width="100%">
+                  <FAQItem
+                    item={item}
+                    isOpen={openId === item.id}
+                    onClick={() => setOpenId(openId === item.id ? null : item.id)}
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-muted mb-4">Deine Frage ist nicht dabei?</p>
-            <a
-              href="mailto:support@example.com"
-              className="text-accent font-semibold hover:underline"
-            >
-              Schreib uns: support@example.com
-            </a>
+            <div className="mt-12 text-center">
+              <p className="text-muted mb-4">Deine Frage ist nicht dabei?</p>
+              <a
+                href="mailto:support@example.com"
+                className="text-accent font-semibold hover:underline"
+              >
+                Schreib uns: support@example.com
+              </a>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )
@@ -62,9 +66,8 @@ function FAQItem({
       >
         <span className="font-semibold pr-4">{item.question}</span>
         <ChevronDown
-          className={`w-5 h-5 text-accent flex-shrink-0 transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
-          }`}
+          className={`w-5 h-5 text-accent flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
+            }`}
         />
       </button>
 
