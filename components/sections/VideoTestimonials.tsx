@@ -1,11 +1,14 @@
 'use client'
 
+import Image from 'next/image'
+
 import { useState, useRef, useEffect } from 'react'
 import { videoTestimonials, VideoTestimonial } from '@/data/videoTestimonials'
 import { Card } from '@/components/ui/Card'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Play, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+
 
 export function VideoTestimonials() {
   const [selectedVideo, setSelectedVideo] = useState<VideoTestimonial | null>(null)
@@ -74,17 +77,26 @@ function VideoCard({ testimonial, onClick }: VideoCardProps) {
       onClick={onClick}
     >
       {/* Thumbnail */}
-      <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5 overflow-hidden">
-        {/* Placeholder - Replace with actual image when available */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mb-2 mx-auto">
-              <span className="text-2xl font-bold text-accent">
-                {testimonial.name.charAt(0)}
-              </span>
+      <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5 overflow-hidden group-video-card">
+        {testimonial.thumbnailUrl && (testimonial.thumbnailUrl.startsWith('http') || testimonial.thumbnailUrl.startsWith('/')) ? (
+          <Image
+            src={testimonial.thumbnailUrl}
+            alt={`Video thumbnail von ${testimonial.name}`}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          /* Placeholder - Replace with actual image when available */
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mb-2 mx-auto">
+                <span className="text-2xl font-bold text-accent">
+                  {testimonial.name.charAt(0)}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Play Button Overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-background/40 group-hover:bg-background/60 transition-all">
@@ -171,28 +183,21 @@ function VideoModal({ video, onClose }: VideoModalProps) {
             <X className="w-5 h-5 text-foreground" />
           </button>
 
-          {/* Video Placeholder */}
-          <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-accent/20 flex items-center justify-center mb-4 mx-auto">
-                  <span className="text-4xl font-bold text-accent">
-                    {video.name.charAt(0)}
-                  </span>
-                </div>
-                <p className="text-foreground text-lg font-semibold mb-2">
-                  {video.name}
-                </p>
-                <p className="text-foreground-muted text-sm">
-                  Video kommt bald
-                </p>
-                {video.duration && (
-                  <p className="text-foreground-muted text-xs mt-2">
-                    Dauer: {video.duration}
-                  </p>
-                )}
+          {/* Video Player */}
+          <div className="relative aspect-video bg-black">
+            {video.videoUrl ? (
+              <iframe
+                src={`${video.videoUrl}?autoplay=1&rel=0`}
+                title={`Testimonial von ${video.name}`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-accent/5">
+                <p className="text-foreground-muted">Video nicht verfügbar</p>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Video Info */}

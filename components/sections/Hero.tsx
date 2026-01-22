@@ -94,7 +94,7 @@ export function Hero() {
               <Button
                 variant="primary"
                 size="xl"
-                className="bg-accent hover:bg-accent-hover text-white shadow-[0_4px_30px_rgba(254,4,4,0.4)] hover:shadow-[0_4px_40px_rgba(254,4,4,0.6)] transform hover:-translate-y-1 transition-all duration-300 text-lg px-10 py-6"
+                className="bg-accent hover:bg-accent-hover text-white shadow-cta hover:shadow-card-hover transform hover:-translate-y-1 transition-all duration-300 text-lg px-10 py-6"
                 onClick={() => {
                   document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
                 }}
@@ -139,7 +139,7 @@ function StatCard({
 }) {
   return (
     <div className={`h-full p-8 rounded-2xl backdrop-blur-md border transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center group ${highlight
-      ? 'bg-accent/5 border-accent/30 shadow-[0_8px_30px_rgba(254,4,4,0.1)] hover:shadow-[0_8px_40px_rgba(254,4,4,0.15)]'
+      ? 'bg-accent/5 border-accent/30 shadow-card hover:shadow-card-hover'
       : 'bg-white/[0.03] border-white/5 hover:bg-white/[0.06] hover:border-white/10'
       }`}>
       <div className={`mb-5 p-4 rounded-xl ${highlight ? 'bg-accent/10 text-accent' : 'bg-white/5 text-gray-300 group-hover:text-white group-hover:bg-white/10'} transition-colors`}>

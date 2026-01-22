@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import Image from 'next/image'
 
 interface NavItem {
   id: string
@@ -142,16 +143,16 @@ export function Header() {
               className="flex items-center gap-3 group"
               aria-label="WAMOCON Academy - Zur Startseite"
             >
-              <div className="relative flex items-center justify-center w-11 h-11 bg-gradient-to-br from-accent to-accent/80 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent/30">
-                <span className="text-white font-bold text-xl tracking-tight">W</span>
-                <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative flex items-center h-14 w-[360px] transition-all duration-300 group-hover:scale-105">
+                <Image
+                  src="/logo/WAMOCON_ACADEMY_LOGO.png"
+                  alt="WAMOCON Academy Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
               </div>
-              <div className="hidden sm:block">
-                <div className="text-foreground font-bold text-lg leading-tight tracking-tight">
-                  WAMOCON Academy
-                </div>
-                <div className="text-foreground-muted text-xs font-mono tracking-wider">ISTQB CTFL 4.0</div>
-              </div>
+
             </a>
 
             {/* Desktop Navigation */}

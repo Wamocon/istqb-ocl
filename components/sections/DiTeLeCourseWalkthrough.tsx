@@ -129,19 +129,19 @@ export function DiTeLeCourseWalkthrough() {
                   </ScrollReveal>
 
                   {/* Feature Cards */}
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {diteleFeatures.map((feature, index) => (
                       <ScrollReveal key={index} animation="fade-up" delay={0.4 + index * 0.05} width="100%">
-                        <Card className="p-4 hover:border-accent/50 transition-colors">
-                          <div className="flex items-start gap-3">
+                        <Card className="p-4 hover:border-accent/50 transition-colors h-full">
+                          <div className="flex flex-col gap-3">
                             <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
                               {feature.icon}
                             </div>
-                            <div className="flex-1 min-w-0">
+                            <div className="min-w-0">
                               <h4 className="font-semibold text-sm text-foreground mb-1">
                                 {feature.title}
                               </h4>
-                              <p className="text-xs text-foreground-muted mb-1">
+                              <p className="text-xs text-foreground-muted mb-1 leading-snug">
                                 {feature.description}
                               </p>
                               <p className="text-xs text-accent font-medium">
@@ -180,21 +180,17 @@ export function DiTeLeCourseWalkthrough() {
                 <div>
                   <Card className="overflow-hidden p-0">
                     {/* Video Placeholder */}
-                    <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5">
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                        <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4">
-                          <Code className="w-10 h-10 text-accent" aria-hidden="true" />
-                        </div>
-                        <h3 className="text-xl font-bold text-foreground mb-2 text-center">
-                          DiTeLe Walkthrough Video
-                        </h3>
-                        <p className="text-foreground-muted text-sm text-center max-w-md">
-                          Sieh dir an, wie DiTeLe funktioniert und wie du damit echte Testkompetenz aufbaust
-                        </p>
-                        <p className="text-foreground-muted text-xs mt-4">
-                          4:12 Minuten • Video kommt bald
-                        </p>
-                      </div>
+                    <div className="relative aspect-video bg-black">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/FQ8dXuBDzb0?rel=0"
+                        title="DiTeLe - Die Lernplattform für Softwaretester"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
                     </div>
 
                     {/* Video Info */}

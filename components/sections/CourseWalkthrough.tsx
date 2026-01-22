@@ -157,27 +157,27 @@ export function CourseWalkthrough() {
                   <div className="grid sm:grid-cols-2 gap-4">
                     {courseFeatures.map((feature, index) => (
                       <ScrollReveal key={index} animation="fade-up" delay={0.3 + index * 0.1} width="100%">
-                        <Card className="p-4 hover:border-accent/50 transition-colors h-full">
+                        <Card className="p-4 hover:border-accent/50 transition-colors h-full relative group">
                           <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
+                            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-colors">
                               {feature.icon}
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between gap-2 mb-1">
-                                <h4 className="font-semibold text-sm text-foreground">
-                                  {feature.title}
-                                </h4>
-                                {feature.stat && (
-                                  <span className="text-accent font-bold text-lg">
-                                    {feature.stat}
-                                  </span>
-                                )}
-                              </div>
+                            <div className="flex-1 min-w-0 pr-10">
+                              <h4 className="font-semibold text-sm text-foreground leading-tight pt-0.5 mb-1.5 break-words">
+                                {feature.title}
+                              </h4>
                               <p className="text-xs text-foreground-muted leading-relaxed">
                                 {feature.description}
                               </p>
                             </div>
                           </div>
+                          {feature.stat && (
+                            <div className="absolute top-4 right-4">
+                              <span className="text-accent font-bold text-lg leading-none">
+                                {feature.stat}
+                              </span>
+                            </div>
+                          )}
                         </Card>
                       </ScrollReveal>
                     ))}

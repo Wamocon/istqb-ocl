@@ -2,6 +2,7 @@
 
 import { useCallback } from 'react'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import Image from 'next/image'
 
 interface FooterLink {
   id: string
@@ -96,11 +97,13 @@ export function Footer() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
             {/* Brand Section */}
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-xl shadow-lg shadow-accent/20">
-                  <span className="text-white font-bold text-2xl" aria-hidden="true">W</span>
-                </div>
-                <h3 className="font-bold text-xl tracking-tight">WAMOCON Academy</h3>
+              <div className="mb-6 relative h-16 w-[400px]">
+                <Image
+                  src="/logo/WAMOCON_ACADEMY_LOGO.png"
+                  alt="WAMOCON Academy Logo"
+                  fill
+                  className="object-contain object-left"
+                />
               </div>
               <p className="text-sm text-foreground-muted leading-relaxed mb-6">
                 Die umfassendste ISTQB CTFL 4.0 Vorbereitung mit DiTeLe Praxis-Tool. Werde zertifizierter Software-Tester.
