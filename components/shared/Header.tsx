@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 interface NavItem {
@@ -12,9 +12,11 @@ interface NavItem {
 }
 
 const navigationItems: NavItem[] = [
-  { id: 'features', label: 'Features', href: '#features', type: 'scroll' },
-  { id: 'ditele', label: 'DiTeLe Demo', href: '#ditele-demo', type: 'scroll' },
-  { id: 'curriculum', label: 'Curriculum', href: '#curriculum', type: 'scroll' },
+  { id: 'startseite', label: 'Startseite', href: '#hero', type: 'scroll' },
+  { id: 'online-kurs', label: 'Online-Kurs', href: '#course-walkthrough', type: 'scroll' },
+  { id: 'praxis-tool', label: 'Praxis-Tool', href: '#ditele-walkthrough', type: 'scroll' },
+  { id: 'lernplan', label: 'Dein Lernplan', href: '#curriculum', type: 'scroll' },
+  { id: 'erfolgsgeschichten', label: 'Erfolgsgeschichten', href: '#success-stories', type: 'scroll' },
   { id: 'pricing', label: 'Preise', href: '#pricing', type: 'scroll' },
   { id: 'faq', label: 'FAQ', href: '#faq', type: 'scroll' },
 ]
@@ -22,7 +24,7 @@ const navigationItems: NavItem[] = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState<string>('')
+  const [activeSection, setActiveSection] = useState<string>('hero')
 
   // Handle scroll detection for sticky header
   useEffect(() => {
@@ -67,7 +69,7 @@ export function Header() {
   // Handle mobile menu state on resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+      if (window.innerWidth >= 1024 && isMobileMenuOpen) {
         setIsMobileMenuOpen(false)
       }
     }
@@ -127,11 +129,10 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border'
-            : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'bg-background/80 backdrop-blur-xl shadow-xl border-b border-border/50'
+          : 'bg-gradient-to-b from-background/60 to-transparent backdrop-blur-sm'
+          }`}
       >
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-20">
@@ -141,42 +142,55 @@ export function Header() {
               className="flex items-center gap-3 group"
               aria-label="WAMOCON Academy - Zur Startseite"
             >
-              <div className="flex items-center justify-center w-10 h-10 bg-accent rounded-lg transition-transform group-hover:scale-110">
-                <span className="text-white font-bold text-xl">W</span>
+              <div className="relative flex items-center justify-center w-11 h-11 bg-gradient-to-br from-accent to-accent/80 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent/30">
+                <span className="text-white font-bold text-xl tracking-tight">W</span>
+                <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="hidden sm:block">
-                <div className="text-foreground font-bold text-lg leading-tight">
+                <div className="text-foreground font-bold text-lg leading-tight tracking-tight">
                   WAMOCON Academy
                 </div>
-                <div className="text-foreground-muted text-xs">ISTQB CTFL 4.0</div>
+                <div className="text-foreground-muted text-xs font-mono tracking-wider">ISTQB CTFL 4.0</div>
               </div>
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1" aria-label="Hauptnavigation">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item)}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-accent bg-accent/10'
-                      : 'text-foreground-muted hover:text-foreground hover:bg-background-card'
-                  }`}
-                  aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
-                >
-                  {item.label}
-                </button>
-              ))}
+            <nav className="hidden lg:flex items-center gap-1" aria-label="Hauptnavigation">
+              {navigationItems.map((item) => {
+                const isActive = activeSection === item.href.substring(1)
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item)}
+                    className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${isActive
+                      ? 'text-accent'
+                      : 'text-foreground-muted hover:text-foreground'
+                      }`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {item.label}
+                    {/* Active indicator - glowing underline */}
+                    <span
+                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-accent rounded-full transition-all duration-300 ${isActive ? 'w-3/4 shadow-sm shadow-accent/50' : 'w-0'
+                        }`}
+                    />
+                    {/* Hover background */}
+                    <span
+                      className={`absolute inset-0 rounded-lg bg-foreground/5 transition-opacity duration-200 ${isActive ? 'opacity-0' : 'opacity-0 hover:opacity-100'
+                        }`}
+                    />
+                  </button>
+                )
+              })}
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-3">
               <Button
                 variant="primary"
                 size="sm"
                 onClick={handleCTAClick}
-                className="bg-accent hover:bg-accent/90"
+                className="bg-accent hover:bg-accent/90 shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all duration-300 hover:scale-105"
               >
                 Jetzt starten
               </Button>
@@ -185,16 +199,23 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground hover:text-accent transition-colors"
+              className="lg:hidden relative p-2 text-foreground hover:text-accent transition-colors rounded-lg hover:bg-foreground/5"
               aria-label={isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" aria-hidden="true" />
-              ) : (
-                <Menu className="w-6 h-6" aria-hidden="true" />
-              )}
+              <div className="relative w-6 h-6">
+                <Menu
+                  className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'
+                    }`}
+                  aria-hidden="true"
+                />
+                <X
+                  className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'
+                    }`}
+                  aria-hidden="true"
+                />
+              </div>
             </button>
           </div>
         </div>
@@ -203,49 +224,51 @@ export function Header() {
       {/* Mobile Navigation Menu */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${isMobileMenuOpen
+          ? 'opacity-100 pointer-events-auto'
+          : 'opacity-0 pointer-events-none'
+          }`}
         aria-hidden={!isMobileMenuOpen}
       >
         {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-background/95 backdrop-blur-md"
+          className={`absolute inset-0 bg-background/95 backdrop-blur-xl transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
           onClick={() => setIsMobileMenuOpen(false)}
           aria-hidden="true"
         />
 
         {/* Menu Content */}
         <nav
-          className={`absolute top-20 left-0 right-0 bg-background-card border-b border-border transition-transform duration-300 ${
-            isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
-          }`}
+          className={`absolute top-20 left-0 right-0 bg-background-card/80 backdrop-blur-xl border-b border-border/50 transition-all duration-500 ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0'
+            }`}
           aria-label="Mobile Navigation"
         >
-          <div className="container mx-auto px-6 py-6">
+          <div className="container mx-auto px-6 py-8">
             <div className="flex flex-col gap-2">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item)}
-                  className={`w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    activeSection === item.href.substring(1)
-                      ? 'text-accent bg-accent/10'
-                      : 'text-foreground-muted hover:text-foreground hover:bg-background'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {navigationItems.map((item, index) => {
+                const isActive = activeSection === item.href.substring(1)
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item)}
+                    className={`w-full text-left px-5 py-4 rounded-xl text-base font-medium transition-all duration-300 ${isActive
+                      ? 'text-accent bg-accent/10 border-l-2 border-accent'
+                      : 'text-foreground-muted hover:text-foreground hover:bg-foreground/5 border-l-2 border-transparent'
+                      }`}
+                    style={{ transitionDelay: `${index * 50}ms` }}
+                  >
+                    {item.label}
+                  </button>
+                )
+              })}
 
-              <div className="pt-4 mt-4 border-t border-border">
+              <div className="pt-6 mt-4 border-t border-border/50">
                 <Button
                   variant="primary"
                   size="lg"
                   onClick={handleCTAClick}
-                  className="w-full bg-accent hover:bg-accent/90"
+                  className="w-full bg-accent hover:bg-accent/90 shadow-lg shadow-accent/25"
                 >
                   🎯 Jetzt starten - €497
                 </Button>
