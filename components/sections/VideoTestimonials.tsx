@@ -14,7 +14,7 @@ export function VideoTestimonials() {
   const [selectedVideo, setSelectedVideo] = useState<VideoTestimonial | null>(null)
 
   return (
-    <section id="video-testimonials" className="py-16 md:py-24 bg-background-red-dark">
+    <section id="video-testimonials" className="py-16 md:py-24 bg-background-alt">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-6xl mx-auto">
@@ -105,12 +105,7 @@ function VideoCard({ testimonial, onClick }: VideoCardProps) {
           </div>
         </div>
 
-        {/* Duration Badge */}
-        {testimonial.duration && (
-          <div className="absolute top-3 right-3 px-2 py-1 bg-background/90 rounded text-xs font-semibold">
-            {testimonial.duration}
-          </div>
-        )}
+
       </div>
 
       {/* Info */}

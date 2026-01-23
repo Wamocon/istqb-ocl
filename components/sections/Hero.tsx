@@ -11,7 +11,7 @@ export function Hero() {
   const [showLeadMagnet, setShowLeadMagnet] = React.useState(false)
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center bg-background text-white overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center bg-background-red-dark text-white overflow-hidden">
       <LeadMagnetDialog
         open={showLeadMagnet}
         onOpenChange={setShowLeadMagnet}

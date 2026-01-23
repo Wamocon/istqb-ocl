@@ -12,7 +12,7 @@ export function FinalCTA() {
   const [showLeadMagnet, setShowLeadMagnet] = React.useState(false)
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-slate-800 text-white">
+    <section className="py-16 md:py-24 bg-background-red-dark text-white">
       <PurchaseDialog
         open={showPurchase}
         onOpenChange={setShowPurchase}

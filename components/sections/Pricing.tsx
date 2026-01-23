@@ -10,7 +10,7 @@ import { Check } from 'lucide-react'
 export function Pricing() {
   const [showPurchase, setShowPurchase] = React.useState(false)
   return (
-    <section id="pricing" className="py-16 md:py-24 bg-background-alt">
+    <section id="pricing" className="py-16 md:py-24 bg-background-red-dark">
       <div className="container mx-auto px-6">
         <PurchaseDialog
           open={showPurchase}
