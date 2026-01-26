@@ -99,7 +99,7 @@ export function Footer() {
             <div className="lg:col-span-1">
               <div className="mb-6 relative h-16 w-[400px]">
                 <Image
-                  src="/logo/WAMOCON_ACADEMY_LOGO.png"
+                  src="/logo/WAMOCON_ACADEMY_LOGO.png?v=2"
                   alt="WAMOCON Academy Logo"
                   fill
                   className="object-contain object-left"

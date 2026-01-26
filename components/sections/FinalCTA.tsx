@@ -71,7 +71,7 @@ export function FinalCTA() {
                 <Card className="bg-background-card text-foreground h-full">
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold mb-2">Option 2: Erstmal reinschnuppern</h3>
-                    <p className="text-muted text-sm">Kostenlose Einblicke in ISTQB & DiTeLe</p>
+                    <p className="text-muted text-sm">Kostenloser IT Karriere Selbsttest</p>
                   </div>
 
                   <Button
@@ -80,15 +80,16 @@ export function FinalCTA() {
                     className="w-full mb-6"
                     onClick={() => setShowLeadMagnet(true)}
                   >
-                    Kostenlose ISTQB-Checkliste
+                    Kostenloser IT Karriere Check
                   </Button>
 
                   <div className="text-sm text-left space-y-4">
                     <div>
                       <p className="font-semibold mb-2">Du erhältst:</p>
                       <ul className="space-y-2 text-muted">
-                        <li>• "Die 10 häufigsten ISTQB-Prüfungsfehler" (PDF)</li>
-                        <li>• 3 Bonus-Tipps für deine Prüfungsvorbereitung</li>
+                        <li>• Ehrlicher Selbsttest: Wo stehst du wirklich?</li>
+                        <li>• Aktuelle Zahlen zum IT Arbeitsmarkt in Deutschland</li>
+                        <li>• Was Leon anders gemacht hat (und du auch kannst)</li>
                         <li>• Exklusive Einblicke in DiTeLe</li>
                       </ul>
                     </div>
@@ -101,13 +102,13 @@ export function FinalCTA() {
                         className="w-full"
                         onClick={() => setShowLeadMagnet(true)}
                       >
-                        📥 Jetzt kostenlos anfordern
+                        Jetzt kostenlos anfordern
                       </Button>
                     </div>
                   </div>
 
                   <div className="mt-6 pt-6 border-t border-border text-xs text-muted text-center mt-auto">
-                    Kein Spam - nur wertvolle Tipps
+                    Kein Spam. Nur wertvolle Informationen für deine Karriere.
                   </div>
                 </Card>
               </ScrollReveal>

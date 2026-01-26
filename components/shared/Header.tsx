@@ -145,7 +145,7 @@ export function Header() {
             >
               <div className="relative flex items-center h-14 w-[180px] transition-all duration-300 group-hover:scale-105">
                 <Image
-                  src="/logo/WAMOCON_ACADEMY_LOGO.png"
+                  src="/logo/WAMOCON_ACADEMY_LOGO.png?v=2"
                   alt="WAMOCON Academy Logo"
                   fill
                   className="object-contain object-left"

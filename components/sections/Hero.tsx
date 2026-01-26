@@ -107,7 +107,7 @@ export function Hero() {
                 className="bg-background-card border-border hover:bg-background-alt text-lg px-10 py-6"
                 onClick={() => setShowLeadMagnet(true)}
               >
-                Kostenlose ISTQB-Checkliste
+                Kostenloser Karriere Check
               </Button>
             </div>
           </ScrollReveal>
