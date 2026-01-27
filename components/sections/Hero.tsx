@@ -137,23 +137,71 @@ function StatCard({
   stats: string[]
   highlight?: boolean
 }) {
+  const [showTooltip, setShowTooltip] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
+  const cardRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    setIsMobile('ontouchstart' in window)
+  }, [])
+
+  // Close on outside click (mobile)
+  React.useEffect(() => {
+    if (!isMobile || !showTooltip) return
+
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        setShowTooltip(false)
+      }
+    }
+
+    document.addEventListener('click', handleOutsideClick)
+    return () => document.removeEventListener('click', handleOutsideClick)
+  }, [isMobile, showTooltip])
+
   return (
-    <div className={`h-full p-8 rounded-2xl backdrop-blur-md border transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center group ${highlight
-      ? 'bg-accent/5 border-accent/30 shadow-card hover:shadow-card-hover'
-      : 'bg-white/[0.03] border-white/5 hover:bg-white/[0.06] hover:border-white/10'
-      }`}>
+    <div
+      ref={cardRef}
+      className={`relative h-full p-8 rounded-2xl backdrop-blur-md border transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center group cursor-pointer ${highlight
+        ? 'bg-accent/5 border-accent/30 shadow-card hover:shadow-card-hover'
+        : 'bg-white/[0.03] border-white/5 hover:bg-white/[0.06] hover:border-white/10'
+        }`}
+      onMouseEnter={!isMobile ? () => setShowTooltip(true) : undefined}
+      onMouseLeave={!isMobile ? () => setShowTooltip(false) : undefined}
+      onClick={isMobile ? () => setShowTooltip(!showTooltip) : undefined}
+    >
       <div className={`mb-5 p-4 rounded-xl ${highlight ? 'bg-accent/10 text-accent' : 'bg-white/5 text-gray-300 group-hover:text-white group-hover:bg-white/10'} transition-colors`}>
         {icon}
       </div>
-      <h3 className="font-bold text-xl mb-4 tracking-wide">{title}</h3>
-      <ul className="space-y-3 text-sm text-foreground-muted w-full">
-        {stats.map((stat, idx) => (
-          <li key={idx} className="flex items-center justify-center gap-2">
-            <span className={`w-1.5 h-1.5 rounded-full ${highlight ? 'bg-accent' : 'bg-gray-500 group-hover:bg-gray-400'}`} />
-            {stat}
-          </li>
-        ))}
-      </ul>
+      <h3 className="font-bold text-xl tracking-wide">{title}</h3>
+
+      {/* Tooltip - appears above the card */}
+      <div
+        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] transition-all duration-200 ${showTooltip
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-2 pointer-events-none'
+          }`}
+      >
+        <div className={`px-5 py-4 rounded-xl border backdrop-blur-md shadow-2xl min-w-[180px] ${highlight
+            ? 'bg-background-red-dark/95 border-accent/30'
+            : 'bg-background-card/95 border-border/50'
+          }`}>
+          <ul className="space-y-2.5 text-sm text-foreground-muted relative z-10">
+            {stats.map((stat, idx) => (
+              <li key={idx} className="flex items-center gap-2.5 whitespace-nowrap">
+                <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${highlight ? 'bg-accent' : 'bg-gray-500'}`} />
+                <span className="text-white/90">{stat}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Arrow pointing down */}
+          <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 border-r border-b ${highlight
+              ? 'bg-background-red-dark/95 border-accent/30'
+              : 'bg-background-card/95 border-border/50'
+            }`} />
+        </div>
+      </div>
     </div>
   )
 }

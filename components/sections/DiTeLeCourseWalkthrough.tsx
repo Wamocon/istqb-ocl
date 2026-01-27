@@ -1,5 +1,7 @@
 'use client'
 
+import * as React from 'react'
+
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import {
@@ -129,27 +131,10 @@ export function DiTeLeCourseWalkthrough() {
                   </ScrollReveal>
 
                   {/* Feature Cards */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-3 gap-3">
                     {diteleFeatures.map((feature, index) => (
                       <ScrollReveal key={index} animation="fade-up" delay={0.4 + index * 0.05} width="100%">
-                        <Card className="p-4 bg-background-card hover:border-accent/50 transition-colors h-full">
-                          <div className="flex flex-col gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
-                              {feature.icon}
-                            </div>
-                            <div className="min-w-0">
-                              <h4 className="font-semibold text-sm text-foreground mb-1">
-                                {feature.title}
-                              </h4>
-                              <p className="text-xs text-foreground-muted mb-1 leading-snug">
-                                {feature.description}
-                              </p>
-                              <p className="text-xs text-accent font-medium">
-                                → {feature.benefit}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
+                        <DiTeleFeatureCard feature={feature} />
                       </ScrollReveal>
                     ))}
                   </div>
@@ -234,5 +219,67 @@ export function DiTeLeCourseWalkthrough() {
         </ScrollReveal>
       </div>
     </section>
+  )
+}
+
+function DiTeleFeatureCard({ feature }: { feature: DiTeLeFeature }) {
+  const [showTooltip, setShowTooltip] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
+  const cardRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    setIsMobile('ontouchstart' in window)
+  }, [])
+
+  React.useEffect(() => {
+    if (!isMobile || !showTooltip) return
+
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        setShowTooltip(false)
+      }
+    }
+
+    document.addEventListener('click', handleOutsideClick)
+    return () => document.removeEventListener('click', handleOutsideClick)
+  }, [isMobile, showTooltip])
+
+  return (
+    <div
+      ref={cardRef}
+      className="relative p-4 rounded-xl bg-background-card border border-border hover:border-accent/50 transition-all duration-300 hover:scale-[1.02] cursor-pointer group h-full"
+      onMouseEnter={!isMobile ? () => setShowTooltip(true) : undefined}
+      onMouseLeave={!isMobile ? () => setShowTooltip(false) : undefined}
+      onClick={isMobile ? () => setShowTooltip(!showTooltip) : undefined}
+    >
+      <div className="flex flex-col items-center text-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+          {feature.icon}
+        </div>
+        <h4 className="font-semibold text-sm text-foreground">
+          {feature.title}
+        </h4>
+      </div>
+
+      {/* Tooltip */}
+      <div
+        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] transition-all duration-200 ${showTooltip
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-2 pointer-events-none'
+          }`}
+      >
+        <div className="px-4 py-3 rounded-xl bg-background-card/95 border border-border/50 backdrop-blur-md shadow-2xl min-w-[200px] max-w-[280px]">
+          <p className="text-sm text-foreground-muted leading-relaxed text-center mb-2">
+            {feature.description}
+          </p>
+          <p className="text-xs text-accent font-medium text-center">
+            → {feature.benefit}
+          </p>
+
+          {/* Arrow pointing down */}
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-background-card/95 border-r border-b border-border/50" />
+        </div>
+      </div>
+    </div>
   )
 }

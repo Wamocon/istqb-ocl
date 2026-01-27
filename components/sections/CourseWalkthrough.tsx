@@ -1,5 +1,6 @@
 'use client'
 
+import * as React from 'react'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import {
@@ -154,31 +155,10 @@ export function CourseWalkthrough() {
                   </ScrollReveal>
 
                   {/* Feature Grid */}
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-3 gap-3">
                     {courseFeatures.map((feature, index) => (
-                      <ScrollReveal key={index} animation="fade-up" delay={0.3 + index * 0.1} width="100%">
-                        <Card className="p-4 hover:border-accent/50 transition-colors h-full relative group">
-                          <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-colors">
-                              {feature.icon}
-                            </div>
-                            <div className="flex-1 min-w-0 pr-10">
-                              <h4 className="font-semibold text-sm text-foreground leading-tight pt-0.5 mb-1.5 break-words">
-                                {feature.title}
-                              </h4>
-                              <p className="text-xs text-foreground-muted leading-relaxed">
-                                {feature.description}
-                              </p>
-                            </div>
-                          </div>
-                          {feature.stat && (
-                            <div className="absolute top-4 right-4">
-                              <span className="text-accent font-bold text-lg leading-none">
-                                {feature.stat}
-                              </span>
-                            </div>
-                          )}
-                        </Card>
+                      <ScrollReveal key={index} animation="fade-up" delay={0.3 + index * 0.05} width="100%">
+                        <FeatureCard feature={feature} />
                       </ScrollReveal>
                     ))}
                   </div>
@@ -208,5 +188,69 @@ export function CourseWalkthrough() {
         </ScrollReveal>
       </div>
     </section>
+  )
+}
+
+function FeatureCard({ feature }: { feature: CourseFeature }) {
+  const [showTooltip, setShowTooltip] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
+  const cardRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    setIsMobile('ontouchstart' in window)
+  }, [])
+
+  React.useEffect(() => {
+    if (!isMobile || !showTooltip) return
+
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        setShowTooltip(false)
+      }
+    }
+
+    document.addEventListener('click', handleOutsideClick)
+    return () => document.removeEventListener('click', handleOutsideClick)
+  }, [isMobile, showTooltip])
+
+  return (
+    <div
+      ref={cardRef}
+      className="relative p-4 rounded-xl bg-background-card border border-border hover:border-accent/50 transition-all duration-300 hover:scale-[1.02] cursor-pointer group h-full"
+      onMouseEnter={!isMobile ? () => setShowTooltip(true) : undefined}
+      onMouseLeave={!isMobile ? () => setShowTooltip(false) : undefined}
+      onClick={isMobile ? () => setShowTooltip(!showTooltip) : undefined}
+    >
+      <div className="flex flex-col items-center text-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+          {feature.icon}
+        </div>
+        <h4 className="font-semibold text-sm text-foreground">
+          {feature.title}
+        </h4>
+        {feature.stat && (
+          <span className="text-accent font-bold text-xl leading-none">
+            {feature.stat}
+          </span>
+        )}
+      </div>
+
+      {/* Tooltip */}
+      <div
+        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] transition-all duration-200 ${showTooltip
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-2 pointer-events-none'
+          }`}
+      >
+        <div className="px-4 py-3 rounded-xl bg-background-card/95 border border-border/50 backdrop-blur-md shadow-2xl min-w-[200px] max-w-[280px]">
+          <p className="text-sm text-foreground-muted leading-relaxed text-center">
+            {feature.description}
+          </p>
+
+          {/* Arrow pointing down */}
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-background-card/95 border-r border-b border-border/50" />
+        </div>
+      </div>
+    </div>
   )
 }

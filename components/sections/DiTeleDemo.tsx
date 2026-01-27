@@ -139,7 +139,14 @@ export function DiTeleDemo() {
                   💬 Mit DiTeLe lernst du nicht nur ÜBER Software-Testing - <br className="hidden md:block" />
                   <span className="text-accent font-bold">du MACHST Software-Testing.</span>
                 </p>
-                <Button variant="primary" size="lg" className="bg-accent hover:bg-accent/90">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90"
+                  onClick={() => {
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
                   Alle 45+ Übungen in DiTeLe freischalten
                 </Button>
               </div>

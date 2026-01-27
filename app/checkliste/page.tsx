@@ -1,26 +1,10 @@
 'use client'
 
 import * as React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { checklistContent } from '@/data/checklistContent'
-
-const navigationLinks = [
-  { label: 'Startseite', href: '/#hero' },
-  { label: 'Online-Kurs', href: '/#course-walkthrough' },
-  { label: 'Praxis-Tool', href: '/#ditele-walkthrough' },
-  { label: 'Dein Lernplan', href: '/#curriculum' },
-  { label: 'Erfolgsgeschichten', href: '/#success-stories' },
-  { label: 'Preise', href: '/#pricing' },
-  { label: 'FAQ', href: '/#faq' },
-]
-
-const legalLinks = [
-  { label: 'Impressum', href: '/impressum' },
-  { label: 'Datenschutz', href: '/datenschutz' },
-  { label: 'AGB', href: '/agb' },
-]
+import { Printer } from 'lucide-react'
 
 export default function ChecklistePage() {
   const handlePrint = () => {
@@ -29,64 +13,21 @@ export default function ChecklistePage() {
 
   return (
     <>
-      {/* Header Navigation - Hidden when printing */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 print:hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/logo/WAMOCON_ACADEMY_LOGO_SCHWARZ.png"
-                alt="WAMOCON Academy"
-                width={150}
-                height={50}
-                className="object-contain"
-              />
-            </Link>
+      {/* Header Navigation - Removed as requested */}
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navigationLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="px-3 py-2 text-sm text-gray-600 hover:text-red-600 transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
 
-            {/* CTA Button */}
-            <Link
-              href="/#pricing"
-              className="hidden sm:inline-block bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-            >
-              Jetzt starten
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Print Button - Hidden when printing */}
-      <div className="fixed top-20 right-4 z-50 print:hidden">
-        <Button onClick={handlePrint} variant="primary" size="sm">
-          Als PDF speichern
-        </Button>
-      </div>
 
       {/* Main Content */}
       <div className="min-h-screen bg-white text-gray-900 print:bg-white">
         <div className="max-w-3xl mx-auto px-8 py-12 print:px-4 print:py-8">
 
-          {/* Print Header with Logo */}
-          <header className="hidden print:flex items-center justify-between mb-12 pb-6 border-b-2 border-gray-200">
-            <Image
+          {/* Print Header with Logo - Only visible when printing */}
+          <header className="print-header items-center justify-between mb-12 pb-6 border-b-2 border-gray-200">
+            <img
               src="/logo/WAMOCON_ACADEMY_LOGO_SCHWARZ.png"
               alt="WAMOCON Academy"
               width={180}
               height={60}
-              className="print:w-36"
             />
             <div className="text-right text-sm text-gray-500">
               <p>IT Karriere Selbsttest</p>
@@ -99,9 +40,17 @@ export default function ChecklistePage() {
             <h1 className="text-3xl font-bold text-gray-900 mb-3 print:text-2xl">
               {checklistContent.title}
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-8">
               {checklistContent.subtitle}
             </p>
+
+            {/* Print Button - Integrated */}
+            <div className="flex justify-center print:hidden">
+              <Button onClick={handlePrint} variant="secondary" size="md">
+                <Printer className="w-4 h-4" />
+                Als PDF speichern
+              </Button>
+            </div>
           </div>
 
           {/* Introduction */}
@@ -279,110 +228,17 @@ export default function ChecklistePage() {
             </ul>
           </div>
 
-          {/* Print Footer */}
-          <footer className="hidden print:block mt-8 pt-6 border-t border-gray-200 text-center">
-            <Image
-              src="/logo/WAMOCON_ACADEMY_LOGO_SCHWARZ.png"
-              alt="WAMOCON Academy"
-              width={120}
-              height={40}
-              className="mx-auto mb-3"
-            />
-            <p className="text-xs text-gray-400">
-              WAMOCON Academy | ISTQB CTFL 4.0 Vorbereitung
-            </p>
-            <p className="text-xs text-gray-400">
-              wamocon.de
-            </p>
-          </footer>
         </div>
       </div>
 
-      {/* Website Footer - Hidden when printing */}
-      <footer className="bg-gray-900 text-white py-12 print:hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Logo & Description */}
-            <div className="md:col-span-1">
-              <Image
-                src="/logo/WAMOCON_ACADEMY_LOGO.png"
-                alt="WAMOCON Academy"
-                width={150}
-                height={50}
-                className="mb-4"
-              />
-              <p className="text-sm text-gray-400">
-                Die umfassendste ISTQB CTFL 4.0 Vorbereitung mit DiTeLe Praxis-Tool.
-              </p>
-            </div>
-
-            {/* Navigation */}
-            <div>
-              <h4 className="font-bold text-sm uppercase tracking-wider text-gray-500 mb-4">Navigation</h4>
-              <ul className="space-y-2">
-                {navigationLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-gray-400 hover:text-red-500 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h4 className="font-bold text-sm uppercase tracking-wider text-gray-500 mb-4">Rechtliches</h4>
-              <ul className="space-y-2">
-                {legalLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-gray-400 hover:text-red-500 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-bold text-sm uppercase tracking-wider text-gray-500 mb-4">Kontakt</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="mailto:info@test-it-academy.de" className="hover:text-red-500 transition-colors">
-                    info@test-it-academy.de
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+4961965838312" className="hover:text-red-500 transition-colors">
-                    +49 (0) 6196 5838312
-                  </a>
-                </li>
-                <li>Mo-Fr: 9-18 Uhr</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} WAMOCON Academy GmbH. Alle Rechte vorbehalten.
-            </p>
-            <p className="text-xs text-gray-600">
-              ISTQB® und Certified Tester® sind eingetragene Marken des ISTQB
-            </p>
-          </div>
-        </div>
-      </footer>
 
       {/* Print Styles */}
       <style jsx global>{`
+        /* Hide print-only elements on screen */
+        .print-header {
+          display: none !important;
+        }
+
         @media print {
           @page {
             margin: 1.5cm;
@@ -394,16 +250,14 @@ export default function ChecklistePage() {
             print-color-adjust: exact !important;
           }
 
-          .print\\:hidden {
-            display: none !important;
-          }
-
-          .hidden.print\\:flex {
+          /* Show print-only elements when printing */
+          .print-header {
             display: flex !important;
           }
 
-          .hidden.print\\:block {
-            display: block !important;
+          /* Hide screen-only elements when printing */
+          .print\\:hidden {
+            display: none !important;
           }
         }
       `}</style>
