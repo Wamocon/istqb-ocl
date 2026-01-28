@@ -34,6 +34,7 @@ interface PurchaseFormData {
     zahlungsart: 'einmalzahlung' | 'ratenzahlung'
     agbAkzeptiert: boolean
     widerrufsbelehrungAkzeptiert: boolean
+    datenschutzAkzeptiert: boolean
 }
 
 const initialData: PurchaseFormData = {
@@ -49,6 +50,7 @@ const initialData: PurchaseFormData = {
     zahlungsart: 'einmalzahlung',
     agbAkzeptiert: false,
     widerrufsbelehrungAkzeptiert: false,
+    datenschutzAkzeptiert: false,
 }
 
 export function PurchaseDialog({
@@ -322,6 +324,19 @@ export function PurchaseDialog({
                                 />
                                 <span>
                                     Ich habe die <a href="/widerruf" className="text-accent underline">Widerrufsbelehrung</a> zur Kenntnis genommen.
+                                </span>
+                            </label>
+                            <label className="flex items-start gap-2 text-sm text-foreground-muted cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="datenschutzAkzeptiert"
+                                    checked={formData.datenschutzAkzeptiert}
+                                    onChange={handleChange}
+                                    className="mt-1 text-accent focus:ring-accent rounded"
+                                    required
+                                />
+                                <span>
+                                    Ich stimme zu, dass meine E-Mail für die Zusendung der Materialien und weiterer Informationen verwendet wird. Abmeldung jederzeit möglich. <a href="/widerruf" className="text-accent underline"> Datenschutz</a>
                                 </span>
                             </label>
                         </div>

@@ -42,8 +42,8 @@ export function LeadMagnetDialog({
         setIsLoading(false)
         onOpenChange(false)
 
-        // Redirect to checklist page
-        router.push('/checkliste')
+        // Redirect to self-test page
+        router.push('/selbsttest')
     }
 
     return (
