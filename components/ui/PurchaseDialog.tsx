@@ -11,6 +11,7 @@ import {
     DialogFooter,
 } from './Dialog'
 import { Button } from './Button'
+import { createOrder } from '@/lib/api'
 
 interface PurchaseDialogProps {
     open: boolean
@@ -29,8 +30,8 @@ interface PurchaseFormData {
     plz: string
     ort: string
     land: 'Deutschland' | 'Österreich' | 'Schweiz'
-    firma?: string
-    ustIdNr?: string
+    firma: string
+    ustIdNr: string
     zahlungsart: 'einmalzahlung' | 'ratenzahlung'
     agbAkzeptiert: boolean
     widerrufsbelehrungAkzeptiert: boolean
@@ -47,6 +48,8 @@ const initialData: PurchaseFormData = {
     plz: '',
     ort: '',
     land: 'Deutschland',
+    firma: '',
+    ustIdNr: '',
     zahlungsart: 'einmalzahlung',
     agbAkzeptiert: false,
     widerrufsbelehrungAkzeptiert: false,
@@ -61,6 +64,8 @@ export function PurchaseDialog({
 }: PurchaseDialogProps) {
     const [formData, setFormData] = React.useState<PurchaseFormData>(initialData)
     const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState<string | null>(null)
+    const [success, setSuccess] = React.useState(false)
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -74,17 +79,78 @@ export function PurchaseDialog({
         }))
     }
 
+    // Calculate total amount based on payment type
+    const calculateTotalAmount = () => {
+        if (formData.zahlungsart === 'ratenzahlung') {
+            return Math.round(price / 5 + 0.6) * 5 // 5 installments
+        }
+        return price
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
+        setError(null)
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-        console.log('Purchase Data:', formData)
+        try {
+            // Save order to Supabase
+            const order = await createOrder({
+                anrede: formData.anrede,
+                vorname: formData.vorname,
+                nachname: formData.nachname,
+                email: formData.email,
+                strasse: formData.strasse,
+                hausnummer: formData.hausnummer,
+                plz: formData.plz,
+                ort: formData.ort,
+                land: formData.land,
+                firma: formData.firma || undefined,
+                ustIdNr: formData.ustIdNr || undefined,
+                productName: productName,
+                price: price,
+                zahlungsart: formData.zahlungsart,
+                totalAmount: calculateTotalAmount(),
+                agbAkzeptiert: formData.agbAkzeptiert,
+                widerrufsbelehrungAkzeptiert: formData.widerrufsbelehrungAkzeptiert,
+                datenschutzAkzeptiert: formData.datenschutzAkzeptiert,
+            })
 
-        setIsLoading(false)
-        onOpenChange(false)
-        // Here you would trigger a success dialog
+            console.log('Order created:', order.order_number)
+            setSuccess(true)
+            setIsLoading(false)
+
+            // Reset form and close after showing success
+            setTimeout(() => {
+                setFormData(initialData)
+                setSuccess(false)
+                onOpenChange(false)
+            }, 3000)
+        } catch (err) {
+            console.error('Error creating order:', err)
+            setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
+            setIsLoading(false)
+        }
+    }
+
+    // Show success message
+    if (success) {
+        return (
+            <Dialog open={open} onOpenChange={onOpenChange}>
+                <DialogContent size="sm">
+                    <div className="text-center py-8">
+                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground mb-2">Bestellung erfolgreich!</h3>
+                        <p className="text-foreground-muted">
+                            Vielen Dank für deine Bestellung. Du erhältst in Kürze eine Bestätigung per E-Mail.
+                        </p>
+                    </div>
+                </DialogContent>
+            </Dialog>
+        )
     }
 
     return (
@@ -342,18 +408,23 @@ export function PurchaseDialog({
                         </div>
                     </DialogBody>
 
-                    <DialogFooter>
-                        <Button
-                            type="button"
-                            variant="tertiary"
-                            onClick={() => onOpenChange(false)}
-                            disabled={isLoading}
-                        >
-                            Abbrechen
-                        </Button>
-                        <Button type="submit" disabled={isLoading} className="w-full md:w-auto">
-                            {isLoading ? 'Wird verarbeitet...' : 'Kostenpflichtig bestellen'}
-                        </Button>
+                    <DialogFooter className="flex-col gap-3">
+                        {error && (
+                            <p className="text-red-500 text-sm text-center w-full">{error}</p>
+                        )}
+                        <div className="flex gap-3 w-full md:w-auto">
+                            <Button
+                                type="button"
+                                variant="tertiary"
+                                onClick={() => onOpenChange(false)}
+                                disabled={isLoading}
+                            >
+                                Abbrechen
+                            </Button>
+                            <Button type="submit" disabled={isLoading} className="w-full md:w-auto">
+                                {isLoading ? 'Wird verarbeitet...' : 'Kostenpflichtig bestellen'}
+                            </Button>
+                        </div>
                     </DialogFooter>
                 </form>
             </DialogContent>

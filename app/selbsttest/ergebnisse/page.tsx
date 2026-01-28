@@ -15,6 +15,7 @@ import {
     successFactors
 } from '@/data/selbsttestContent'
 import { Printer, Download, Check, ArrowRight, Play } from 'lucide-react'
+import { createLead, saveSelbsttestResult } from '@/lib/api'
 
 export default function ErgebnissePage() {
     const router = useRouter()
@@ -24,6 +25,8 @@ export default function ErgebnissePage() {
     const [consent, setConsent] = React.useState(false)
     const [emailSubmitted, setEmailSubmitted] = React.useState(false)
     const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState<string | null>(null)
+    const [resultSaved, setResultSaved] = React.useState(false)
 
     React.useEffect(() => {
         // Get score and answers from sessionStorage
@@ -31,13 +34,40 @@ export default function ErgebnissePage() {
         const storedAnswers = sessionStorage.getItem('selbsttestAnswers')
 
         if (storedScore && storedAnswers) {
-            setScore(parseInt(storedScore))
-            setAnswers(JSON.parse(storedAnswers))
+            const parsedScore = parseInt(storedScore)
+            const parsedAnswers = JSON.parse(storedAnswers)
+            setScore(parsedScore)
+            setAnswers(parsedAnswers)
+
+            // Save result to Supabase if not already saved
+            const leadId = sessionStorage.getItem('leadId')
+            const leadEmail = sessionStorage.getItem('leadEmail')
+
+            if (!resultSaved) {
+                // Determine level based on score
+                let level: 'starter' | 'fortgeschritten' | 'ready' = 'starter'
+                if (parsedScore >= 33) level = 'ready'
+                else if (parsedScore >= 19) level = 'fortgeschritten'
+
+                // Save to Supabase
+                saveSelbsttestResult({
+                    email: leadEmail || undefined,
+                    lead_id: leadId || undefined,
+                    answers: parsedAnswers,
+                    total_score: parsedScore,
+                    level,
+                }).then(() => {
+                    setResultSaved(true)
+                    console.log('Selbsttest result saved to Supabase')
+                }).catch((err) => {
+                    console.error('Error saving selbsttest result:', err)
+                })
+            }
         } else {
             // Redirect to test if no results
             router.push('/selbsttest')
         }
-    }, [router])
+    }, [router, resultSaved])
 
     const handlePrint = () => {
         window.print()
@@ -46,13 +76,39 @@ export default function ErgebnissePage() {
     const handleEmailSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
+        setError(null)
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        console.log('Lead captured:', { email, score })
+        try {
+            // Create lead in Supabase
+            const lead = await createLead({
+                email,
+                source: 'selbsttest-results',
+                consent_given: consent,
+                consent_text: 'Ich stimme zu, dass meine E-Mail für die Zusendung der Materialien verwendet wird. Abmeldung jederzeit möglich.',
+            })
 
-        setIsLoading(false)
-        setEmailSubmitted(true)
+            // Update selbsttest result with the new lead
+            if (lead?.id && score !== null) {
+                let level: 'starter' | 'fortgeschritten' | 'ready' = 'starter'
+                if (score >= 33) level = 'ready'
+                else if (score >= 19) level = 'fortgeschritten'
+
+                await saveSelbsttestResult({
+                    email,
+                    lead_id: lead.id,
+                    answers,
+                    total_score: score,
+                    level,
+                })
+            }
+
+            setIsLoading(false)
+            setEmailSubmitted(true)
+        } catch (err) {
+            console.error('Error submitting email:', err)
+            setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
+            setIsLoading(false)
+        }
     }
 
     // Determine result level
@@ -73,20 +129,23 @@ export default function ErgebnissePage() {
 
     return (
         <>
-            <div className="min-h-screen bg-white text-gray-900 print:bg-white">
-                <div className="max-w-3xl mx-auto px-8 py-12 print:px-4 print:py-8">
+            <div className="min-h-screen bg-white text-gray-900 print:bg-white print:min-h-0">
+                <div className="max-w-3xl mx-auto px-8 py-12 print:px-6 print:py-0 print:pt-0">
 
                     {/* Print Header - Only visible when printing */}
-                    <header className="print-header items-center justify-between mb-12 pb-6 border-b-2 border-gray-200">
-                        <img
-                            src="/logo/WAMOCON_ACADEMY_LOGO_SCHWARZ.png"
-                            alt="WAMOCON Academy"
-                            width={180}
-                            height={60}
-                        />
-                        <div className="text-right text-sm text-gray-500">
-                            <p>IT Karriere Selbsttest</p>
-                            <p>2026 Edition</p>
+                    <header className="print-header items-center justify-between mb-8 pb-4 border-b-2 border-red-600">
+                        <div>
+                            <img
+                                src="/logo/WAMOCON_ACADEMY_LOGO_SCHWARZ.png"
+                                alt="WAMOCON Academy"
+                                width={160}
+                                height={50}
+                                className="mb-1"
+                            />
+                        </div>
+                        <div className="text-right">
+                            <p className="text-lg font-bold text-gray-800">IT Karriere Selbsttest</p>
+                            <p className="text-sm text-red-600 font-medium">2026 Edition</p>
                         </div>
                     </header>
 
@@ -339,6 +398,9 @@ export default function ErgebnissePage() {
                                     <Button type="submit" variant="primary" className="w-full bg-red-600 hover:bg-red-700" disabled={isLoading}>
                                         {isLoading ? 'Wird gesendet...' : 'PDF kostenlos anfordern'}
                                     </Button>
+                                    {error && (
+                                        <p className="text-red-400 text-sm text-center">{error}</p>
+                                    )}
                                 </form>
                             </Card>
                         ) : (
@@ -376,11 +438,16 @@ export default function ErgebnissePage() {
                         </p>
                     </div>
 
-                    {/* Contact */}
-                    <div className="text-center text-sm text-gray-500 print:break-inside-avoid">
-                        <p>Noch Fragen?</p>
-                        <p className="font-medium">info@test-it-academy.de</p>
-                        <p className="mt-4 text-xs">WAMOCON Academy</p>
+                    {/* Contact - Enhanced for Print */}
+                    <div className="text-center text-sm text-gray-500 print:break-inside-avoid print:mt-8 print:pt-6 print:border-t print:border-gray-200">
+                        <p className="font-medium text-gray-700">Noch Fragen? Kontaktiere uns:</p>
+                        <p className="text-red-600 font-semibold mt-1">info@test-it-academy.de</p>
+                        <div className="mt-4 pt-4 border-t border-gray-100">
+                            <p className="text-xs text-gray-400">WAMOCON Academy | www.test-it-academy.de</p>
+                            <p className="text-xs text-gray-400 mt-1 hidden print:block">
+                                Dieses Dokument wurde am {new Date().toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })} erstellt.
+                            </p>
+                        </div>
                     </div>
 
                 </div>
@@ -388,32 +455,261 @@ export default function ErgebnissePage() {
 
             {/* Print Styles */}
             <style jsx global>{`
+        /* Hide print header by default */
         .print-header {
           display: none !important;
         }
 
         @media print {
+          /* Page settings */
           @page {
-            margin: 1.5cm;
+            margin: 1cm 1.5cm;
             size: A4;
           }
 
+          /* Force color printing */
           body {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            color-adjust: exact !important;
+            margin: 0 !important;
+            padding: 0 !important;
           }
 
+          /* Show print header */
           .print-header {
             display: flex !important;
+            margin-bottom: 1.5rem !important;
           }
 
-          .print\\:hidden {
+          /* AGGRESSIVELY hide site header, nav, and any fixed/sticky elements */
+          .print\\:hidden,
+          button,
+          nav,
+          [class*="sticky"],
+          [class*="fixed"],
+          [class*="Header"],
+          [class*="header"]:not(.print-header),
+          [class*="navbar"],
+          [class*="navigation"],
+          footer,
+          .no-print,
+          /* Hide the entire site header component */
+          body > div > header,
+          body > header,
+          #__next > header,
+          #__next > div > header,
+          main ~ footer,
+          /* Hide hamburger menu */
+          [class*="hamburger"],
+          [class*="menu-icon"],
+          svg[class*="menu"],
+          /* Hide any dark header bars */
+          [class*="bg-background"]:has(nav),
+          [class*="bg-gray-900"]:has(nav),
+          [class*="bg-black"]:has(nav) {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            overflow: hidden !important;
+          }
+
+          /* Main container styling */
+          .min-h-screen {
+            min-height: auto !important;
+          }
+
+          /* Typography */
+          * {
+            font-family: 'Segoe UI', 'Arial', sans-serif !important;
+          }
+
+          h1 {
+            font-size: 24pt !important;
+            margin-bottom: 8pt !important;
+          }
+
+          h2 {
+            font-size: 14pt !important;
+            margin-bottom: 8pt !important;
+            page-break-after: avoid !important;
+          }
+
+          h3 {
+            font-size: 12pt !important;
+          }
+
+          p, li, td, span {
+            font-size: 10pt !important;
+            line-height: 1.4 !important;
+          }
+
+          /* Score circle */
+          .w-32.h-32 {
+            width: 80px !important;
+            height: 80px !important;
+            font-size: 28pt !important;
+          }
+
+          /* Prevent page breaks inside elements */
+          .print\\:break-inside-avoid,
+          .space-y-3 > div,
+          .grid > div,
+          table,
+          tr {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+
+          /* Force page breaks before major sections */
+          .print\\:break-before {
+            page-break-before: always !important;
+            break-before: page !important;
+          }
+
+          /* Reduce spacing for print */
+          .mb-12 {
+            margin-bottom: 1.5rem !important;
+          }
+
+          .space-y-3 > * + * {
+            margin-top: 0.5rem !important;
+          }
+
+          .space-y-4 > * + * {
+            margin-top: 0.5rem !important;
+          }
+
+          /* Card styling for print */
+          .bg-gray-50,
+          .bg-red-50 {
+            background-color: #fafafa !important;
+            border: 1px solid #e5e5e5 !important;
+          }
+
+          .bg-gray-900 {
+            background-color: #1f2937 !important;
+            color: white !important;
+          }
+
+          /* Grid adjustments */
+          .grid-cols-2,
+          .md\\:grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          .md\\:grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+
+          .grid {
+            gap: 0.5rem !important;
+          }
+
+          /* Smaller padding in print */
+          .p-4 {
+            padding: 0.5rem !important;
+          }
+
+          .p-6 {
+            padding: 0.75rem !important;
+          }
+
+          /* Table styling */
+          table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+          }
+
+          th, td {
+            border: 1px solid #e5e5e5 !important;
+            padding: 6px 8px !important;
+          }
+
+          th {
+            background-color: #f3f4f6 !important;
+          }
+
+          /* Links */
+          a {
+            text-decoration: none !important;
+            color: inherit !important;
+          }
+
+          /* Remove shadows */
+          * {
+            box-shadow: none !important;
+          }
+
+          /* Rounded corners - keep but subtle */
+          .rounded-lg {
+            border-radius: 4px !important;
+          }
+
+          .rounded-full {
+            border-radius: 50% !important;
+          }
+
+          /* Footer info */
+          .text-center.text-sm.text-gray-500 {
+            margin-top: 2rem !important;
+            padding-top: 1rem !important;
+            border-top: 1px solid #e5e5e5 !important;
+          }
+
+          /* Hide motion components animation */
+          [class*="motion"] {
+            transform: none !important;
+            opacity: 1 !important;
+          }
+
+          /* Stat card adjustments */
+          .bg-red-50.p-4.rounded-lg {
+            padding: 8px !important;
+          }
+
+          .text-xl.font-bold.text-red-600 {
+            font-size: 14pt !important;
+          }
+
+          /* Success stories in print */
+          .bg-gray-50.border-gray-200 {
+            page-break-inside: avoid !important;
+          }
+
+          /* DiTeLe features grid */
+          .bg-red-50.border-red-100 {
+            padding: 6px !important;
+          }
+
+          /* Email form - hide in print */
+          form {
             display: none !important;
           }
 
-          /* Arial Narrow for WAMOCON Academy */
-          * {
-            font-family: 'Arial Narrow', Arial, sans-serif !important;
+          /* Value stack section */
+          .bg-gray-50.p-4.rounded-lg .space-y-1 > div {
+            padding: 2px 0 !important;
+          }
+
+          /* Highlight row in table */
+          .bg-red-50 td {
+            background-color: #fef2f2 !important;
+          }
+
+          /* Code/placeholder boxes */
+          .bg-gray-100.border-dashed {
+            display: none !important;
+          }
+
+          /* Print date in footer */
+          .print-header::after {
+            content: "Erstellt am: ${new Date().toLocaleDateString('de-DE')}";
+            position: absolute;
+            right: 0;
+            bottom: -20px;
+            font-size: 8pt;
+            color: #9ca3af;
           }
         }
       `}</style>

@@ -29,9 +29,13 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={`antialiased ${poppins.variable} font-sans`}>
-        <Header />
+        <div className="print:hidden">
+          <Header />
+        </div>
         {children}
-        <Footer />
+        <div className="print:hidden">
+          <Footer />
+        </div>
       </body>
     </html>
   );

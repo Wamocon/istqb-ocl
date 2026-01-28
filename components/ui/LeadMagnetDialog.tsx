@@ -12,6 +12,7 @@ import {
     DialogFooter,
 } from './Dialog'
 import { Button } from './Button'
+import { createLead } from '@/lib/api'
 
 interface LeadMagnetDialogProps {
     open: boolean
@@ -29,21 +30,39 @@ export function LeadMagnetDialog({
     const [email, setEmail] = React.useState('')
     const [consent, setConsent] = React.useState(false)
     const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState<string | null>(null)
     const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
+        setError(null)
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500))
-        console.log('Lead Magnet Request:', { email })
+        try {
+            // Save lead to Supabase
+            const lead = await createLead({
+                email,
+                source: 'selbsttest',
+                consent_given: consent,
+                consent_text: 'Ich stimme zu, dass meine E-Mail für die Zusendung der Materialien und weiterer Informationen verwendet wird. Abmeldung jederzeit möglich.',
+            })
 
-        setIsLoading(false)
-        onOpenChange(false)
+            // Store lead ID in sessionStorage for linking with selbsttest results
+            if (lead?.id) {
+                sessionStorage.setItem('leadId', lead.id)
+                sessionStorage.setItem('leadEmail', email)
+            }
 
-        // Redirect to self-test page
-        router.push('/selbsttest')
+            setIsLoading(false)
+            onOpenChange(false)
+
+            // Redirect to self-test page
+            router.push('/selbsttest')
+        } catch (err) {
+            console.error('Error creating lead:', err)
+            setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -80,6 +99,9 @@ export function LeadMagnetDialog({
                                 placeholder="deine@email.de"
                                 required
                             />
+                            {error && (
+                                <p className="text-red-500 text-sm mt-2">{error}</p>
+                            )}
                         </div>
 
                         <div className="bg-accent/5 p-4 rounded-lg border border-accent/10">
