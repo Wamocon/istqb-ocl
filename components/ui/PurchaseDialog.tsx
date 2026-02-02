@@ -125,8 +125,19 @@ export function PurchaseDialog({
                 setSuccess(false)
                 onOpenChange(false)
             }, 3000)
-        } catch (err) {
+        } catch (err: unknown) {
             console.error('Error creating order:', err)
+
+            // Check for duplicate order error
+            if (err && typeof err === 'object' && 'code' in err) {
+                const apiError = err as { code: string; message: string }
+                if (apiError.code === 'DUPLICATE_ORDER') {
+                    setError(apiError.message)
+                    setIsLoading(false)
+                    return
+                }
+            }
+
             setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
             setIsLoading(false)
         }

@@ -104,8 +104,19 @@ export default function ErgebnissePage() {
 
             setIsLoading(false)
             setEmailSubmitted(true)
-        } catch (err) {
+        } catch (err: unknown) {
             console.error('Error submitting email:', err)
+
+            // Check for duplicate email error
+            if (err && typeof err === 'object' && 'code' in err) {
+                const apiError = err as { code: string; message: string }
+                if (apiError.code === 'DUPLICATE_EMAIL') {
+                    setError(apiError.message)
+                    setIsLoading(false)
+                    return
+                }
+            }
+
             setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
             setIsLoading(false)
         }

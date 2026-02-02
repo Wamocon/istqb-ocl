@@ -10,11 +10,44 @@ import type {
 } from '@/types/database'
 
 // ============================================
+// CUSTOM ERROR CLASS
+// ============================================
+
+export class ApiError extends Error {
+    code: string
+
+    constructor(message: string, code: string) {
+        super(message)
+        this.name = 'ApiError'
+        this.code = code
+    }
+}
+
+// ============================================
 // LEADS API (Newsletter Subscriptions)
 // ============================================
 
 /**
+ * Check if a lead with given email already exists
+ */
+export async function checkLeadExists(email: string): Promise<boolean> {
+    const { data, error } = await supabase
+        .from('leads')
+        .select('id')
+        .eq('email', email.toLowerCase().trim())
+        .maybeSingle()
+
+    if (error) {
+        console.error('Error checking lead:', error)
+        return false
+    }
+
+    return !!data
+}
+
+/**
  * Create a new lead (e.g., from LeadMagnet dialog, newsletter signup)
+ * Throws ApiError with code 'DUPLICATE_EMAIL' if email already exists
  */
 export async function createLead(data: {
     email: string
@@ -22,10 +55,21 @@ export async function createLead(data: {
     consent_given: boolean
     consent_text?: string
 }): Promise<Lead> {
+    const normalizedEmail = data.email.toLowerCase().trim()
+
+    // Check for existing lead with same email
+    const exists = await checkLeadExists(normalizedEmail)
+    if (exists) {
+        throw new ApiError(
+            'Du hast dich bereits für unseren Newsletter angemeldet. Wir senden regelmäßig Updates an deine E-Mail-Adresse.',
+            'DUPLICATE_EMAIL'
+        )
+    }
+
     const { data: lead, error } = await supabase
         .from('leads')
         .insert({
-            email: data.email,
+            email: normalizedEmail,
             source: data.source || 'website',
             consent_given: data.consent_given,
             consent_text: data.consent_text,
@@ -35,6 +79,13 @@ export async function createLead(data: {
 
     if (error) {
         console.error('Error creating lead:', error)
+        // Handle unique constraint violation
+        if (error.code === '23505') {
+            throw new ApiError(
+                'Du hast dich bereits für unseren Newsletter angemeldet. Wir senden regelmäßig Updates an deine E-Mail-Adresse.',
+                'DUPLICATE_EMAIL'
+            )
+        }
         throw error
     }
 
@@ -63,7 +114,28 @@ export async function getLeads(): Promise<Lead[]> {
 // ============================================
 
 /**
+ * Check if user has a pending order for the same product
+ */
+export async function checkPendingOrder(email: string, productName: string): Promise<boolean> {
+    const { data, error } = await supabase
+        .from('orders')
+        .select('id')
+        .eq('email', email.toLowerCase().trim())
+        .eq('product_name', productName)
+        .in('status', ['pending', 'paid'])
+        .limit(1)
+
+    if (error) {
+        console.error('Error checking pending order:', error)
+        return false
+    }
+
+    return data !== null && data.length > 0
+}
+
+/**
  * Create a new order from purchase form
+ * Throws ApiError with code 'DUPLICATE_ORDER' if user already has pending/paid order for same product
  */
 export async function createOrder(data: {
     // Personal Info
@@ -91,11 +163,22 @@ export async function createOrder(data: {
     widerrufsbelehrungAkzeptiert: boolean
     datenschutzAkzeptiert: boolean
 }): Promise<Order> {
+    const normalizedEmail = data.email.toLowerCase().trim()
+
+    // Check for existing pending/paid order with same email and product
+    const hasPendingOrder = await checkPendingOrder(normalizedEmail, data.productName)
+    if (hasPendingOrder) {
+        throw new ApiError(
+            'Du hast diesen Kurs bereits bestellt. Falls du Fragen zu deiner Bestellung hast, kontaktiere uns bitte unter info@test-it-academy.de',
+            'DUPLICATE_ORDER'
+        )
+    }
+
     const orderData: InsertOrder = {
         anrede: data.anrede,
         vorname: data.vorname,
         nachname: data.nachname,
-        email: data.email,
+        email: normalizedEmail,
         strasse: data.strasse,
         hausnummer: data.hausnummer,
         plz: data.plz,
@@ -253,6 +336,25 @@ export async function getFeaturedTestimonials(): Promise<Testimonial[]> {
 
     if (error) {
         console.error('Error fetching featured testimonials:', error)
+        throw error
+    }
+
+    return data || []
+}
+
+/**
+ * Get video testimonials only (non-featured active ones)
+ */
+export async function getVideoTestimonials(): Promise<Testimonial[]> {
+    const { data, error } = await supabase
+        .from('testimonials')
+        .select('*')
+        .eq('is_active', true)
+        .eq('is_featured', false)
+        .order('display_order', { ascending: true })
+
+    if (error) {
+        console.error('Error fetching video testimonials:', error)
         throw error
     }
 

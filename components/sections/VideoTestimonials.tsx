@@ -3,7 +3,8 @@
 import Image from 'next/image'
 
 import { useState, useRef, useEffect } from 'react'
-import { videoTestimonials, VideoTestimonial } from '@/data/videoTestimonials'
+import { getVideoTestimonials } from '@/lib/api'
+import { Testimonial } from '@/types/database'
 import { Card } from '@/components/ui/Card'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Play, X } from 'lucide-react'
@@ -11,7 +12,29 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 
 export function VideoTestimonials() {
-  const [selectedVideo, setSelectedVideo] = useState<VideoTestimonial | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<Testimonial | null>(null)
+  const [videos, setVideos] = useState<Testimonial[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const data = await getVideoTestimonials()
+        setVideos(data)
+      } catch (error) {
+        console.error('Failed to load video testimonials:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchVideos()
+  }, [])
+
+  if (loading) {
+    return <section className="py-16 md:py-24 bg-background-alt min-h-[400px] flex items-center justify-center">
+      <div className="animate-spin w-8 h-8 border-4 border-accent border-t-transparent rounded-full" />
+    </section>
+  }
 
   return (
     <section id="video-testimonials" className="py-16 md:py-24 bg-background-alt">
@@ -33,7 +56,7 @@ export function VideoTestimonials() {
 
             {/* Video Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {videoTestimonials.slice(0, 5).map((testimonial, index) => (
+              {videos.map((testimonial, index) => (
                 <ScrollReveal key={testimonial.id} animation="scale-up" delay={index * 0.1} width="100%">
                   <VideoCard
                     testimonial={testimonial}
@@ -66,11 +89,13 @@ export function VideoTestimonials() {
 }
 
 interface VideoCardProps {
-  testimonial: VideoTestimonial
+  testimonial: Testimonial
   onClick: () => void
 }
 
 function VideoCard({ testimonial, onClick }: VideoCardProps) {
+  const thumbnailUrl = testimonial.video_thumbnail || testimonial.image_url
+
   return (
     <Card
       className="group cursor-pointer overflow-hidden hover:shadow-card-hover transition-all duration-300"
@@ -78,9 +103,9 @@ function VideoCard({ testimonial, onClick }: VideoCardProps) {
     >
       {/* Thumbnail */}
       <div className="relative aspect-video bg-gradient-to-br from-accent/10 to-accent/5 overflow-hidden group-video-card">
-        {testimonial.thumbnailUrl && (testimonial.thumbnailUrl.startsWith('http') || testimonial.thumbnailUrl.startsWith('/')) ? (
+        {thumbnailUrl && (thumbnailUrl.startsWith('http') || thumbnailUrl.startsWith('/')) ? (
           <Image
-            src={testimonial.thumbnailUrl}
+            src={thumbnailUrl}
             alt={`Video thumbnail von ${testimonial.name}`}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -125,7 +150,7 @@ function VideoCard({ testimonial, onClick }: VideoCardProps) {
 }
 
 interface VideoModalProps {
-  video: VideoTestimonial | null
+  video: Testimonial | null
   onClose: () => void
 }
 
@@ -180,9 +205,9 @@ function VideoModal({ video, onClose }: VideoModalProps) {
 
           {/* Video Player */}
           <div className="relative aspect-video bg-black">
-            {video.videoUrl ? (
+            {video.video_url ? (
               <iframe
-                src={`${video.videoUrl}?autoplay=1&rel=0`}
+                src={`${video.video_url}?autoplay=1&rel=0`}
                 title={`Testimonial von ${video.name}`}
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
