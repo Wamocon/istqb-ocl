@@ -29,7 +29,7 @@ export const successStories: SuccessStory[] = [
     name: 'Leon Christen',
     role: 'ISTQB® Certified Tester',
     image: '/images/testimonials/leon-christen.jpg',
-    videoUrl: 'https://www.youtube.com/embed/e924280d-68ce-44ac-a598-38d2570babba',
+    videoUrl: 'https://www.youtube.com/embed/1u100i0b9LM',
     videoThumbnail: 'https://i.ytimg.com/vi/1u100i0b9LM/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYACvAWKAgwIABABGGUgWShPMA8=&rs=AOn4CLB-fsMHHMsgNU9nFyvHBJbU5mhQ1w',
     challenge: {
       title: 'Herausforderung',
@@ -59,7 +59,7 @@ export const successStories: SuccessStory[] = [
     name: 'Christian-Oliver Friedrich',
     role: 'Testautomatisierer & ISTQB® Certified',
     image: '/images/testimonials/christian-oliver-friedrich.jpg',
-    videoUrl: 'https://www.youtube.com/1e64d290-c3a2-48ab-89e4-0a76c3f7ee5d',
+    videoUrl: 'https://www.youtube.com/embed/-M1JD6mZVvY',
     videoThumbnail: 'https://i.ytimg.com/vi/-M1JD6mZVvY/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYACvAWKAgwIABABGEUgSChyMA8=&rs=AOn4CLA30_Rs5yL9J_rRyYf6bdzMRL5i3w',
     challenge: {
       title: 'Herausforderung',

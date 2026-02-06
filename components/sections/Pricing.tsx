@@ -10,7 +10,7 @@ import { Check } from 'lucide-react'
 export function Pricing() {
   const [showPurchase, setShowPurchase] = React.useState(false)
   return (
-    <section id="pricing" className="py-16 md:py-24 bg-background-alt">
+    <section id="pricing" className="py-16 md:py-24 bg-background-red-dark">
       <div className="container mx-auto px-6">
         <PurchaseDialog
           open={showPurchase}
@@ -51,7 +51,7 @@ export function Pricing() {
                     <FeatureItem>128 Lerneinheiten</FeatureItem>
                     <FeatureItem>7,6 Stunden Videomaterial</FeatureItem>
                     <FeatureItem>84 Praxisbeispiele</FeatureItem>
-                    <FeatureItem>Strukturierter 4-Wochen-Plan</FeatureItem>
+                    <FeatureItem>Flexibler Lernplan (4-8 Wochen)</FeatureItem>
                   </ul>
                 </div>
 
@@ -129,12 +129,12 @@ export function Pricing() {
                     </tr>
                   </thead>
                   <tbody>
-                    <ComparisonRow feature="Preis" ours="€497" presential="€800-1500" books="€50" />
+                    <ComparisonRow feature="Preis" ours="€497" presential="€1.300-2.000" books="€50" />
                     <ComparisonRow feature="Theorie" ours="✅ 128 LE" presential="✅ Ja" books="✅ Ja" />
                     <ComparisonRow feature="Praxis (DiTeLe)" ours="✅ 45+ Übungen" presential="❌ Nein" books="❌ Nein" />
                     <ComparisonRow feature="Flexibel" ours="✅ Ja" presential="❌ Nein" books="✅ Ja" />
                     <ComparisonRow feature="Lifetime Access" ours="✅ Ja" presential="❌ Nein" books="✅ Ja" />
-                    <ComparisonRow feature="Erfolgsquote" ours="✅ 87%" presential="~70%" books="~34%" />
+                    <ComparisonRow feature="Erfolgsquote" ours="✅ Hoch" presential="~70%" books="Variabel" />
                   </tbody>
                 </table>
               </div>

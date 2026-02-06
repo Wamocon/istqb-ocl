@@ -7,7 +7,7 @@ import { Check, X, Info } from 'lucide-react'
 
 export function Comparison() {
   return (
-    <section id="comparison" className="py-24 bg-background relative overflow-hidden">
+    <section id="comparison" className="py-24 bg-background-alt relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-accent/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
@@ -39,7 +39,7 @@ export function Comparison() {
               <ul className="space-y-4 mb-8 flex-grow">
                 <ComparisonItem icon="negative" text="300+ Seiten trockene Theorie" />
                 <ComparisonItem icon="negative" text="Keine praktischen Übungen" />
-                <ComparisonItem icon="negative" text="Erfolgsquote: ~34%" />
+                <ComparisonItem icon="negative" text="Niedrigere Erfolgsquote" />
                 <ComparisonItem icon="negative" text="4-6 Monate Zeitaufwand" />
                 <ComparisonItem icon="negative" text="Auf dich allein gestellt" />
               </ul>
@@ -62,7 +62,7 @@ export function Comparison() {
                 <p className="text-muted text-sm">3-5 Tage Intensivkurs</p>
               </div>
               <ul className="space-y-4 mb-8 flex-grow">
-                <ComparisonItem icon="negative" text="€800-1500 Kosten" />
+                <ComparisonItem icon="negative" text="€1.300-2.000 Kosten" />
                 <ComparisonItem icon="negative" text="Urlaub nötig (3-5 Tage)" />
                 <ComparisonItem icon="negative" text="Überforderung durch Tempo" />
                 <ComparisonItem icon="negative" text="Kein späteres Nachschlagen" />
@@ -113,7 +113,7 @@ export function Comparison() {
         <ScrollReveal animation="fade-in" delay={0.6} width="100%">
           <div className="mt-16 text-center bg-white/[0.02] border border-white/5 rounded-xl p-8 max-w-3xl mx-auto backdrop-blur-sm">
             <p className="text-lg md:text-xl text-muted leading-relaxed">
-              Mit unserem System sparst du <span className="text-accent font-bold">bis zu €1000</span> gegenüber Seminaren und hast <span className="text-accent font-bold">2,5x höhere Erfolgschancen</span> als beim Selbststudium.
+              Mit unserem System sparst du <span className="text-accent font-bold">bis zu €1.500</span> gegenüber Seminaren und profitierst von <span className="text-accent font-bold">praxisorientiertem Lernen</span> für höhere Erfolgschancen.
             </p>
           </div>
         </ScrollReveal>

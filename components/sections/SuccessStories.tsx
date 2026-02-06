@@ -1,14 +1,39 @@
 'use client'
 
-import { successStories, SuccessStory } from '@/data/successStories'
+import { getFeaturedTestimonials } from '@/lib/api'
+import { Testimonial } from '@/types/database'
 import { Card } from '@/components/ui/Card'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { Check, Target, TrendingUp, User, PlayCircle } from 'lucide-react'
+import { Check, Target, TrendingUp, User } from 'lucide-react'
 import Image from 'next/image'
+import * as React from 'react'
 
 export function SuccessStories() {
+  const [stories, setStories] = React.useState<Testimonial[]>([])
+  const [loading, setLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    async function fetchStories() {
+      try {
+        const data = await getFeaturedTestimonials()
+        setStories(data)
+      } catch (error) {
+        console.error('Failed to load success stories:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchStories()
+  }, [])
+
+  if (loading) {
+    return <section className="py-16 md:py-24 bg-background-red-dark min-h-[600px] flex items-center justify-center">
+      <div className="animate-spin w-8 h-8 border-4 border-accent border-t-transparent rounded-full" />
+    </section>
+  }
+
   return (
-    <section id="success-stories" className="py-16 md:py-24 bg-background">
+    <section id="success-stories" className="py-16 md:py-24 bg-background-red-dark">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-6xl mx-auto">
@@ -27,9 +52,12 @@ export function SuccessStories() {
 
             {/* Success Stories Grid */}
             <div className="space-y-12 md:space-y-16">
-              {successStories.map((story, index) => (
+              {stories.map((story, index) => (
                 <ScrollReveal key={story.id} animation={index % 2 === 0 ? "slide-right" : "slide-left"} delay={0.2} width="100%">
-                  <SuccessStoryCard story={story} index={index} />
+                  <SuccessStoryCard
+                    story={story}
+                    index={index}
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -60,13 +88,19 @@ export function SuccessStories() {
 }
 
 interface SuccessStoryCardProps {
-  story: SuccessStory
+  story: Testimonial
   index: number
 }
 
 function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
   // Alternate layout direction for visual interest
   const isReversed = index % 2 === 1
+
+  // Parse JSON fields safely
+  const challenge = typeof story.challenge === 'object' ? story.challenge as any : { title: '', description: '' }
+  const goal = typeof story.goal === 'object' ? story.goal as any : { title: '', description: '' }
+  const results = typeof story.results === 'object' ? story.results as any : { title: '', achievements: [] }
+  const stats = Array.isArray(story.stats) ? story.stats as any[] : []
 
   return (
     <Card className="overflow-hidden">
@@ -80,30 +114,25 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
             }`}
         >
           {/* Image Section Content */}
-          {story.videoThumbnail ? (
+          {story.video_url ? (
+            <div className="absolute inset-0 bg-black">
+              <iframe
+                src={`${story.video_url}?rel=0`}
+                title={`Success Story: ${story.name}`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : story.video_thumbnail || story.image_url ? (
             <div className="absolute inset-0 group-image cursor-pointer">
               <Image
-                src={story.videoThumbnail}
+                src={story.video_thumbnail || story.image_url!}
                 alt={story.name}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-
-              {/* Play Button Overlay */}
-              {story.videoUrl && (
-                <a
-                  href={story.videoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center group/play"
-                  aria-label={`Video von ${story.name} ansehen`}
-                >
-                  <div className="w-16 h-16 rounded-full bg-accent/90 text-white flex items-center justify-center transform group-hover/play:scale-110 transition-all shadow-lg shadow-accent/20">
-                    <PlayCircle className="w-8 h-8 ml-1" />
-                  </div>
-                </a>
-              )}
 
               {/* Name Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
@@ -128,11 +157,11 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
             </div>
           )}
 
-          {/* Stats Overlay - show only if no video thumbnail to avoid clutter, or adjust position */}
-          {!story.videoThumbnail && story.stats && (
+          {/* Stats Overlay - show only if no video (embedded or thumbnail) and stats exist */}
+          {!story.video_url && !story.video_thumbnail && stats.length > 0 && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background-card/95 to-transparent p-4">
               <div className="grid grid-cols-3 gap-2">
-                {story.stats.map((stat, i) => (
+                {stats.map((stat: any, i: number) => (
                   <div key={i} className="text-center">
                     <div className="text-accent font-bold text-sm md:text-base">
                       {stat.value}
@@ -155,10 +184,10 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
               </div>
               <div>
                 <h4 className="font-bold text-foreground mb-1">
-                  {story.challenge.title}
+                  {challenge.title || 'Herausforderung'}
                 </h4>
                 <p className="text-foreground-muted text-sm leading-relaxed">
-                  {story.challenge.description}
+                  {challenge.description}
                 </p>
               </div>
             </div>
@@ -171,9 +200,9 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
                 <TrendingUp className="w-5 h-5 text-blue-500" aria-hidden="true" />
               </div>
               <div>
-                <h4 className="font-bold text-foreground mb-1">{story.goal.title}</h4>
+                <h4 className="font-bold text-foreground mb-1">{goal.title || 'Ziel'}</h4>
                 <p className="text-foreground-muted text-sm leading-relaxed">
-                  {story.goal.description}
+                  {goal.description}
                 </p>
               </div>
             </div>
@@ -186,9 +215,9 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
                 <Check className="w-5 h-5 text-accent" aria-hidden="true" />
               </div>
               <div className="flex-1">
-                <h4 className="font-bold text-foreground mb-3">{story.results.title}</h4>
+                <h4 className="font-bold text-foreground mb-3">{results.title || 'Ergebnis'}</h4>
                 <ul className="space-y-2">
-                  {story.results.achievements.map((achievement, i) => (
+                  {results.achievements && Array.isArray(results.achievements) && results.achievements.map((achievement: string, i: number) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <Check
                         className="w-4 h-4 text-accent mt-0.5 flex-shrink-0"
@@ -201,8 +230,6 @@ function SuccessStoryCard({ story, index }: SuccessStoryCardProps) {
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </Card>

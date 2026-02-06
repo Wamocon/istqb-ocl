@@ -5,7 +5,7 @@ import { Check } from 'lucide-react'
 
 export function Curriculum() {
   return (
-    <section id="curriculum" className="py-16 md:py-24 bg-background">
+    <section id="curriculum" className="py-16 md:py-24 bg-background-alt">
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
           <div className="max-w-4xl mx-auto">
@@ -61,7 +61,7 @@ export function Curriculum() {
                   <h3 className="font-bold mb-4">Gesamt:</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <StatBox label="Lerneinheiten" value="128" />
-                    <StatBox label="Übungsfragen" value="316" />
+                    <StatBox label="Übungsfragen" value="300+" />
                     <StatBox label="Praxisbeispiele" value="84" />
                     <StatBox label="Vertiefungsübungen" value="18" />
                   </div>
