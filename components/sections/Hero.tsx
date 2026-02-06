@@ -83,7 +83,7 @@ export function Hero() {
               <StatCard
                 icon={<TrendingUp className="w-8 h-8" />}
                 title="ERFOLG"
-                stats={["Praxisorientiert", "4 Wochen", "Lifetime Access"]}
+                stats={["Praxisorientiert", "4-8 Wochen", "Lifetime Access"]}
               />
             </ScrollReveal>
           </div>
@@ -178,13 +178,13 @@ function StatCard({
       {/* Tooltip - appears above the card */}
       <div
         className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] transition-all duration-200 ${showTooltip
-            ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 translate-y-2 pointer-events-none'
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 translate-y-2 pointer-events-none'
           }`}
       >
         <div className={`px-5 py-4 rounded-xl border backdrop-blur-md shadow-2xl min-w-[180px] ${highlight
-            ? 'bg-background-red-dark/95 border-accent/30'
-            : 'bg-background-card/95 border-border/50'
+          ? 'bg-background-red-dark/95 border-accent/30'
+          : 'bg-background-card/95 border-border/50'
           }`}>
           <ul className="space-y-2.5 text-sm text-foreground-muted relative z-10">
             {stats.map((stat, idx) => (
@@ -197,8 +197,8 @@ function StatCard({
 
           {/* Arrow pointing down */}
           <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 border-r border-b ${highlight
-              ? 'bg-background-red-dark/95 border-accent/30'
-              : 'bg-background-card/95 border-border/50'
+            ? 'bg-background-red-dark/95 border-accent/30'
+            : 'bg-background-card/95 border-border/50'
             }`} />
         </div>
       </div>

@@ -19,7 +19,7 @@ export const faqData: FAQItem[] = [
   {
     id: '4',
     question: 'Ist das eine offizielle ISTQB-Vorbereitung?',
-    answer: 'Ja! Der Kurs deckt 100% des offiziellen ISTQB CTFL 4.0 Syllabus ab. Alle 60 Kapitel, alle Lernziele, alle prüfungsrelevanten Themen. Wir sind ein Vorbereitungskurs, nicht die offizielle ISTQB-Prüfung selbst. Die Prüfung legst du bei einem akkreditierten Prüfungsanbieter ab. Mit unserer praxisorientierten Vorbereitung bist du optimal auf die Prüfung vorbereitet.'
+    answer: 'Ja! Der Kurs deckt 100% des offiziellen ISTQB CTFL 4.0 Syllabus ab. Alle 6 Kapitel mit sämtlichen Lernzielen und prüfungsrelevanten Themen. Wir sind ein Vorbereitungskurs, nicht die offizielle ISTQB-Prüfung selbst. Die Prüfung legst du bei einem akkreditierten Prüfungsanbieter ab. Mit unserer praxisorientierten Vorbereitung bist du optimal auf die Prüfung vorbereitet.'
   },
   {
     id: '5',

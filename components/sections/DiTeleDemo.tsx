@@ -47,7 +47,7 @@ export function DiTeleDemo() {
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-4 text-sm">
                   <span className="text-foreground-muted">🎮 LIVE-DEMO: DiTeLe Praxisübung</span>
-                  <span className="font-mono font-semibold text-foreground">Frage 1 von 316</span>
+                  <span className="font-mono font-semibold text-foreground">Frage 1 von 300+</span>
                 </div>
 
                 <h3 className="text-xl md:text-2xl font-bold mb-6">{demoQuestion.text}</h3>
@@ -117,7 +117,7 @@ export function DiTeleDemo() {
                   <div className="bg-background-card p-4 rounded">
                     <div className="flex items-center justify-between mb-2 text-sm">
                       <span className="text-foreground-muted">Dein Fortschritt</span>
-                      <span className="font-mono font-semibold text-foreground">1/316 (0.3%)</span>
+                      <span className="font-mono font-semibold text-foreground">1/300+</span>
                     </div>
                     <div className="h-2 bg-border rounded-full overflow-hidden">
                       <motion.div

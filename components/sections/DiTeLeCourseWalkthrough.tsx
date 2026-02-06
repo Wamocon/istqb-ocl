@@ -103,7 +103,7 @@ export function DiTeLeCourseWalkthrough() {
                         Das Problem mit reiner Theorie
                       </h3>
                       <p className="text-sm text-foreground-muted mb-3">
-                        66% der Kandidaten scheitern, weil sie Konzepte auswendig lernen, aber nicht <strong>anwenden</strong> können.
+                        Viele Kandidaten scheitern, weil sie Konzepte auswendig lernen, aber nicht <strong>anwenden</strong> können.
                         In der Prüfung werden realitätsnahe Szenarien abgefragt – keine Definitionen.
                       </p>
                       <p className="text-sm font-semibold text-foreground">
@@ -264,8 +264,8 @@ function DiTeleFeatureCard({ feature }: { feature: DiTeLeFeature }) {
       {/* Tooltip */}
       <div
         className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] transition-all duration-200 ${showTooltip
-            ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 translate-y-2 pointer-events-none'
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 translate-y-2 pointer-events-none'
           }`}
       >
         <div className="px-4 py-3 rounded-xl bg-background-card/95 border border-border/50 backdrop-blur-md shadow-2xl min-w-[200px] max-w-[280px]">
