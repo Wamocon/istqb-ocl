@@ -26,7 +26,7 @@ const courseFeatures: CourseFeature[] = [
     icon: <Video className="w-6 h-6" />,
     title: 'Video-Lektionen',
     description: 'Über 7+ Stunden professionell produzierte Erklärvideos',
-    stat: '7,6h',
+    stat: '8h',
   },
   {
     icon: <BookOpen className="w-6 h-6" />,
@@ -97,7 +97,7 @@ export function CourseWalkthrough() {
                           Sieh dir an, wie der Kurs aufgebaut ist und was dich in den 128 Lerneinheiten erwartet
                         </p>
                         <p className="text-foreground-muted text-xs mt-4">
-                          3:45 Minuten • Video kommt bald
+                          Video kommt bald
                         </p>
                       </div>
                     </div>
@@ -174,7 +174,7 @@ export function CourseWalkthrough() {
                         }}
                         className="w-full bg-accent hover:bg-accent-hover"
                       >
-                        Jetzt Zugang zum Kurs sichern - €497
+                        Jetzt Zugang zum Kurs sichern - <span className="line-through opacity-70">€747</span> €497
                       </Button>
                       <p className="text-center text-xs text-foreground-muted mt-3">
                         Einmalzahlung oder 5x €100/Monat • 12 Monate Zugriff • 30-Tage Geld-zurück-Garantie*

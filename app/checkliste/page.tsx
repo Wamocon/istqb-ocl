@@ -211,10 +211,10 @@ export default function ChecklistePage() {
               href="/#pricing"
               className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors"
             >
-              Jetzt starten - 497 Euro
+              🔥 Jetzt starten - <span className="line-through opacity-70">747€</span> 497 Euro
             </Link>
             <p className="text-gray-500 text-sm mt-3">
-              Lifetime Zugang. 30 Tage Garantie.
+              12 Monate Zugang. 30 Tage Garantie.
             </p>
           </div>
 

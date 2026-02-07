@@ -90,11 +90,11 @@ export function Comparison() {
                 <ComparisonItem icon="positive" text="128 Lerneinheiten strukturiert" highlight />
                 <ComparisonItem icon="positive" text="45+ Praxisübungen in DiTeLe" highlight />
                 <ComparisonItem icon="positive" text="Erfolgsquote: 87% (Nachweisbar)" highlight />
-                <ComparisonItem icon="positive" text="Flexible 8 Wochen (2h/Woche)" highlight />
+                <ComparisonItem icon="positive" text="Flexible 8 Wochen (8h/Woche)" highlight />
                 <ComparisonItem icon="positive" text="12 Monate Zugriff & Updates" highlight />
               </ul>
               <div className="text-center pt-6 border-t border-accent/20 mt-auto">
-                <p className="text-lg font-bold mb-4">Investition: €497</p>
+                <p className="text-lg font-bold mb-4">Investition: <span className="line-through text-muted">€747</span> <span className="text-accent">€497</span></p>
                 <Button
                   variant="primary"
                   size="lg"

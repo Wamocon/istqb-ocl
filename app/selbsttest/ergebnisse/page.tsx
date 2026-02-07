@@ -240,12 +240,12 @@ export default function ErgebnissePage() {
                             IT-Arbeitsmarkt 2026: Deine Chance
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <StatCard value={itMarketStats2026.openPositions} label="Offene IT-Stellen" />
-                            <StatCard value={itMarketStats2026.careerChangerRate} label="Quereinsteiger-Anteil" />
-                            <StatCard value={itMarketStats2026.averageSalary} label="Durchschnittsgehalt" />
-                            <StatCard value={itMarketStats2026.maxSalary} label="Erfahrene Tester" />
-                            <StatCard value={itMarketStats2026.skillGap} label="Fachkräftelücke" />
-                            <StatCard value={itMarketStats2026.marketGrowth} label="Marktwachstum" />
+                            <StatCard value={itMarketStats2026.openPositions} label="Offene IT-Stellen" source={itMarketStats2026.openPositionsSource} />
+                            <StatCard value={itMarketStats2026.careerChangerRate} label="Quereinsteiger-Anteil" source={itMarketStats2026.careerChangerRateSource} />
+                            <StatCard value={itMarketStats2026.averageSalary} label="Durchschnittsgehalt" source={itMarketStats2026.averageSalarySource} />
+                            <StatCard value={itMarketStats2026.maxSalary} label="Erfahrene Tester" source={itMarketStats2026.maxSalarySource} />
+                            <StatCard value={itMarketStats2026.skillGap} label="Fachkräftelücke" source={itMarketStats2026.skillGapSource} />
+                            <StatCard value={itMarketStats2026.marketGrowth} label="Marktwachstum" source={itMarketStats2026.marketGrowthSource} />
                         </div>
                     </div>
 
@@ -355,7 +355,7 @@ export default function ErgebnissePage() {
                                     <tr className="bg-red-50">
                                         <td className="py-3 px-4 font-bold">⭐ Unser System</td>
                                         <td className="py-3 px-4 font-medium">Kurs + DiTeLe + 12 Monate Zugriff + 30-Tage-Garantie</td>
-                                        <td className="py-3 px-4 text-right font-bold text-red-600">€497</td>
+                                        <td className="py-3 px-4 text-right font-bold text-red-600"><span className="line-through text-gray-400 mr-2">€747</span>€497</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -365,14 +365,15 @@ export default function ErgebnissePage() {
                         <div className="mt-6 bg-gray-50 p-4 rounded-lg">
                             <p className="text-sm text-gray-600 mb-2">Wert-Aufschlüsselung:</p>
                             <div className="space-y-1 text-sm">
-                                <div className="flex justify-between"><span>Online-Kurs allein:</span><span>€350</span></div>
-                                <div className="flex justify-between"><span>DiTeLe-Zugang:</span><span>€199</span></div>
+                                <div className="flex justify-between"><span>Online-Kurs allein:</span><span>€499</span></div>
+                                <div className="flex justify-between"><span>DiTeLe-Zugang:</span><span>€349</span></div>
                                 <div className="flex justify-between"><span>Support & Updates:</span><span>€99</span></div>
                                 <div className="border-t border-gray-300 my-2"></div>
-                                <div className="flex justify-between font-bold"><span>Gesamt-Wert:</span><span>€648</span></div>
-                                <div className="flex justify-between font-bold text-red-600"><span>Dein Preis heute:</span><span>€497</span></div>
+                                <div className="flex justify-between font-bold"><span>Gesamt-Wert:</span><span>€947</span></div>
+                                <div className="flex justify-between"><span>Paketpreis:</span><span>€747</span></div>
+                                <div className="flex justify-between font-bold text-red-600 bg-red-50 p-2 rounded"><span>🔥 Sonderpreis (erste 100):</span><span>€497</span></div>
                             </div>
-                            <p className="text-center text-red-600 font-semibold mt-3">Du sparst: €151 (23%)</p>
+                            <p className="text-center text-red-600 font-semibold mt-3">Du sparst: €450 (47%)</p>
                         </div>
                     </div>
 
@@ -428,7 +429,7 @@ export default function ErgebnissePage() {
                                         href="/#pricing"
                                         className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
                                     >
-                                        Jetzt durchstarten - €497
+                                        🔥 Jetzt durchstarten - <span className="line-through opacity-70">€747</span> €497
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
@@ -442,10 +443,10 @@ export default function ErgebnissePage() {
                             href="/#pricing"
                             className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors"
                         >
-                            Jetzt starten - €497
+                            Jetzt starten - <span className="line-through opacity-70">€747</span> €497
                         </Link>
                         <p className="text-gray-500 text-sm mt-3">
-                            Lifetime Zugang. 30 Tage Garantie. Kein Abo.
+                            12 Monate Zugang. 30 Tage Garantie. Kein Abo.
                         </p>
                     </div>
 
@@ -728,11 +729,12 @@ export default function ErgebnissePage() {
     )
 }
 
-function StatCard({ value, label }: { value: string; label: string }) {
+function StatCard({ value, label, source }: { value: string; label: string; source?: string }) {
     return (
         <div className="bg-red-50 p-4 rounded-lg text-center border border-red-100">
             <p className="text-xl font-bold text-red-600">{value}</p>
             <p className="text-xs text-gray-600">{label}</p>
+            {source && <p className="text-[10px] text-gray-400 mt-1">({source})</p>}
         </div>
     )
 }

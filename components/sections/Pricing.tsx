@@ -31,13 +31,17 @@ export function Pricing() {
           <ScrollReveal animation="scale-up" delay={0.2} width="100%">
             <Card className="border-2 border-accent p-8 md:p-12">
               <div className="text-center mb-8">
-                <div className="inline-block mb-4 px-4 py-2 bg-accent/10 rounded-full text-accent font-semibold">
-                  Beliebteste Wahl
+                <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full text-white font-bold animate-pulse">
+                  🔥 SONDERAKTION: Erste 100 Teilnehmer
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
                   ISTQB CTFL 4.0 KOMPLETT
                 </h3>
-                <div className="text-5xl md:text-6xl font-bold mb-2">€497</div>
+                <div className="flex items-center justify-center gap-4 mb-2">
+                  <span className="text-2xl text-muted line-through">€747</span>
+                  <span className="text-5xl md:text-6xl font-bold text-accent">€497</span>
+                  <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">-33%</span>
+                </div>
                 <p className="text-muted">
                   Einmalzahlung oder 5x €100/Monat
                 </p>
@@ -51,7 +55,7 @@ export function Pricing() {
                     <FeatureItem>128 Lerneinheiten</FeatureItem>
                     <FeatureItem>7+ Stunden Videomaterial</FeatureItem>
                     <FeatureItem>84 Praxisbeispiele</FeatureItem>
-                    <FeatureItem>Flexibler Lernplan (4-8 Wochen)</FeatureItem>
+                    <FeatureItem>Flexibler Lernplan (8 Wochen neben dem Beruf)</FeatureItem>
                   </ul>
                 </div>
 
@@ -84,15 +88,19 @@ export function Pricing() {
               <div className="border-t border-border pt-6 mb-8">
                 <h4 className="font-bold mb-4 text-center">Wert-Aufschlüsselung:</h4>
                 <div className="space-y-2 max-w-sm mx-auto text-muted">
-                  <ValueRow label="Online-Kurs allein:" value="€350" />
-                  <ValueRow label="DiTeLe-Zugang:" value="€199" />
+                  <ValueRow label="Online-Kurs allein:" value="€499" />
+                  <ValueRow label="DiTeLe-Zugang:" value="€349" />
                   <ValueRow label="Support & Updates:" value="€99" />
                   <div className="border-t border-border my-2" />
-                  <ValueRow label="Gesamt-Wert:" value="€648" bold />
-                  <ValueRow label="Dein Preis heute:" value="€497" accent bold />
+                  <ValueRow label="Gesamt-Wert:" value="€947" bold />
+                  <ValueRow label="Paketpreis:" value="€747" />
+                  <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 p-2 rounded-lg mt-2">
+                    <ValueRow label="🔥 Sonderpreis (erste 100):" value="€497" accent bold />
+                  </div>
                 </div>
-                <p className="text-center mt-4 text-sm text-accent font-semibold">
-                  Du sparst: €151 (23% Rabatt)
+                <p className="text-center mt-4 text-sm font-semibold">
+                  <span className="text-accent">Du sparst: €450 (47% Rabatt)</span>
+                  <span className="text-muted ml-2">vs. Gesamt-Wert</span>
                 </p>
               </div>
 
@@ -100,7 +108,7 @@ export function Pricing() {
                 <Button variant="primary" size="xl" className="bg-accent hover:bg-accent/90 mb-4"
                   onClick={() => setShowPurchase(true)}
                 >
-                  JETZT KAUFEN - €497
+                  🔥 JETZT KAUFEN - <span className="line-through opacity-70">€747</span> €497
                 </Button>
                 <p className="text-sm text-muted">
                   Sichere Zahlung • Sofortiger Zugang • Kein Abo

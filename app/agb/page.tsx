@@ -87,7 +87,8 @@ export default function AGB() {
             <div className="bg-background-card p-4 rounded-lg mb-4">
               <p className="text-foreground-muted">
                 <strong className="text-foreground">Aktueller Preis:</strong><br />
-                • Einmalzahlung: €497 (inkl. 19% MwSt.)<br />
+                • Regulärer Paketpreis: €747 (inkl. 19% MwSt.)<br />
+                • Sonderpreis (erste 100 Teilnehmer): €497 (inkl. 19% MwSt.)<br />
                 • Ratenzahlung: 5x €100/Monat (inkl. 19% MwSt.)
               </p>
             </div>

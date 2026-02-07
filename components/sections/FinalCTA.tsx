@@ -49,7 +49,7 @@ export function FinalCTA() {
                     className="w-full bg-accent hover:bg-accent/90 mb-6"
                     onClick={() => setShowPurchase(true)}
                   >
-                    JETZT KAUFEN - €497
+                    🔥 JETZT KAUFEN - <span className="line-through opacity-70">€747</span> €497
                   </Button>
 
                   <ul className="space-y-3 text-sm text-left">
