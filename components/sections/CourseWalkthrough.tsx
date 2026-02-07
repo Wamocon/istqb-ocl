@@ -174,7 +174,7 @@ export function CourseWalkthrough() {
                         }}
                         className="w-full bg-accent hover:bg-accent-hover"
                       >
-                        Jetzt Zugang zum Kurs sichern - €497
+                        Jetzt Zugang zum Kurs sichern - <span className="line-through opacity-70">€747</span> €497
                       </Button>
                       <p className="text-center text-xs text-foreground-muted mt-3">
                         Einmalzahlung oder 5x €100/Monat • 12 Monate Zugriff • 30-Tage Geld-zurück-Garantie*

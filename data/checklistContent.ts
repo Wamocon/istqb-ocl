@@ -114,10 +114,27 @@ Er ist heute ISTQB Certified Tester. Er arbeitet in echten IT Projekten. Er hat 
 
   pricing: {
     comparison: 'Typische ISTQB Schulungen in Deutschland kosten zwischen 1.200 und 2.000 Euro.',
+    courseValue: 499,
+    diteleValue: 349,
+    supportValue: 99,
+    totalValue: 947,
+    packagePrice: 747,
     ourPrice: 497,
-    savings: 'Du sparst bis zu 1.500 Euro. Und bekommst mehr Praxis als bei den meisten teuren Kursen.',
+    savings: 450,
+    savingsPercent: 47,
+    promotionalNote: 'Sonderpreis für die ersten 100 Teilnehmer',
     guarantee: 'Dazu: 30-Tage-Geld-zurück-Garantie. Wenn du den Kurs komplett durcharbeitest, alle Übungen machst und die Prüfung trotzdem nicht bestehst, bekommst du dein Geld zurück.'
   },
+
+  conclusion: `Hier ist die Wahrheit, die dir niemand sagt:
+
+Ein Zertifikat beweist, dass du das Wissen hast. Aber ohne Praxis weiß niemand, ob du es anwenden kannst.
+
+Mit DiTeLe lernst du beides. Das ändert alles.
+
+Deine Investition: 497 Euro.
+
+Selbst wenn du nur 3.000 Euro mehr verdienst, hat sich der Kurs in wenigen Monaten bezahlt gemacht.`,
 
   calculation: {
     title: 'Eine einfache Rechnung',

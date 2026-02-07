@@ -271,7 +271,7 @@ export function Header() {
                   onClick={handleCTAClick}
                   className="w-full bg-accent hover:bg-accent/90 shadow-lg shadow-accent/25"
                 >
-                  🎯 Jetzt starten - €497
+                  🔥 Jetzt starten - €497
                 </Button>
               </div>
             </div>

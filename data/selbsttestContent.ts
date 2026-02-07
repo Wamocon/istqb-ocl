@@ -133,12 +133,18 @@ export const successStoriesShort: SuccessStoryShort[] = [
 ]
 
 export const itMarketStats2026 = {
-    openPositions: '100.000+',
-    skillGap: '150.000-200.000',
-    careerChangerRate: '15,3%',
-    averageSalary: '€45.000-55.000/Jahr',
-    maxSalary: 'bis €75.000/Jahr',
-    marketGrowth: '+11%',
+    openPositions: '109.000',
+    openPositionsSource: 'Bitkom 2025',
+    skillGap: '148.500 (MINT)',
+    skillGapSource: 'IW Köln 2025',
+    careerChangerRate: '25%',
+    careerChangerRateSource: 'Bitkom 2025',
+    averageSalary: '€45.000-60.000/Jahr',
+    averageSalarySource: 'Indeed 2026',
+    maxSalary: 'bis €80.000/Jahr',
+    maxSalarySource: 'Hays 2025',
+    marketGrowth: '+5,8%',
+    marketGrowthSource: 'Bitkom 2026',
     failRate: '25-30%',
     failRateSource: 'trendig.com'
 }

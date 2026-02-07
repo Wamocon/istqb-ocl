@@ -9,42 +9,50 @@ import { VideoTestimonials } from '@/components/sections/VideoTestimonials'
 import { Pricing } from '@/components/sections/Pricing'
 import { FAQ } from '@/components/sections/FAQ'
 import { FinalCTA } from '@/components/sections/FinalCTA'
+import { PromoBanner, PromoFloatingBadge } from '@/components/ui/PromoBanner'
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Section 1: Hero - Attention + Problem Statement */}
-      <Hero />
+      {/* Promotional Elements */}
+      <PromoBanner remainingSpots={47} />
+      <PromoFloatingBadge />
 
-      {/* Section 2: Comparison - Problem Agitation (Why others fail) */}
-      <Comparison />
+      {/* Add padding-top to account for promo banner below header */}
+      <div className="pt-12">
+        {/* Section 1: Hero - Attention + Problem Statement */}
+        <Hero />
 
-      {/* Section 3: Course Walkthrough - Solution Introduction (What you get) */}
-      <CourseWalkthrough />
+        {/* Section 2: Comparison - Problem Agitation (Why others fail) */}
+        <Comparison />
 
-      {/* Section 4: DiTeLe Walkthrough - Unique Value Proposition (Why it's better) */}
-      <DiTeLeCourseWalkthrough />
+        {/* Section 3: Course Walkthrough - Solution Introduction (What you get) */}
+        <CourseWalkthrough />
 
-      {/* Section 5: DiTeLe Demo - Proof by Experience (Try it yourself) */}
-      <DiTeleDemo />
+        {/* Section 4: DiTeLe Walkthrough - Unique Value Proposition (Why it's better) */}
+        <DiTeLeCourseWalkthrough />
 
-      {/* Section 6: Curriculum - Learning Roadmap (How you'll succeed) */}
-      <Curriculum />
+        {/* Section 5: DiTeLe Demo - Proof by Experience (Try it yourself) */}
+        <DiTeleDemo />
 
-      {/* Section 7: Success Stories - Social Proof Detailed (Relatable stories) */}
-      <SuccessStories />
+        {/* Section 6: Curriculum - Learning Roadmap (How you'll succeed) */}
+        <Curriculum />
 
-      {/* Section 8: Video Testimonials - Social Proof Visual (Authentic emotion) */}
-      <VideoTestimonials />
+        {/* Section 7: Success Stories - Social Proof Detailed (Relatable stories) */}
+        <SuccessStories />
 
-      {/* Section 9: Pricing - Investment Decision (After trust is built) */}
-      <Pricing />
+        {/* Section 8: Video Testimonials - Social Proof Visual (Authentic emotion) */}
+        <VideoTestimonials />
 
-      {/* Section 10: FAQ - Objection Handling (Remove last doubts) */}
-      <FAQ />
+        {/* Section 9: Pricing - Investment Decision (After trust is built) */}
+        <Pricing />
 
-      {/* Section 11: Final CTA - Closing (Decision time) */}
-      <FinalCTA />
+        {/* Section 10: FAQ - Objection Handling (Remove last doubts) */}
+        <FAQ />
+
+        {/* Section 11: Final CTA - Closing (Decision time) */}
+        <FinalCTA />
+      </div>
     </main>
   )
 }

@@ -76,7 +76,7 @@ export function SuccessStories() {
                   }}
                   className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-accent-hover transition-all shadow-cta hover:shadow-lg"
                 >
-                  Jetzt durchstarten - €497
+                  Jetzt durchstarten - <span className="line-through opacity-70">€747</span> €497
                 </a>
               </div>
             </ScrollReveal>

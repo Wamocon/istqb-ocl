@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BookOpen, Code, TrendingUp } from 'lucide-react'
@@ -9,6 +10,7 @@ import { PurchaseDialog } from '@/components/ui/PurchaseDialog'
 
 export function Hero() {
   const [showLeadMagnet, setShowLeadMagnet] = React.useState(false)
+  const [animationComplete, setAnimationComplete] = React.useState(false)
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-background-red-dark text-white overflow-hidden">
@@ -44,14 +46,26 @@ export function Hero() {
           {/* Headline */}
           <ScrollReveal animation="fade-up" delay={0.2} width="100%">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight">
-              Softwaretester werden – <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-400">
-                Mit Theorie
-              </span>{' '}
-              <span className="text-accent inline-block transform hover:scale-105 transition-transform duration-300">UND</span>{' '}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-400">
+              Softwaretester werden <br />
+              mit{' '}
+              <motion.span
+                className="text-accent inline-block"
+                initial={{ scale: 1 }}
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{ delay: 0.5, duration: 0.4, ease: "easeInOut" }}
+              >
+                Theorie
+              </motion.span>{' '}
+              <span className="text-white/80">UND</span>{' '}
+              <motion.span
+                className="text-accent inline-block"
+                initial={{ scale: 1 }}
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{ delay: 1.0, duration: 0.4, ease: "easeInOut" }}
+                onAnimationComplete={() => setAnimationComplete(true)}
+              >
                 Praxis
-              </span>
+              </motion.span>
             </h1>
           </ScrollReveal>
 
@@ -91,16 +105,28 @@ export function Hero() {
           {/* CTAs */}
           <ScrollReveal animation="fade-up" delay={0.7} width="100%">
             <div className="flex flex-col sm:flex-row gap-5 justify-center mb-16">
-              <Button
-                variant="primary"
-                size="xl"
-                className="bg-accent hover:bg-accent-hover text-white shadow-cta hover:shadow-card-hover transform hover:-translate-y-1 transition-all duration-300 text-lg px-10 py-6"
-                onClick={() => {
-                  document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+              <motion.div
+                animate={animationComplete ? {
+                  y: [0, -3, 0],
+                  scale: [1, 1.02, 1]
+                } : {}}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
                 }}
               >
-                Zum Kurs - €497
-              </Button>
+                <Button
+                  variant="primary"
+                  size="xl"
+                  className="bg-accent hover:bg-accent-hover text-white shadow-cta hover:shadow-card-hover transition-all duration-300 text-lg px-10 py-6"
+                  onClick={() => {
+                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
+                  Zum Kurs - <span className="line-through opacity-70">€747</span> €497
+                </Button>
+              </motion.div>
               <Button
                 variant="secondary"
                 size="xl"
