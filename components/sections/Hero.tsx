@@ -44,7 +44,7 @@ export function Hero() {
           {/* Headline */}
           <ScrollReveal animation="fade-up" delay={0.2} width="100%">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight">
-              Software-Tester werden – <br />
+              Softwaretester werden – <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-400">
                 Mit Theorie
               </span>{' '}
@@ -83,7 +83,7 @@ export function Hero() {
               <StatCard
                 icon={<TrendingUp className="w-8 h-8" />}
                 title="ERFOLG"
-                stats={["Praxisorientiert", "4-8 Wochen", "Lifetime Access"]}
+                stats={["Praxisorientiert", "4-8 Wochen", "12 Monate Zugriff"]}
               />
             </ScrollReveal>
           </div>

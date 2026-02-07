@@ -175,7 +175,7 @@ Oder verbinde das Git-Repo mit Vercel für Auto-Deployment.
 
 Diese Elemente sind noch Platzhalter und sollten ersetzt werden:
 
-- [ ] **Email-Adressen:** `support@example.com` ersetzen
+- [ ] **Email-Adressen:** `info@test-it-academy.de` ersetzen
 - [ ] **Testimonial-Bilder:** Aktuell Initialen-Avatare, echte Fotos hinzufügen
 - [ ] **LinkedIn-Links:** `#` durch echte Profile ersetzen
 - [ ] **Lead Magnet PDF:** Erstellen und verlinken

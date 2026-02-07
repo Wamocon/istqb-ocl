@@ -36,7 +36,7 @@ export function DiTeleDeepDive() {
                     Mit DiTeLe baust du echte Praxiserfahrung auf - <strong>ohne Job-Erfahrung zu brauchen</strong>.
                   </p>
                   <p className="text-accent font-bold text-lg">
-                    Du lernst nicht nur ÜBER Software-Testing. Du MACHST Software-Testing.
+                    Du lernst nicht nur ÜBER Softwaretesten. Du MACHST Softwaretesten.
                   </p>
                 </Card>
               </div>
@@ -120,7 +120,7 @@ export function DiTeleDeepDive() {
                     "DiTeLe war der Game-Changer! Endlich konnte ich selbst Testfälle schreiben und nicht nur darüber lesen.
                     Im Bewerbungsgespräch konnte ich konkrete Beispiele nennen - obwohl ich noch nie beruflich getestet hatte."
                   </blockquote>
-                  <p className="font-semibold">- Sarah W., jetzt Software-Testerin bei Digital Solutions AG</p>
+                  <p className="font-semibold">- Sarah W., jetzt Softwaretesterin bei Digital Solutions AG</p>
                 </Card>
               </div>
             </ScrollReveal>

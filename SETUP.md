@@ -93,7 +93,7 @@ Füge neue Fragen hinzu oder bearbeite bestehende.
 
 ### Email-Adressen ändern
 
-Suche nach `support@example.com` und ersetze durch deine Email.
+Suche nach `info@test-it-academy.de` und ersetze durch deine Email.
 
 ---
 

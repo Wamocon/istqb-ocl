@@ -8,7 +8,7 @@ export const curriculum: LearningModule[] = [
     questions: 45,
     examples: 12,
     topics: [
-      "Was ist Software-Testing?",
+      "Was ist Softwaretesten?",
       "Warum ist Testen notwendig?",
       "Die 7 Testprinzipien",
       "Der Testprozess",
@@ -90,7 +90,7 @@ export const curriculum: LearningModule[] = [
       "Testwerkzeuge im Überblick",
       "Testautomatisierung",
       "Prüfungssimulation",
-      "18 Vertiefungsübungen"
+
     ]
   }
 ]

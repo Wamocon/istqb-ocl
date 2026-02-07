@@ -21,7 +21,7 @@ Diese Checkliste hilft dir herauszufinden, wo du gerade stehst. Und was dein nä
       items: [
         {
           statement: 'Ich bewerbe mich, aber es klappt nicht so wie erhofft.',
-          insight: 'Das ist frustrierend. Aber du bist nicht allein. Gerade sind über 42.000 IT Fachkräfte in Deutschland auf Jobsuche. Das sind fast 27 Prozent mehr als letztes Jahr. Die Konkurrenz ist real.',
+          insight: 'Das ist frustrierend. Aber du bist nicht allein. Gerade sind über 42.000 IT-Fachkräfte in Deutschland auf Jobsuche. Das sind fast 27 Prozent mehr als letztes Jahr. Die Konkurrenz ist real.',
           source: 'Bundesagentur für Arbeit, Juni 2025'
         },
         {
@@ -31,12 +31,12 @@ Diese Checkliste hilft dir herauszufinden, wo du gerade stehst. Und was dein nä
         },
         {
           statement: 'Ich mache mir Sorgen wegen KI und Automatisierung.',
-          insight: 'Das geht vielen so. Mehr als jeder dritte Beschäftigte in Deutschland hat Angst, dass KI den eigenen Job gefährdet. 70 Prozent rechnen damit, dass in den nächsten Jahren Stellen abgebaut werden. Die Frage ist nicht ob sich der Arbeitsmarkt verändert. Sondern ob du vorbereitet bist.',
+          insight: 'Das geht vielen so. Mehr als jeder dritte Beschäftigte in Deutschland hat Angst, dass KI den eigenen Job gefährdet. 70 Prozent rechnen damit, dass in den nächsten Jahren Stellen abgebaut werden. Die Frage ist nicht, ob sich der Arbeitsmarkt verändert. Sondern ob du vorbereitet bist.',
           source: 'EY European AI Barometer 2025'
         },
         {
           statement: 'Ich würde gerne in die IT wechseln, aber ich weiß nicht wie.',
-          insight: 'Der IT Bereich sucht dringend Leute. 109.000 Stellen sind unbesetzt. Und weißt du was? 27 Prozent aller IT Einstellungen im letzten Jahr gingen an Quereinsteiger. Menschen aus dem Einzelhandel, aus der Gastronomie, aus dem Marketing. Menschen wie du vielleicht.',
+          insight: 'Der IT-Bereich sucht dringend Leute. 109.000 Stellen sind unbesetzt. Und weißt du was? 27 Prozent aller IT-Einstellungen im letzten Jahr gingen an Quereinsteiger. Menschen aus dem Einzelhandel, aus der Gastronomie, aus dem Marketing. Menschen wie du vielleicht.',
           source: 'Bitkom, August 2025'
         },
         {
@@ -52,7 +52,7 @@ Diese Checkliste hilft dir herauszufinden, wo du gerade stehst. Und was dein nä
       items: [
         {
           statement: 'Ich habe keine Zertifizierung, die meine Skills belegt.',
-          insight: 'Über 100.000 IT Fachkräfte in Deutschland haben bereits eine ISTQB Zertifizierung. Wenn du keine hast, fehlt dir etwas, das andere längst vorweisen können.',
+          insight: 'Über 100.000 IT-Fachkräfte in Deutschland haben bereits eine ISTQB-Zertifizierung. Wenn du keine hast, fehlt dir etwas, das andere längst vorweisen können.',
           source: 'ISTQB / German Testing Board'
         },
         {
@@ -62,7 +62,7 @@ Diese Checkliste hilft dir herauszufinden, wo du gerade stehst. Und was dein nä
         },
         {
           statement: 'Ich verdiene weniger als ich mir wünsche.',
-          insight: 'ISTQB zertifizierte Tester verdienen im Schnitt 52.000 Euro zum Einstieg. Mit Erfahrung sind es über 61.000 Euro. Das ist keine Garantie. Aber es zeigt, was möglich ist.',
+          insight: 'ISTQB-zertifizierte Tester verdienen im Schnitt 52.000 Euro zum Einstieg. Mit Erfahrung sind es über 61.000 Euro. Das ist keine Garantie. Aber es zeigt, was möglich ist.',
           source: 'Jobvector Gehaltsreport 2025'
         }
       ]
@@ -104,10 +104,10 @@ Er ist heute ISTQB Certified Tester. Er arbeitet in echten IT Projekten. Er hat 
   courseInfo: {
     title: 'Dein Weg: Der ISTQB CTFL 4.0 Kurs mit DiTeLe',
     features: [
-      '128 Lerneinheiten, die den kompletten offiziellen ISTQB Lehrplan abdecken. Kein Rätselraten, was prüfungsrelevant ist.',
-      'Das DiTeLe Praxis Tool mit über 45 echten Übungen. Du lernst nicht nur Theorie. Du wendest sie an.',
+      '128 Lerneinheiten, die den kompletten offiziellen ISTQB-Lehrplan abdecken. Kein Rätselraten, was prüfungsrelevant ist.',
+      'Das DiTeLe Praxis-Tool mit über 45 echten Übungen. Du lernst nicht nur Theorie. Du wendest sie an.',
       'Über 300 Übungsfragen. Die echte Prüfung hat 40. Du bist vorbereitet.',
-      'Lifetime Zugang. Lerne in deinem Tempo. Ob 4 Wochen oder 6 Monate, du entscheidest.',
+      'Lifetime-Zugang. Lerne in deinem Tempo. Ob 4 Wochen oder 6 Monate – du entscheidest.',
       'Keine Vorkenntnisse nötig. Der Kurs ist für Anfänger gemacht. Viele unserer Teilnehmer kamen aus völlig anderen Bereichen.'
     ]
   },
@@ -116,7 +116,7 @@ Er ist heute ISTQB Certified Tester. Er arbeitet in echten IT Projekten. Er hat 
     comparison: 'Typische ISTQB Schulungen in Deutschland kosten zwischen 1.200 und 2.000 Euro.',
     ourPrice: 497,
     savings: 'Du sparst bis zu 1.500 Euro. Und bekommst mehr Praxis als bei den meisten teuren Kursen.',
-    guarantee: 'Dazu: 30 Tage Geld zurück Garantie. Wenn du den Kurs komplett durcharbeitest, alle Übungen machst und die Prüfung trotzdem nicht bestehst, bekommst du dein Geld zurück.'
+    guarantee: 'Dazu: 30-Tage-Geld-zurück-Garantie. Wenn du den Kurs komplett durcharbeitest, alle Übungen machst und die Prüfung trotzdem nicht bestehst, bekommst du dein Geld zurück.'
   },
 
   calculation: {
@@ -135,8 +135,8 @@ Selbst wenn du nur 3.000 Euro mehr verdienst, hat sich der Kurs in wenigen Monat
   whyNow: {
     title: 'Warum gerade jetzt?',
     points: [
-      '109.000 IT Stellen sind unbesetzt. Unternehmen suchen. Aber sie suchen nicht irgendwen. Sie suchen Menschen mit Nachweis.',
-      '27 Prozent aller IT Jobs gehen an Quereinsteiger. An Menschen, die sich entschieden haben, es zu versuchen.',
+      '109.000 IT-Stellen sind unbesetzt. Unternehmen suchen. Aber sie suchen nicht irgendwen. Sie suchen Menschen mit Nachweis.',
+      '27 Prozent aller IT-Jobs gehen an Quereinsteiger. An Menschen, die sich entschieden haben, es zu versuchen.',
       'Die meisten Menschen denken nur nach. 73 Prozent der Deutschen überlegen, den Job zu wechseln. Aber die wenigsten tun es wirklich.',
       'Du kannst einer von denen sein, die handeln.'
     ]
@@ -158,9 +158,9 @@ Selbst wenn du nur 3.000 Euro mehr verdienst, hat sich der Kurs in wenigen Monat
   },
 
   sources: [
-    'Bitkom Pressemitteilung August 2025: IT Fachkräftemangel in Deutschland',
+    'Bitkom-Pressemitteilung August 2025: IT-Fachkräftemangel in Deutschland',
     'EY European AI Barometer 2025: Angst vor KI am Arbeitsplatz',
-    'Bundesagentur für Arbeit Juni 2025: Arbeitslosenzahlen IT Berufe',
-    'Jobvector Gehaltsreport 2025: Gehälter ISTQB zertifizierte Tester'
+    'Bundesagentur für Arbeit Juni 2025: Arbeitslosenzahlen IT-Berufe',
+    'Jobvector Gehaltsreport 2025: Gehälter ISTQB-zertifizierte Tester'
   ]
 }

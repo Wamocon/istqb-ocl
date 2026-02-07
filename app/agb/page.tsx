@@ -49,12 +49,12 @@ export default function AGB() {
               <li>ISTQB CTFL 4.0 Online-Kurs mit 128 Lerneinheiten</li>
               <li>Zugang zur DiTeLe Praxis-Tool Web-App (https://ditele-learn.ai/de)</li>
               <li>Zugang zur Eloomi-Kursplattform (https://360-tm.eloomi.io)</li>
-              <li>300+ Übungsfragen und 18 Vertiefungsübungen</li>
+              <li>300+ Übungsfragen</li>
               <li>Prüfungssimulation und Progress-Tracking</li>
             </ul>
             <p className="text-foreground-muted">
-              (2) Die Bereitstellung erfolgt als „Lifetime Access" - der Kunde erhält zeitlich
-              unbegrenzten Zugang zu den digitalen Inhalten, solange die Plattform betrieben wird.
+              (2) Die Bereitstellung erfolgt als „12 Monate Zugriff" - der Kunde erhält zeitlich
+              begrenzten Zugang zu den digitalen Inhalten für die Dauer von 12 Monaten ab Kaufdatum.
             </p>
           </section>
 
@@ -98,9 +98,9 @@ export default function AGB() {
               (2) Die Zahlung erfolgt wahlweise per:
             </p>
             <ul className="list-disc list-inside text-foreground-muted mb-4 space-y-2">
-              <li>Kreditkarte (via Stripe)</li>
-              <li>Lastschrift (via Stripe)</li>
-              <li>Ratenzahlung (5x monatlich €100, via Stripe)</li>
+              <li>Kreditkarte</li>
+              <li>Lastschrift</li>
+              <li>Ratenzahlung (5x monatlich €100)</li>
             </ul>
             <p className="text-foreground-muted">
               (3) Bei Ratenzahlung erfolgen die Abbuchungen automatisch zum jeweiligen Fälligkeitsdatum.
@@ -238,7 +238,7 @@ export default function AGB() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold mb-4 text-accent">§ 11 Laufzeit und Kündigung</h2>
             <p className="text-foreground-muted mb-4">
-              (1) Der Vertrag wird auf unbestimmte Zeit geschlossen („Lifetime Access").
+              (1) Der Vertrag wird auf bestimmte Zeit geschlossen („12 Monate Zugriff").
             </p>
             <p className="text-foreground-muted mb-4">
               (2) Eine ordentliche Kündigung ist nicht vorgesehen, da es sich um eine Einmalzahlung

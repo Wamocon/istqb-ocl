@@ -25,7 +25,7 @@ const courseFeatures: CourseFeature[] = [
   {
     icon: <Video className="w-6 h-6" />,
     title: 'Video-Lektionen',
-    description: 'Über 7,6 Stunden professionell produzierte Erklärvideos',
+    description: 'Über 7+ Stunden professionell produzierte Erklärvideos',
     stat: '7,6h',
   },
   {
@@ -44,12 +44,12 @@ const courseFeatures: CourseFeature[] = [
     icon: <CheckCircle className="w-6 h-6" />,
     title: 'Checkpoint-Tests',
     description: 'Regelmäßige Wissensüberprüfung nach jedem Modul',
-    stat: '8',
+    stat: '6',
   },
   {
     icon: <Clock className="w-6 h-6" />,
-    title: 'Lifetime Access',
-    description: 'Lebenslanger Zugriff auf alle Inhalte und Updates',
+    title: '12 Monate Zugriff',
+    description: 'Voller Zugriff auf alle Inhalte und Updates für ein ganzes Jahr',
     stat: '∞',
   },
   {
@@ -75,7 +75,7 @@ export function CourseWalkthrough() {
                 Dein strukturierter Weg zur ISTQB® Zertifizierung
               </h2>
               <p className="text-foreground-muted text-lg max-w-3xl mx-auto">
-                128 Lerneinheiten, 7,6 Stunden Videos und 84 Praxisbeispiele – alles was du brauchst, um beim ersten Versuch zu bestehen
+                128 Lerneinheiten, 7+ Stunden Videos und 84 Praxisbeispiele – alles was du brauchst, um beim ersten Versuch zu bestehen
               </p>
             </div>
 
@@ -177,7 +177,7 @@ export function CourseWalkthrough() {
                         Jetzt Zugang zum Kurs sichern - €497
                       </Button>
                       <p className="text-center text-xs text-foreground-muted mt-3">
-                        Einmalzahlung oder 5x €100/Monat • Lifetime Access • 30-Tage Geld-zurück-Garantie*
+                        Einmalzahlung oder 5x €100/Monat • 12 Monate Zugriff • 30-Tage Geld-zurück-Garantie*
                       </p>
                     </div>
                   </ScrollReveal>
@@ -238,8 +238,8 @@ function FeatureCard({ feature }: { feature: CourseFeature }) {
       {/* Tooltip */}
       <div
         className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-[100] transition-all duration-200 ${showTooltip
-            ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 translate-y-2 pointer-events-none'
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 translate-y-2 pointer-events-none'
           }`}
       >
         <div className="px-4 py-3 rounded-xl bg-background-card/95 border border-border/50 backdrop-blur-md shadow-2xl min-w-[200px] max-w-[280px]">

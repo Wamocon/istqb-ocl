@@ -109,8 +109,8 @@ export function DiTeleDemo() {
                   </p>
                   <p className={`text-sm mb-4 ${isCorrect ? 'text-foreground-muted' : 'text-red-200'}`}>
                     {isCorrect
-                      ? 'Genau! Software-Testing dient allen drei Zwecken: Fehler finden, Qualität bewerten UND Anforderungen validieren. Das lernst du in Lerneinheit 1 von 128.'
-                      : 'Die richtige Antwort ist D - "Alle oben genannten". Software-Testing ist mehr als nur Fehler finden! In Modul 1 "Grundlagen des Testens" erklären wir das im Detail.'
+                      ? 'Genau! Softwaretesten dient allen drei Zwecken: Fehler finden, Qualität bewerten UND Anforderungen validieren. Das lernst du in Lerneinheit 1 von 128.'
+                      : 'Die richtige Antwort ist D – "Alle oben genannten". Softwaretesten ist mehr als nur Fehler finden! In Modul 1 "Grundlagen des Testens" erklären wir das im Detail.'
                     }
                   </p>
 
@@ -136,8 +136,8 @@ export function DiTeleDemo() {
                   🎯 Das ist Übung 1 von 45+ in DiTeLe
                 </p>
                 <p className="text-foreground mb-6 font-medium">
-                  💬 Mit DiTeLe lernst du nicht nur ÜBER Software-Testing - <br className="hidden md:block" />
-                  <span className="text-accent font-bold">du MACHST Software-Testing.</span>
+                  💬 Mit DiTeLe lernst du nicht nur ÜBER Softwaretesten – <br className="hidden md:block" />
+                  <span className="text-accent font-bold">du MACHST Softwaretesten.</span>
                 </p>
                 <Button
                   variant="primary"

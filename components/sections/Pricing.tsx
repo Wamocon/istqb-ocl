@@ -49,7 +49,7 @@ export function Pricing() {
                   <h4 className="font-bold mb-4 text-lg">ONLINE-KURS</h4>
                   <ul className="space-y-3">
                     <FeatureItem>128 Lerneinheiten</FeatureItem>
-                    <FeatureItem>7,6 Stunden Videomaterial</FeatureItem>
+                    <FeatureItem>7+ Stunden Videomaterial</FeatureItem>
                     <FeatureItem>84 Praxisbeispiele</FeatureItem>
                     <FeatureItem>Flexibler Lernplan (4-8 Wochen)</FeatureItem>
                   </ul>
@@ -61,7 +61,7 @@ export function Pricing() {
                   <ul className="space-y-3">
                     <FeatureItem>45+ interaktive Übungen</FeatureItem>
                     <FeatureItem>300+ Übungsfragen</FeatureItem>
-                    <FeatureItem>18 Vertiefungsübungen</FeatureItem>
+
                     <FeatureItem>Progress Tracking</FeatureItem>
                     <FeatureItem>Prüfungssimulation</FeatureItem>
                     <FeatureItem>Web-App (Desktop & Mobile)</FeatureItem>
@@ -73,7 +73,7 @@ export function Pricing() {
               <div className="bg-background-alt p-6 rounded-lg mb-8">
                 <h4 className="font-bold mb-4 text-lg">BONUS</h4>
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <FeatureItem>Lifetime Access</FeatureItem>
+                  <FeatureItem>12 Monate Zugriff</FeatureItem>
                   <FeatureItem>Alle zukünftigen Updates</FeatureItem>
                   <FeatureItem>Email-Support</FeatureItem>
                   <FeatureItem>30-Tage Geld-zurück-Garantie*</FeatureItem>
@@ -133,8 +133,8 @@ export function Pricing() {
                     <ComparisonRow feature="Theorie" ours="✅ 128 LE" presential="✅ Ja" books="✅ Ja" />
                     <ComparisonRow feature="Praxis (DiTeLe)" ours="✅ 45+ Übungen" presential="❌ Nein" books="❌ Nein" />
                     <ComparisonRow feature="Flexibel" ours="✅ Ja" presential="❌ Nein" books="✅ Ja" />
-                    <ComparisonRow feature="Lifetime Access" ours="✅ Ja" presential="❌ Nein" books="✅ Ja" />
-                    <ComparisonRow feature="Erfolgsquote" ours="✅ Hoch" presential="~70%" books="Variabel" />
+                    <ComparisonRow feature="Zugriffsdauer" ours="✅ 12 Monate" presential="❌ Seminardauer" books="✅Lebenslang" />
+                    <ComparisonRow feature="Erfolgsquote" ours=">87%" presential="~70%" books="Variabel" />
                   </tbody>
                 </table>
               </div>

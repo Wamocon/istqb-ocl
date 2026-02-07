@@ -65,7 +65,7 @@ const diteleFeatures: DiTeLeFeature[] = [
 
 const diTeleCapabilities = [
   'Testfälle erstellen und bewerten',
-  'Fehlerberichte nach IEEE 829 schreiben',
+  'Fehlerberichte professionell dokumentieren',
   'Testplanung und -strategie entwickeln',
   'Risikobasiertes Testen anwenden',
   'Review-Prozesse durchführen',

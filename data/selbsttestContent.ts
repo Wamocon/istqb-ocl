@@ -29,7 +29,7 @@ export interface SuccessStoryShort {
 export const selbsttestQuestions: SelbsttestQuestion[] = [
     {
         id: 1,
-        question: 'Ich weiß, welche konkreten Skills Arbeitgeber von Software-Testern erwarten',
+        question: 'Ich weiß, welche konkreten Skills Arbeitgeber von Softwaretestern erwarten',
         category: 'knowledge'
     },
     {
@@ -110,11 +110,11 @@ export const selbsttestResults: SelbsttestResult[] = [
 export const successStoriesShort: SuccessStoryShort[] = [
     {
         name: 'Natalie',
-        role: 'Software Testerin',
+        role: 'Softwaretesterin',
         quote: 'Dank DiTeLe habe ich die Prüfung beim ersten Versuch bestanden',
         result: [
             'ISTQB-Zertifikat beim ersten Versuch bestanden',
-            'Jetzt arbeitet sie als Software Testerin',
+            'Jetzt arbeitet sie als Softwaretesterin',
             'Die Praxisübungen haben den Unterschied gemacht'
         ],
         videoUrl: 'https://www.youtube.com/embed/Y530fsyTCe4'
