@@ -59,7 +59,7 @@ export const selbsttestQuestions: SelbsttestQuestion[] = [
     },
     {
         id: 7,
-        question: 'Ich habe in den nächsten 4-8 Wochen regelmäßig Zeit zum Lernen (ca. 10-15h/Woche)',
+        question: 'Ich habe in den nächsten 8 Wochen regelmäßig Zeit zum Lernen (ca. 8h/Woche)',
         category: 'readiness'
     },
     {

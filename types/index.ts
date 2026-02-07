@@ -1,9 +1,9 @@
 export interface LearningModule {
   week: number | string
   title: string
-  learningUnits: number
-  questions: number
-  examples: number
+  learningUnits?: number
+  questions?: number
+  examples?: number
   topics: string[]
 }
 

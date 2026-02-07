@@ -2,95 +2,75 @@ import { LearningModule } from '@/types'
 
 export const curriculum: LearningModule[] = [
   {
-    week: '1-2',
-    title: "Grundlagen des Testens",
-    learningUnits: 18,
-    questions: 45,
-    examples: 12,
+    week: '1',
+    title: "Was ist Testen?",
     topics: [
-      "Was ist Softwaretesten?",
       "Warum ist Testen notwendig?",
-      "Die 7 Testprinzipien",
-      "Der Testprozess",
-      "Psychologie des Testens"
+      "Softwareentwicklung und Softwaretest",
+      "Testdesigntechniken und Testaufgaben",
+      "Testprozess, Testmittel und Ablauf des Testens"
     ]
   },
   {
-    week: 3,
-    title: "Testen im Softwarelebenszyklus",
-    learningUnits: 22,
-    questions: 50,
-    examples: 14,
+    week: '2',
+    title: "Testen im Lebenszyklus",
     topics: [
       "Softwareentwicklungsmodelle",
-      "Teststufen (Unit, Integration, System, Abnahme)",
-      "Testarten (funktional, nicht-funktional)",
+      "Grundlagen des Testens",
+      "Teststufen und Praxis-Strategien"
+    ]
+  },
+  {
+    week: '3',
+    title: "Wesentliche Kompetenzen",
+    topics: [
+      "Wesentliche Kompetenzen für das Testen",
+      "Der Grundlagen-Test",
       "Wartungstests"
     ]
   },
   {
-    week: 4,
-    title: "Statisches Testen",
-    learningUnits: 15,
-    questions: 38,
-    examples: 10,
+    week: '4',
+    title: "Testanalyse und Testentwurf",
     topics: [
-      "Grundlagen des statischen Testens",
-      "Review-Prozess",
-      "Code-Reviews durchführen",
-      "Spezifikationen prüfen"
+      "Testanalyse und Testdesign",
+      "Testfallerstellung (Testtechnik Theorie)",
+      "Testdaten- und Testcoverage"
     ]
   },
   {
-    week: 5,
-    title: "Testanalyse & -entwurf",
-    learningUnits: 28,
-    questions: 65,
-    examples: 18,
+    week: '5',
+    title: "Äquivalenzklassierung",
     topics: [
-      "Äquivalenzklassen bilden",
-      "Grenzwertanalyse anwenden",
-      "Entscheidungstabellen erstellen",
-      "Zustandsübergangsdiagramme"
+      "Äquivalenzklassen-Verfahren",
+      "Grenzwertanalyse",
+      "Entscheidungstabellen"
     ]
   },
   {
-    week: 6,
-    title: "Testdurchführung",
-    learningUnits: 20,
-    questions: 48,
-    examples: 15,
+    week: '6',
+    title: "Zustandsbasiertes Testen",
     topics: [
-      "Testfälle schreiben",
-      "Testdaten definieren",
-      "Erwartete Ergebnisse formulieren",
-      "Testergebnisse dokumentieren"
+      "Zustandsbasiertes Testen",
+      "Erfahrungsbasierte Tests",
+      "Defekterkennung und Fehlermanagement"
     ]
   },
   {
-    week: 7,
+    week: '7',
     title: "Testmanagement",
-    learningUnits: 16,
-    questions: 42,
-    examples: 10,
     topics: [
-      "Testplanung",
-      "Risikoanalyse",
-      "Testfortschritt überwachen",
-      "Metriken interpretieren"
+      "WFI-Tool-Übung",
+      "Defektmanagement",
+      "Testplanung"
     ]
   },
   {
-    week: 8,
-    title: "Testwerkzeuge & Prüfungsvorbereitung",
-    learningUnits: 9,
-    questions: 28,
-    examples: 5,
+    week: '8',
+    title: "Prüfungsvorbereitung",
     topics: [
-      "Testwerkzeuge im Überblick",
-      "Testautomatisierung",
-      "Prüfungssimulation",
-
+      "Prüfungsvorbereitung",
+      "Prüfungssimulation"
     ]
   }
 ]

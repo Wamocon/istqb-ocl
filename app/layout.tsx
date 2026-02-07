@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "ISTQB CTFL 4.0 Online-Kurs + DiTeLe Praxis-Tool | Softwaretester werden",
-  description: "Werde zertifizierter Softwaretester in 4–8 Wochen. 128 Lerneinheiten + 300+ Praxisübungen in DiTeLe. Praxisorientiert. Keine Vorkenntnisse nötig.",
+  description: "Werde zertifizierter Softwaretester in 8 Wochen (neben dem Beruf). 128 Lerneinheiten + 300+ Praxisübungen in DiTeLe. Praxisorientiert. Keine Vorkenntnisse nötig.",
   keywords: ["ISTQB CTFL 4.0", "Softwaretester werden", "ISTQB-Zertifizierung", "DiTeLe", "Softwaretesten lernen"],
   openGraph: {
     title: "Softwaretester werden mit ISTQB CTFL 4.0 + DiTeLe",

@@ -82,7 +82,7 @@ export function Hero() {
               <StatCard
                 icon={<BookOpen className="w-8 h-8" />}
                 title="KURS"
-                stats={["128 Lerneinheiten", "7,6h Video", "84 Beispiele"]}
+                stats={["128 Lerneinheiten", "8h Video", "84 Beispiele"]}
               />
             </ScrollReveal>
             <ScrollReveal animation="scale-up" delay={0.5} className="h-full" width="100%">
@@ -97,7 +97,7 @@ export function Hero() {
               <StatCard
                 icon={<TrendingUp className="w-8 h-8" />}
                 title="ERFOLG"
-                stats={["Praxisorientiert", "4-8 Wochen", "12 Monate Zugriff"]}
+                stats={["Praxisorientiert", "8 Wochen (neben dem Beruf)", "12 Monate Zugriff"]}
               />
             </ScrollReveal>
           </div>

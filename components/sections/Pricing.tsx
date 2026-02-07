@@ -55,7 +55,7 @@ export function Pricing() {
                     <FeatureItem>128 Lerneinheiten</FeatureItem>
                     <FeatureItem>7+ Stunden Videomaterial</FeatureItem>
                     <FeatureItem>84 Praxisbeispiele</FeatureItem>
-                    <FeatureItem>Flexibler Lernplan (4-8 Wochen)</FeatureItem>
+                    <FeatureItem>Flexibler Lernplan (8 Wochen neben dem Beruf)</FeatureItem>
                   </ul>
                 </div>
 

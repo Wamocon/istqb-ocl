@@ -107,7 +107,7 @@ Er ist heute ISTQB Certified Tester. Er arbeitet in echten IT Projekten. Er hat 
       '128 Lerneinheiten, die den kompletten offiziellen ISTQB-Lehrplan abdecken. Kein Rätselraten, was prüfungsrelevant ist.',
       'Das DiTeLe Praxis-Tool mit über 45 echten Übungen. Du lernst nicht nur Theorie. Du wendest sie an.',
       'Über 300 Übungsfragen. Die echte Prüfung hat 40. Du bist vorbereitet.',
-      'Lifetime-Zugang. Lerne in deinem Tempo. Ob 4 Wochen oder 6 Monate – du entscheidest.',
+      'Lifetime-Zugang. Lerne in deinem Tempo. Ob 8 Wochen oder 6 Monate – du entscheidest.',
       'Keine Vorkenntnisse nötig. Der Kurs ist für Anfänger gemacht. Viele unserer Teilnehmer kamen aus völlig anderen Bereichen.'
     ]
   },

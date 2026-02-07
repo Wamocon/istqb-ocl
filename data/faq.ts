@@ -9,7 +9,7 @@ export const faqData: FAQItem[] = [
   {
     id: '2',
     question: 'Wie lange habe ich Zugriff auf den Kurs und DiTeLe?',
-    answer: 'Du hast vollen Zugriff für 12 Monate! Du zahlst einmal und hast dann ein ganzes Jahr lang Zugang zu allen 128 Lerneinheiten, dem kompletten DiTeLe Praxis-Tool (https://ditele-learn.ai/de) und allen zukünftigen Updates. Kein Abo, keine versteckten Kosten. Du kannst den Kurs in 4 Wochen durchziehen oder dir mehr Zeit lassen - ganz wie es dir passt.'
+    answer: 'Du hast vollen Zugriff für 12 Monate! Du zahlst einmal und hast dann ein ganzes Jahr lang Zugang zu allen 128 Lerneinheiten, dem kompletten DiTeLe Praxis-Tool (https://ditele-learn.ai/de) und allen zukünftigen Updates. Kein Abo, keine versteckten Kosten. Du kannst den Kurs in 8 Wochen neben dem Beruf durchziehen oder dir mehr Zeit lassen - ganz wie es dir passt.'
   },
   {
     id: '3',
@@ -43,8 +43,8 @@ export const faqData: FAQItem[] = [
   },
   {
     id: '9',
-    question: 'Reichen 4 Wochen wirklich aus?',
-    answer: 'Ja, bei konsequenter Durcharbeit reichen 4 Wochen aus. Aber du hast 12 Monate Zugriff! Das bedeutet: Zu langsam? Nimm dir 8 Wochen Zeit. Zu schnell? Beende den Kurs in 2 Wochen. Pause nötig? Kein Problem, komm zurück, wann du willst. Der 4-Wochen-Plan ist eine Empfehlung, kein Zwang.'
+    question: 'Wie viel Zeit muss ich einplanen?',
+    answer: 'Wir empfehlen ca. 8 Stunden pro Woche für 8 Wochen. Das ist ideal neben dem Beruf machbar. Aber du hast 12 Monate Zugriff! Das bedeutet: Zu langsam? Nimm dir mehr Zeit. Zu schnell? Beende den Kurs in 4 Wochen (Power-Modus). Pause nötig? Kein Problem, komm zurück, wann du willst. Der 8-Wochen-Plan ist unser Standard für Berufstätige.'
   },
   {
     id: '10',
