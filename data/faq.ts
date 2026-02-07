@@ -4,12 +4,12 @@ export const faqData: FAQItem[] = [
   {
     id: '1',
     question: 'Brauche ich IT-Vorkenntnisse?',
-    answer: 'Nein, absolut nicht! Der Kurs ist speziell für absolute Anfänger konzipiert. Wir starten bei null und erklären alles von Grund auf. Du musst weder programmieren können noch jemals mit Software-Testing in Berührung gekommen sein. Viele unserer erfolgreichsten Absolventen kamen aus völlig anderen Bereichen: Marketing, Einzelhandel, Gastronomie, etc.'
+    answer: 'Nein, absolut nicht! Der Kurs ist speziell für absolute Anfänger konzipiert. Wir starten bei null und erklären alles von Grund auf. Du musst weder programmieren können noch jemals mit Softwaretesten in Berührung gekommen sein. Viele unserer erfolgreichsten Absolventen kamen aus völlig anderen Bereichen: Marketing, Einzelhandel, Gastronomie etc.'
   },
   {
     id: '2',
     question: 'Wie lange habe ich Zugriff auf den Kurs und DiTeLe?',
-    answer: 'Lifetime Access - für immer! Du zahlst einmal und hast dann unbegrenzten Zugang zu allen 128 Lerneinheiten, dem kompletten DiTeLe Praxis-Tool (https://ditele-learn.ai/de) und allen zukünftigen Updates. Kein Abo, keine versteckten Kosten. Du kannst den Kurs in 4 Wochen durchziehen oder dir 6 Monate Zeit lassen - ganz wie es dir passt.'
+    answer: 'Du hast vollen Zugriff für 12 Monate! Du zahlst einmal und hast dann ein ganzes Jahr lang Zugang zu allen 128 Lerneinheiten, dem kompletten DiTeLe Praxis-Tool (https://ditele-learn.ai/de) und allen zukünftigen Updates. Kein Abo, keine versteckten Kosten. Du kannst den Kurs in 4 Wochen durchziehen oder dir mehr Zeit lassen - ganz wie es dir passt.'
   },
   {
     id: '3',
@@ -39,16 +39,16 @@ export const faqData: FAQItem[] = [
   {
     id: '8',
     question: 'Gibt es eine Geld-zurück-Garantie?',
-    answer: 'Ja! 30 Tage Geld-zurück-Garantie. Bei nicht-bestandener Prüfung erhältst du dein Geld zurück, wenn du nachweislich den kompletten Kurs durchgearbeitet und alle DiTeLe-Übungen absolviert hast. Wir sind überzeugt von unserem Konzept und stehen dahinter.'
+    answer: 'Ja! 30 Tage Geld-zurück-Garantie. Bei nicht bestandener Prüfung erhältst du dein Geld zurück, wenn du nachweislich den kompletten Kurs durchgearbeitet und alle DiTeLe-Übungen absolviert hast. Wir sind überzeugt von unserem Konzept und stehen dahinter.'
   },
   {
     id: '9',
     question: 'Reichen 4 Wochen wirklich aus?',
-    answer: 'Ja, bei konsequenter Durcharbeit reichen 4 Wochen aus. Aber du hast Lifetime Access! Das bedeutet: Zu langsam? Nimm dir 8 Wochen Zeit. Zu schnell? Beende den Kurs in 2 Wochen. Pause nötig? Kein Problem, komm zurück, wann du willst. Der 4-Wochen-Plan ist eine Empfehlung, kein Zwang.'
+    answer: 'Ja, bei konsequenter Durcharbeit reichen 4 Wochen aus. Aber du hast 12 Monate Zugriff! Das bedeutet: Zu langsam? Nimm dir 8 Wochen Zeit. Zu schnell? Beende den Kurs in 2 Wochen. Pause nötig? Kein Problem, komm zurück, wann du willst. Der 4-Wochen-Plan ist eine Empfehlung, kein Zwang.'
   },
   {
     id: '10',
     question: 'Sind 300+ Übungsfragen genug für die Prüfung?',
-    answer: 'Mehr als genug! Die echte ISTQB CTFL 4.0 Prüfung hat 40 Fragen. Unser Kurs hat über 300 Übungsfragen - das sind mehr als 7x so viele. Zusätzlich: 18 Vertiefungsübungen, 45+ Praxisübungen in DiTeLe und 84 Praxisbeispiele im Kurs. Du wirst in der Prüfung keine Überraschungen erleben.'
+    answer: 'Mehr als genug! Die echte ISTQB CTFL 4.0 Prüfung hat 40 Fragen. Unser Kurs hat über 300 Übungsfragen - das sind mehr als 7x so viele. Zusätzlich: 45+ Praxisübungen in DiTeLe und 84 Praxisbeispiele im Kurs. Du wirst in der Prüfung keine Überraschungen erleben.'
   }
 ]

@@ -55,9 +55,9 @@ export function FinalCTA() {
                   <ul className="space-y-3 text-sm text-left">
                     <CTAFeature>Sofortiger Zugang zu allen 128 Lerneinheiten</CTAFeature>
                     <CTAFeature>Voller DiTeLe-Zugang mit 45+ Praxisübungen</CTAFeature>
-                    <CTAFeature>300+ Übungsfragen + 18 Vertiefungsübungen</CTAFeature>
+                    <CTAFeature>300+ Übungsfragen</CTAFeature>
                     <CTAFeature>30-Tage Geld-zurück-Garantie*</CTAFeature>
-                    <CTAFeature>Lifetime Access - für immer</CTAFeature>
+                    <CTAFeature>12 Monate Zugriff - stressfrei lernen</CTAFeature>
                   </ul>
 
                   <div className="mt-6 pt-6 border-t border-border text-xs text-muted text-center mt-auto">
@@ -119,7 +119,7 @@ export function FinalCTA() {
               <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-foreground-muted">
                 <span>Deine Daten sind sicher (DSGVO)</span>
                 <span>•</span>
-                <span>Sichere Zahlung via Stripe</span>
+                <span>Sichere Zahlung</span>
                 <span>•</span>
                 <span>Deutscher Support</span>
               </div>

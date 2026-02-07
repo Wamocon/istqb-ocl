@@ -16,7 +16,7 @@ export function Curriculum() {
             <div className="text-center mb-12 space-y-2">
               <p className="text-muted">Zeitaufwand: ~2 Stunden pro Woche</p>
               <p className="text-muted">Flexible Einteilung - du bestimmst das Tempo</p>
-              <p className="text-muted">Lifetime Access - lerne, so lange du willst</p>
+              <p className="text-muted">12 Monate Zugriff - lerne in deinem eigenen Tempo</p>
             </div>
 
             <div className="space-y-6">
@@ -63,10 +63,10 @@ export function Curriculum() {
                     <StatBox label="Lerneinheiten" value="128" />
                     <StatBox label="Übungsfragen" value="300+" />
                     <StatBox label="Praxisbeispiele" value="84" />
-                    <StatBox label="Vertiefungsübungen" value="18" />
+
                   </div>
                   <p className="mt-6 text-sm text-muted">
-                    Nach jeder Woche: Checkpoint-Test in DiTeLe
+                    6 Checkpoint-Tests (nach jedem Kapitel)
                   </p>
                 </Card>
               </ScrollReveal>

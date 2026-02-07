@@ -106,7 +106,7 @@ export function Footer() {
                 />
               </div>
               <p className="text-sm text-foreground-muted leading-relaxed mb-6">
-                Die umfassendste ISTQB CTFL 4.0 Vorbereitung mit DiTeLe Praxis-Tool. Werde zertifizierter Software-Tester.
+                Die umfassendste ISTQB CTFL 4.0 Vorbereitung mit DiTeLe Praxis-Tool. Werde zertifizierter Softwaretester.
               </p>
               {/* Social Media */}
               <div className="flex gap-4">

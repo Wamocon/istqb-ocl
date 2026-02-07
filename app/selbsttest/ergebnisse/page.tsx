@@ -354,7 +354,7 @@ export default function ErgebnissePage() {
                                     </tr>
                                     <tr className="bg-red-50">
                                         <td className="py-3 px-4 font-bold">⭐ Unser System</td>
-                                        <td className="py-3 px-4 font-medium">Kurs + DiTeLe + Lifetime Access + 30-Tage-Garantie</td>
+                                        <td className="py-3 px-4 font-medium">Kurs + DiTeLe + 12 Monate Zugriff + 30-Tage-Garantie</td>
                                         <td className="py-3 px-4 text-right font-bold text-red-600">€497</td>
                                     </tr>
                                 </tbody>

@@ -66,15 +66,7 @@ export function VideoTestimonials() {
               ))}
             </div>
 
-            {/* Trust Indicator */}
-            <ScrollReveal animation="fade-in" delay={0.4} width="100%">
-              <div className="text-center">
-                <p className="text-foreground-muted text-sm">
-                  <span className="font-semibold text-accent">Über 2,500+ zufriedene Teilnehmer</span> haben
-                  bereits ihre ISTQB-Zertifizierung mit uns gemeistert
-                </p>
-              </div>
-            </ScrollReveal>
+
           </div>
         </ScrollReveal>
       </div>

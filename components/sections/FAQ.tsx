@@ -36,10 +36,10 @@ export function FAQ() {
             <div className="mt-12 text-center">
               <p className="text-muted mb-4">Deine Frage ist nicht dabei?</p>
               <a
-                href="mailto:support@example.com"
+                href="mailto:info@test-it-academy.de"
                 className="text-accent font-semibold hover:underline"
               >
-                Schreib uns: support@example.com
+                Schreib uns: info@test-it-academy.de
               </a>
             </div>
           </div>
