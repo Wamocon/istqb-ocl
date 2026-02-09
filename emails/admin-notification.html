@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neue Bestellung - WAMOCON Academy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f5;
+            color: #18181b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-subtitle {
+            color: #fecaca;
+            font-size: 14px;
+            margin: 10px 0 0 0;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .alert-box h2 {
+            color: #991b1b;
+            margin: 0 0 10px 0;
+            font-size: 20px;
+        }
+
+        .alert-box p {
+            color: #7f1d1d;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            background-color: #0F172A;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            border-radius: 4px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .data-table tr {
+            border-bottom: 1px solid #e4e4e7;
+        }
+
+        .data-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            font-size: 14px;
+        }
+
+        .data-table td:first-child {
+            font-weight: 600;
+            color: #52525b;
+            width: 40%;
+            vertical-align: top;
+        }
+
+        .data-table td:last-child {
+            color: #18181b;
+        }
+
+        .highlight-row {
+            background-color: #fef3c7;
+        }
+
+        .highlight-row td {
+            font-weight: 700;
+            color: #854d0e;
+        }
+
+        .priority-box {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .priority-box h3 {
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+
+        .priority-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .priority-box li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer {
+            background-color: #0F172A;
+            color: #a1a1aa;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e4e4e7;
+            margin: 25px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .badge-new {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+
+        .badge-pending {
+            background-color: #f59e0b;
+            color: #ffffff;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 25px 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .data-table td:first-child {
+                width: 35%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🔔</div>
+            <h1 class="header-title">Neue Kundenbestellung</h1>
+            <p class="header-subtitle">WAMOCON Academy - Bestellbenachrichtigung</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Alert Box -->
+            <div class="alert-box">
+                <h2>⚡ Aktion erforderlich!</h2>
+                <p>Ein neuer Kunde hat soeben eine Bestellung aufgegeben. Bitte kontaktieren Sie den Kunden zeitnah zur
+                    Besprechung der Bestelldetails.</p>
+            </div>
+
+            <!-- Order Overview -->
+            <div class="section">
+                <h2 class="section-title">📦 Bestellübersicht</h2>
+                <table class="data-table">
+                    <tr>
+                        <td>Bestellnummer:</td>
+                        <td><strong>{{order_number}}</strong> <span class="badge badge-new">NEU</span></td>
+                    </tr>
+                    <tr>
+                        <td>Bestelldatum:</td>
+                        <td>{{order_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Produkt:</td>
+                        <td><strong>{{product_name}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Preis:</td>
+                        <td>{{price}}€</td>
+                    </tr>
+                    <tr>
+                        <td>Zahlungsart:</td>
+                        <td>{{zahlungsart}}</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Gesamtbetrag:</td>
+                        <td>{{total_amount}}€</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td><span class="badge badge-pending">AUSSTEHEND</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Customer Data -->
+            <div class="section">
+                <h2 class="section-title">👤 Kundendaten</h2>
+                <table class="data-table">
+                    <tr>
+                        <td>Anrede:</td>
+                        <td>{{anrede}}</td>
+                    </tr>
+                    <tr>
+                        <td>Vorname:</td>
+                        <td>{{vorname}}</td>
+                    </tr>
+                    <tr>
+                        <td>Nachname:</td>
+                        <td>{{nachname}}</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>E-Mail:</td>
+                        <td><a href="mailto:{{email}}"
+                                style="color: #18181b; text-decoration: none; font-weight: 700;">{{email}}</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Billing Address -->
+            <div class="section">
+                <h2 class="section-title">📍 Rechnungsadresse</h2>
+                <table class="data-table">
+                    <tr>
+                        <td>Straße / Nr.:</td>
+                        <td>{{strasse}} {{hausnummer}}</td>
+                    </tr>
+                    <tr>
+                        <td>PLZ / Ort:</td>
+                        <td>{{plz}} {{ort}}</td>
+                    </tr>
+                    <tr>
+                        <td>Land:</td>
+                        <td>{{land}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Company Data (if provided) -->
+            <div class="section">
+                <h2 class="section-title">🏢 Firmendaten (Optional)</h2>
+                <table class="data-table">
+                    <tr>
+                        <td>Firma:</td>
+                        <td>{{firma}}</td>
+                    </tr>
+                    <tr>
+                        <td>USt-IdNr.:</td>
+                        <td>{{ust_id_nr}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Legal Confirmations -->
+            <div class="section">
+                <h2 class="section-title">✓ Rechtliche Bestätigungen</h2>
+                <table class="data-table">
+                    <tr>
+                        <td>AGB akzeptiert:</td>
+                        <td>{{agb_akzeptiert}}</td>
+                    </tr>
+                    <tr>
+                        <td>Widerrufsbelehrung:</td>
+                        <td>{{widerrufsbelehrung_akzeptiert}}</td>
+                    </tr>
+                    <tr>
+                        <td>Datenschutz akzeptiert:</td>
+                        <td>{{datenschutz_akzeptiert}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Next Steps -->
+            <div class="priority-box">
+                <h3>🎯 Nächste Schritte</h3>
+                <ul>
+                    <li><strong>Kundenkontakt aufnehmen:</strong> Kontaktieren Sie den Kunden per E-Mail (<a
+                            href="mailto:{{email}}" style="color: #ffffff; text-decoration: underline;">{{email}}</a>)
+                        zur Besprechung der Bestelldetails.</li>
+                    <li><strong>Zahlungsdetails klären:</strong> Stimmen Sie die Zahlungsmodalitäten ({{zahlungsart}})
+                        mit dem Kunden ab.</li>
+                    <li><strong>Rechnung erstellen:</strong> Erstellen Sie eine ordnungsgemäße Rechnung nach deutschen
+                        Standards.</li>
+                    <li><strong>Kurszugang vorbereiten:</strong> Nach Zahlungseingang dem Kunden die Zugangsdaten
+                        zusenden.</li>
+                    <li><strong>Status aktualisieren:</strong> Den Bestellstatus in der Datenbank entsprechend anpassen.
+                    </li>
+                </ul>
+            </div>
+
+            <p style="color: #71717a; font-size: 14px; margin-top: 30px; text-align: center;">
+                Diese E-Mail wurde automatisch generiert, als der Kunde auf "Kostenpflichtig bestellen" geklickt hat.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>WAMOCON Academy - Internes Benachrichtigungssystem</strong></p>
+            <p>E-Mail: info@test-it-academy.de</p>
+            <p style="margin-top: 15px; font-size: 12px;">
+                Diese Benachrichtigung wurde automatisch an info@test-it-academy.de gesendet.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

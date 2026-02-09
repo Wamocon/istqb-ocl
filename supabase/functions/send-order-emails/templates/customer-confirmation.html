@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestellbestätigung - WAMOCON Academy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f5;
+            color: #18181b;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .header {
+            background: linear-gradient(135deg, #0F172A 0%, #1e293b 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .header-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0F172A;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            color: #3f3f46;
+            margin-bottom: 30px;
+        }
+        .success-badge {
+            background-color: #dcfce7;
+            border-left: 4px solid #10B981;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        .success-badge h3 {
+            color: #059669;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .success-badge p {
+            color: #065f46;
+            margin: 0;
+            font-size: 14px;
+        }
+        .info-box {
+            background-color: #f4f4f5;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .info-box h3 {
+            color: #0F172A;
+            font-size: 16px;
+            margin: 0 0 15px 0;
+            font-weight: 600;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e4e4e7;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #71717a;
+            font-size: 14px;
+        }
+        .info-value {
+            color: #18181b;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: right;
+        }
+        .next-steps {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .next-steps h3 {
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+        .next-steps ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .next-steps li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .footer {
+            background-color: #0F172A;
+            color: #a1a1aa;
+            padding: 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #10B981;
+            text-decoration: none;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e4e4e7;
+            margin: 30px 0;
+        }
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 25px 20px;
+            }
+            .header {
+                padding: 30px 20px;
+            }
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .info-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://your-domain.com/logo/WAMOCON_ACADEMY_LOGO.png" alt="WAMOCON Academy Logo" class="logo">
+            <h1 class="header-title">Bestellbestätigung</h1>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <p class="greeting">Hallo {{anrede}} {{vorname}} {{nachname}},</p>
+            
+            <p class="message">
+                vielen Dank für Ihre Bestellung bei der WAMOCON Academy! Wir haben Ihre Bestellung erfolgreich erhalten und bearbeiten diese nun.
+            </p>
+
+            <!-- Success Badge -->
+            <div class="success-badge">
+                <h3>✓ Bestellung erfolgreich eingegangen</h3>
+                <p>Bestellnummer: {{order_number}}</p>
+            </div>
+
+            <!-- Order Details -->
+            <div class="info-box">
+                <h3>Ihre Bestelldetails</h3>
+                <div class="info-row">
+                    <span class="info-label">Produkt:</span>
+                    <span class="info-value">{{product_name}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Zahlungsart:</span>
+                    <span class="info-value">{{zahlungsart}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Gesamtbetrag:</span>
+                    <span class="info-value">{{total_amount}}€</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Bestelldatum:</span>
+                    <span class="info-value">{{order_date}}</span>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>🎯 Wie geht es weiter?</h3>
+                <ul>
+                    <li><strong>Persönliche Beratung:</strong> Einer unserer Experten von der WAMOCON Academy wird sich in Kürze bei Ihnen melden, um die weiteren Details zu besprechen.</li>
+                    <li><strong>Individuelle Abstimmung:</strong> Wir klären gemeinsam alle offenen Fragen zu Ihrem Kurs und der Zahlungsabwicklung.</li>
+                    <li><strong>Kursstart:</strong> Nach Zahlungseingang erhalten Sie umgehend Ihre Zugangsdaten und können direkt mit dem Lernen starten.</li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message">
+                Falls Sie noch Fragen haben, können Sie uns jederzeit unter 
+                <a href="mailto:info@test-it-academy.de" style="color: #10B981; text-decoration: none; font-weight: 600;">info@test-it-academy.de</a> 
+                erreichen.
+            </p>
+
+            <p class="message">
+                Wir freuen uns darauf, Sie auf Ihrem Weg zur ISTQB-Zertifizierung zu begleiten!
+            </p>
+
+            <p style="font-size: 16px; color: #0F172A; margin-top: 30px;">
+                Mit freundlichen Grüßen<br>
+                <strong>Ihr Team der WAMOCON Academy</strong>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>WAMOCON Academy</strong></p>
+            <p>E-Mail: <a href="mailto:info@test-it-academy.de">info@test-it-academy.de</a></p>
+            <p style="margin-top: 20px; font-size: 12px;">
+                Diese E-Mail wurde automatisch generiert. Bitte antworten Sie nicht direkt auf diese E-Mail.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
