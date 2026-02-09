@@ -64,7 +64,7 @@ export async function POST(request: Request) {
                 subject: `🔔 Neue Bestellung: ${orderData.order_number} - ${orderData.vorname} ${orderData.nachname}`,
                 html: adminEmailHtml,
                 // Optional: Reply-To auf Kunden-Email setzen
-                reply_to: orderData.email,
+                replyTo: orderData.email,
             }),
         ])
 

@@ -132,7 +132,7 @@ async function sendEmail(
                 to: [to],
                 subject: subject,
                 html: html,
-                ...(replyTo && { reply_to: replyTo }),
+                ...(replyTo && { replyTo: replyTo }),
             }),
         })
 
