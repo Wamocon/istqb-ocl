@@ -116,6 +116,11 @@ export function PurchaseDialog({
             })
 
             console.log('Order created:', order.order_number)
+
+            // ✅ E-Mails werden automatisch vom Supabase Database Trigger gesendet!
+            // Der Trigger ruft die Edge Function auf, sobald die Bestellung gespeichert wird.
+            // Keine Frontend-Logik mehr nötig - 100% zuverlässig!
+
             setSuccess(true)
             setIsLoading(false)
 
