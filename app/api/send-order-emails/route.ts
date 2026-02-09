@@ -6,13 +6,19 @@ import {
     prepareOrderEmailData,
 } from '@/lib/email-templates'
 
-// Initialisiere Resend mit API-Key
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // Konfiguration
 const EMAIL_FROM = process.env.EMAIL_FROM || 'info@test-it-academy.de'
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@test-it-academy.de'
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://your-domain.vercel.app'
+
+// Helper function to get Resend instance (lazy initialization)
+function getResendClient() {
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+        throw new Error('RESEND_API_KEY is not configured')
+    }
+    return new Resend(apiKey)
+}
 
 export async function POST(request: Request) {
     try {
@@ -48,6 +54,7 @@ export async function POST(request: Request) {
         )
 
         // E-Mails senden
+        const resend = getResendClient()
         const results = await Promise.allSettled([
             // 1. Kundenbestätigung
             resend.emails.send({
