@@ -6,12 +6,12 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 
-// --- CONFIGURATION (INLINED SECRETS) ---
-// These are your actual production keys so you don't need to set secrets manually!
-const RESEND_API_KEY = 're_Go7ospiH_8mXiFWaUkRjhciiXfUdoWcai';
-const EMAIL_FROM = 'info@test-it-academy.de';
-const ADMIN_EMAIL = 'info@test-it-academy.de';
-const DOMAIN = 'https://istqb-ocl.vercel.app';
+// --- CONFIGURATION (SECURE ENV VARS) ---
+// Secrets are loaded from Supabase Vault (Environment Variables)
+const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
+const EMAIL_FROM = Deno.env.get('EMAIL_FROM') || 'info@test-it-academy.de';
+const ADMIN_EMAIL = Deno.env.get('ADMIN_EMAIL') || 'info@test-it-academy.de';
+const DOMAIN = Deno.env.get('DOMAIN') || 'https://istqb-ocl.vercel.app';
 
 // --- INLINED TEMPLATES (MINIFIED) ---
 // No file uploads needed!

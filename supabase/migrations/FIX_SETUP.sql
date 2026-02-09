@@ -16,7 +16,7 @@ DECLARE
   project_url text := 'https://sivqvqmwidqlcnuvwafj.supabase.co'; -- URL ist bereits korrekt eingetragen!
   
   -- ⚠️ HIER IHREN SERVICE ROLE KEY EINFÜGEN (innerhalb der Hochkommas):
-  service_role_key text := 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpdnF2cW13aWRxbGNudXZ3YWZqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2OTU4OTk0MywiZXhwIjoyMDg1MTY1OTQzfQ.gmUwvuC0QjBVV3cn6wKbGh6ZmKoBswLBq_v9Js3l22Q';
+  service_role_key text := 'YOUR_SERVICE_ROLE_KEY_HERE';
   
   http_response record;
 BEGIN
