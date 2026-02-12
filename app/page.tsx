@@ -1,4 +1,5 @@
 import { Hero } from '@/components/sections/Hero'
+import { Definition } from '@/components/sections/Definition' // New
 import { Comparison } from '@/components/sections/Comparison'
 import { CourseWalkthrough } from '@/components/sections/CourseWalkthrough'
 import { DiTeLeCourseWalkthrough } from '@/components/sections/DiTeLeCourseWalkthrough'
@@ -6,6 +7,7 @@ import { DiTeleDemo } from '@/components/sections/DiTeleDemo'
 import { Curriculum } from '@/components/sections/Curriculum'
 import { SuccessStories } from '@/components/sections/SuccessStories'
 import { VideoTestimonials } from '@/components/sections/VideoTestimonials'
+import { AboutTrainer } from '@/components/sections/AboutTrainer' // New
 import { Pricing } from '@/components/sections/Pricing'
 import { FAQ } from '@/components/sections/FAQ'
 import { FinalCTA } from '@/components/sections/FinalCTA'
@@ -22,6 +24,9 @@ export default function Home() {
       <div className="pt-12">
         {/* Section 1: Hero - Attention + Problem Statement */}
         <Hero />
+
+        {/* Section 1b: Definition - GEO Optimization */}
+        <Definition />
 
         {/* Section 2: Comparison - Problem Agitation (Why others fail) */}
         <Comparison />
@@ -43,6 +48,9 @@ export default function Home() {
 
         {/* Section 8: Video Testimonials - Social Proof Visual (Authentic emotion) */}
         <VideoTestimonials />
+
+        {/* Section 8b: About Trainer - E-E-A-T Trust */}
+        <AboutTrainer />
 
         {/* Section 9: Pricing - Investment Decision (After trust is built) */}
         <Pricing />
