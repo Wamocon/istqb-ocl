@@ -198,16 +198,8 @@ function VisualSplitScreen() {
         </div>
       </motion.div>
 
-      {/* Floating Elements (Badges) */}
-      <motion.div
-        className="absolute -bottom-4 right-10 z-30 bg-white text-background-dark px-4 py-2 rounded-lg shadow-xl border border-gray-200 text-sm font-bold flex items-center gap-2"
-        initial={{ scale: 0, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        transition={{ delay: 1.5, type: 'spring' }}
-      >
-        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-        Job Ready
-      </motion.div>
+
+
     </div>
   )
 }
