@@ -15,17 +15,13 @@ import {
     successFactors
 } from '@/data/selbsttestContent'
 import { Printer, Download, Check, ArrowRight, Play } from 'lucide-react'
-import { createLead, saveSelbsttestResult } from '@/lib/api'
+import { saveSelbsttestResult } from '@/lib/api'
 
 export default function ErgebnissePage() {
     const router = useRouter()
     const [score, setScore] = React.useState<number | null>(null)
     const [answers, setAnswers] = React.useState<Record<number, number>>({})
-    const [email, setEmail] = React.useState('')
-    const [consent, setConsent] = React.useState(false)
-    const [emailSubmitted, setEmailSubmitted] = React.useState(false)
-    const [isLoading, setIsLoading] = React.useState(false)
-    const [error, setError] = React.useState<string | null>(null)
+
     const [resultSaved, setResultSaved] = React.useState(false)
 
     React.useEffect(() => {
@@ -73,54 +69,7 @@ export default function ErgebnissePage() {
         window.print()
     }
 
-    const handleEmailSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setIsLoading(true)
-        setError(null)
 
-        try {
-            // Create lead in Supabase
-            const lead = await createLead({
-                email,
-                source: 'selbsttest-results',
-                consent_given: consent,
-                consent_text: 'Ich stimme zu, dass meine E-Mail für die Zusendung der Materialien verwendet wird. Abmeldung jederzeit möglich.',
-            })
-
-            // Update selbsttest result with the new lead
-            if (lead?.id && score !== null) {
-                let level: 'starter' | 'fortgeschritten' | 'ready' = 'starter'
-                if (score >= 33) level = 'ready'
-                else if (score >= 19) level = 'fortgeschritten'
-
-                await saveSelbsttestResult({
-                    email,
-                    lead_id: lead.id,
-                    answers,
-                    total_score: score,
-                    level,
-                })
-            }
-
-            setIsLoading(false)
-            setEmailSubmitted(true)
-        } catch (err: unknown) {
-            console.error('Error submitting email:', err)
-
-            // Check for duplicate email error
-            if (err && typeof err === 'object' && 'code' in err) {
-                const apiError = err as { code: string; message: string }
-                if (apiError.code === 'DUPLICATE_EMAIL') {
-                    setError(apiError.message)
-                    setIsLoading(false)
-                    return
-                }
-            }
-
-            setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
-            setIsLoading(false)
-        }
-    }
 
     // Determine result level
     const result = selbsttestResults.find(
@@ -377,65 +326,7 @@ export default function ErgebnissePage() {
                         </div>
                     </div>
 
-                    {/* Email Capture or CTA */}
-                    <div className="mb-12 print:hidden">
-                        {!emailSubmitted ? (
-                            <Card className="p-6 bg-gray-900 text-white border-0">
-                                <h3 className="text-xl font-bold mb-2">PDF-Version herunterladen</h3>
-                                <p className="text-gray-300 text-sm mb-4">
-                                    Erhalte dieses Ergebnis als PDF + exklusive Tipps per E-Mail.
-                                </p>
-                                <form onSubmit={handleEmailSubmit} className="space-y-4">
-                                    <input
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="deine@email.de"
-                                        required
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-red-500"
-                                    />
-                                    <label className="flex items-start gap-2 text-xs text-gray-400 cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            checked={consent}
-                                            onChange={(e) => setConsent(e.target.checked)}
-                                            required
-                                            className="mt-0.5"
-                                        />
-                                        <span>
-                                            Ich stimme zu, dass meine E-Mail für die Zusendung der Materialien verwendet wird.
-                                            Abmeldung jederzeit möglich.
-                                        </span>
-                                    </label>
-                                    <Button type="submit" variant="primary" className="w-full bg-red-600 hover:bg-red-700" disabled={isLoading}>
-                                        {isLoading ? 'Wird gesendet...' : 'PDF kostenlos anfordern'}
-                                    </Button>
-                                    {error && (
-                                        <p className="text-red-400 text-sm text-center">{error}</p>
-                                    )}
-                                </form>
-                            </Card>
-                        ) : (
-                            <Card className="p-6 bg-green-50 border-green-200">
-                                <div className="text-center">
-                                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <Check className="w-8 h-8 text-green-600" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-green-800 mb-2">PDF wird gesendet!</h3>
-                                    <p className="text-green-700 mb-4">
-                                        Überprüfe deinen Posteingang für das PDF und weitere Tipps.
-                                    </p>
-                                    <Link
-                                        href="/#pricing"
-                                        className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
-                                    >
-                                        🔥 Jetzt durchstarten - <span className="line-through opacity-70">€747</span> €497
-                                        <ArrowRight className="w-4 h-4" />
-                                    </Link>
-                                </div>
-                            </Card>
-                        )}
-                    </div>
+
 
                     {/* Main CTA */}
                     <div className="text-center mb-10 print:hidden">

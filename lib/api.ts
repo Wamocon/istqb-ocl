@@ -54,6 +54,7 @@ export async function createLead(data: {
     source?: string
     consent_given: boolean
     consent_text?: string
+    phone?: string
 }): Promise<Lead> {
     const normalizedEmail = data.email.toLowerCase().trim()
 
@@ -73,6 +74,7 @@ export async function createLead(data: {
             source: data.source || 'website',
             consent_given: data.consent_given,
             consent_text: data.consent_text,
+            phone: data.phone,
         })
         .select()
         .single()

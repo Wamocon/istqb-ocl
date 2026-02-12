@@ -5,19 +5,14 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BookOpen, Code, TrendingUp } from 'lucide-react'
-import { LeadMagnetDialog } from '@/components/ui/LeadMagnetDialog'
 import { PurchaseDialog } from '@/components/ui/PurchaseDialog'
 
 export function Hero() {
-  const [showLeadMagnet, setShowLeadMagnet] = React.useState(false)
   const [animationComplete, setAnimationComplete] = React.useState(false)
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-background-red-dark text-white overflow-hidden">
-      <LeadMagnetDialog
-        open={showLeadMagnet}
-        onOpenChange={setShowLeadMagnet}
-      />
+
 
       {/* Spotlight Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-accent/20 rounded-full blur-[120px] -z-10 pointer-events-none opacity-50" />
@@ -75,7 +70,7 @@ export function Hero() {
                   variant="secondary"
                   size="xl"
                   className="bg-background-card border-border hover:bg-background-alt text-base md:text-lg px-8 py-5"
-                  onClick={() => setShowLeadMagnet(true)}
+                  onClick={() => window.location.href = '/selbsttest'}
                 >
                   Kostenloser Karriere Check
                 </Button>

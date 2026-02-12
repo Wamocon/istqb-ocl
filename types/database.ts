@@ -52,6 +52,7 @@ export type Database = {
                     id: string
                     ip_address: string | null
                     source: string | null
+                    phone: string | null
                 }
                 Insert: {
                     consent_given?: boolean
@@ -62,6 +63,7 @@ export type Database = {
                     id?: string
                     ip_address?: string | null
                     source?: string | null
+                    phone?: string | null
                 }
                 Update: {
                     consent_given?: boolean
@@ -72,6 +74,7 @@ export type Database = {
                     id?: string
                     ip_address?: string | null
                     source?: string | null
+                    phone?: string | null
                 }
                 Relationships: []
             }

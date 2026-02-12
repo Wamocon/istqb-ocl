@@ -7,12 +7,23 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { selbsttestQuestions } from '@/data/selbsttestContent'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { createLead } from '@/lib/api'
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 export default function SelbsttestPage() {
     const router = useRouter()
     const [currentQuestion, setCurrentQuestion] = React.useState(0)
     const [answers, setAnswers] = React.useState<Record<number, number>>({})
     const [isCompleted, setIsCompleted] = React.useState(false)
+
+    // Lead capture state
+    const [email, setEmail] = React.useState('')
+    const [phone, setPhone] = React.useState('')
+    const [consent, setConsent] = React.useState(false)
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [error, setError] = React.useState<string | null>(null)
 
     const totalQuestions = selbsttestQuestions.length
     const progress = ((currentQuestion + 1) / totalQuestions) * 100
@@ -30,12 +41,8 @@ export default function SelbsttestPage() {
         if (currentQuestion < totalQuestions - 1) {
             setCurrentQuestion(prev => prev + 1)
         } else {
-            // Complete the test and redirect to results
-            const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0)
-            // Store answers in sessionStorage for the results page
-            sessionStorage.setItem('selbsttestAnswers', JSON.stringify(answers))
-            sessionStorage.setItem('selbsttestScore', totalScore.toString())
-            router.push('/selbsttest/ergebnisse')
+            // Show lead capture form instead of redirecting
+            setIsCompleted(true)
         }
     }
 
@@ -45,7 +52,154 @@ export default function SelbsttestPage() {
         }
     }
 
+    const handleLeadSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setIsLoading(true)
+        setError(null)
+
+        try {
+            // Save lead to Supabase
+            const lead = await createLead({
+                email,
+                source: 'selbsttest_completed',
+                consent_given: consent,
+                consent_text: 'Ich stimme zu, dass meine Email & Nummer für die Zusendung der Ergebnisse und weiterer Informationen (auch per Whatsapp/Anruf) verwendet wird. Abmeldung jederzeit möglich.',
+                phone: phone, // Pass the phone number separately if API supports it, or it might be stored in metadata
+            })
+
+            const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0)
+
+            // Store lead ID and results in sessionStorage
+            if (lead?.id) {
+                sessionStorage.setItem('leadId', lead.id)
+                sessionStorage.setItem('leadEmail', email)
+            }
+            sessionStorage.setItem('selbsttestAnswers', JSON.stringify(answers))
+            sessionStorage.setItem('selbsttestScore', totalScore.toString())
+
+            setIsLoading(false)
+            router.push('/selbsttest/ergebnisse')
+        } catch (err: unknown) {
+            console.error('Error creating lead:', err)
+
+            // Check for duplicate email error
+            if (err && typeof err === 'object' && 'code' in err) {
+                const apiError = err as { code: string; message: string }
+                if (apiError.code === 'DUPLICATE_EMAIL') {
+                    // Even if duplicate, we let them proceed to results, just update context if needed
+                    // For now, simpler to just treat as success for the user flow or show specific msg
+                    // Let's decide to show error or just proceed. 
+                    // Usually for duplicates we might just want to update the existing lead or proceed.
+                    // Let's proceed to results to not block returning users.
+                    const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0)
+                    sessionStorage.setItem('leadEmail', email)
+                    sessionStorage.setItem('selbsttestAnswers', JSON.stringify(answers))
+                    sessionStorage.setItem('selbsttestScore', totalScore.toString())
+                    router.push('/selbsttest/ergebnisse')
+                    return
+                }
+            }
+
+            setError('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.')
+            setIsLoading(false)
+        }
+    }
+
     const question = selbsttestQuestions[currentQuestion]
+
+    if (isCompleted) {
+        return (
+            <div className="min-h-screen bg-background-alt py-12 md:py-20">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-md mx-auto">
+                        <Card className="p-8">
+                            <h2 className="text-2xl font-bold mb-4 text-center">Fast geschafft! 🚀</h2>
+                            <p className="text-center text-foreground-muted mb-8">
+                                Deine Ergebnisse sind berechnet. Wohin sollen wir deine detaillierte Auswertung senden?
+                            </p>
+
+                            <form onSubmit={handleLeadSubmit} className="space-y-6">
+                                <div>
+                                    <label htmlFor="lead-email" className="block text-sm font-medium mb-2">
+                                        E-Mail Adresse
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="lead-email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
+                                        placeholder="deine@email.de"
+                                        required
+                                    />
+                                    {error && (
+                                        <p className="text-red-500 text-sm mt-2">{error}</p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <label htmlFor="lead-phone" className="block text-sm font-medium mb-2">
+                                        WhatsApp Nummer (für sicheren Versand)
+                                    </label>
+                                    <div className="phone-input-container">
+                                        <PhoneInput
+                                            international
+                                            defaultCountry="DE"
+                                            value={phone}
+                                            onChange={(val) => setPhone(val || '')}
+                                            className="w-full px-4 py-3 rounded-lg border border-border bg-background focus-within:ring-2 focus-within:ring-accent focus-within:border-transparent transition-all"
+                                            placeholder="Mobilnummer eingeben"
+                                        />
+                                    </div>
+                                    <p className="text-xs text-foreground-muted mt-1">
+                                        Damit deine Auswertung auch sicher ankommt (und nicht im Spam landet).
+                                    </p>
+                                </div>
+
+                                <div className="bg-accent/5 p-4 rounded-lg border border-accent/10">
+                                    <h4 className="font-semibold text-sm mb-2 text-foreground">
+                                        Du erhältst:
+                                    </h4>
+                                    <ul className="text-sm space-y-1.5 text-foreground-muted">
+                                        <li className="flex items-start gap-2">
+                                            <span className="text-accent flex-shrink-0">✓</span>
+                                            <span>Deine persönliche IT-Karriere-Chancen Auswertung</span>
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <span className="text-accent flex-shrink-0">✓</span>
+                                            <span>Konkrete Handlungsempfehlungen für deinen Einstieg</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <label className="flex items-start gap-2 text-xs text-foreground-muted cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={consent}
+                                        onChange={(e) => setConsent(e.target.checked)}
+                                        className="mt-0.5 text-accent focus:ring-accent rounded"
+                                        required
+                                    />
+                                    <span>
+                                        Ich stimme zu, dass meine Email & Nummer für die Zusendung der Ergebnisse und weiterer Informationen (auch per Whatsapp/Anruf) verwendet wird.
+                                        Abmeldung jederzeit möglich. <a href="/datenschutz" className="text-accent underline" target="_blank">Datenschutz</a>.
+                                    </span>
+                                </label>
+
+                                <Button
+                                    type="submit"
+                                    className="w-full bg-accent hover:bg-accent-hover text-white py-4 text-lg"
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? 'Wird ausgewertet...' : 'Jetzt Ergebnisse anzeigen'}
+                                </Button>
+                            </form>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="min-h-screen bg-background-alt py-12 md:py-20">

@@ -4,12 +4,10 @@ import * as React from 'react'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { PurchaseDialog } from '@/components/ui/PurchaseDialog'
-import { LeadMagnetDialog } from '@/components/ui/LeadMagnetDialog'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 
 export function FinalCTA() {
   const [showPurchase, setShowPurchase] = React.useState(false)
-  const [showLeadMagnet, setShowLeadMagnet] = React.useState(false)
 
   return (
     <section className="py-16 md:py-24 bg-background-red-dark text-white">
@@ -18,10 +16,6 @@ export function FinalCTA() {
         onOpenChange={setShowPurchase}
         productName="ISTQB CTFL 4.0 KOMPLETT"
         price={497}
-      />
-      <LeadMagnetDialog
-        open={showLeadMagnet}
-        onOpenChange={setShowLeadMagnet}
       />
       <div className="container mx-auto px-6">
         <ScrollReveal animation="fade-up" width="100%">
@@ -74,14 +68,7 @@ export function FinalCTA() {
                     <p className="text-muted text-sm">Kostenloser IT Karriere Selbsttest</p>
                   </div>
 
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full mb-6"
-                    onClick={() => setShowLeadMagnet(true)}
-                  >
-                    Kostenloser IT Karriere Check
-                  </Button>
+
 
                   <div className="text-sm text-left space-y-4">
                     <div>
@@ -100,7 +87,7 @@ export function FinalCTA() {
                         variant="tertiary"
                         size="sm"
                         className="w-full"
-                        onClick={() => setShowLeadMagnet(true)}
+                        onClick={() => window.location.href = '/selbsttest'}
                       >
                         Jetzt kostenlos anfordern
                       </Button>
